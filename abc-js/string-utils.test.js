@@ -6,13 +6,13 @@ const complexText = "Hello world!!! It's terminator";
 
 export function repeatTests() {
   assertToBe('повторено несколько раз - простой текст', repeat('a', 3), 'aaa');
-  // resultValue = repeat(complexText, 3);
+  // let resultValue = repeat(complexText, 3);
   // let expectValue = complexText + complexText + complexText;
   // assertToBe('повторено несколько раз - сложный текст', resultValue, expectValue);
   // assertToBe('повторено несколько раз - пустой текст', repeat('', 3), '');
 
   // assertToBe('повторено один раз - простой текст', repeat('a', 1), 'a');
-  // let resultValue = repeat(complexText, 1);
+  // resultValue = repeat(complexText, 1);
   // assertToBe('повторено один раз - сложный текст', resultValue, "Hello world!!! It's terminator");
   // assertToBe('повторено один раз - пустой текст', repeat('', 1), "");
 
@@ -22,10 +22,11 @@ export function repeatTests() {
 
   // assertToBe('пропущенное число повторении возвращает ту же строку', repeat('abc'), 'abc');
   // assertToBe('в дробном числе повторении, дробная часть отбрасывается', repeat('abc', 3.85), 'abcabcabc');
-  // assertThrow('второй параметр приводится в число', repeat('a', '3'), 'aaa');
+  // assertToBe('второй параметр приводится в число', repeat('a', '3'), 'aaa');
+  // assertToBe('второй параметр приводится в число', repeat('a', false), '');
 
   // let errCb = () => repeat('a', -1);
-  // assertToBe('отрицательное число повторении вызывает исключение', errCb, 'repeat count must be positive value or zero');
+  // assertThrow('отрицательное число повторении вызывает исключение', errCb, 'repeat count must be positive value or zero');
   // errCb = () => repeat();
   // assertThrow('пропущеный текст вызывает исключение', errCb, 'text must not be of undefined');
   // errCb = () => repeat(true);

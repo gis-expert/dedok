@@ -15,14 +15,14 @@ export function assertSuite(suiteDesc, cb) {
 /** это утверждение проверяет строгое равенство a и b */
 export function assertToBe(assertDescription, a, b) {
   if (a === b) return `${assertDescription} - success runned`;
-  const errMsg = `Test Assertion Error: ${a} not to be ${b}`
+  const errMsg = `Test Assertion Error: ${arg2string(a)} not to be ${arg2string(b)}`
   throwError(assertDescription, errMsg);
 }
 
 /** это утверждение проверяет строгое неравенство a и b */
 export function assertNotToBe(assertDescription, a, b) {
   if (a !== b) return `${assertDescription} - success runned`;
-  const errMsg = `Test Assertion Error: ${a} to be ${b}`
+  const errMsg = `Test Assertion Error: ${arg2string(a)} to be ${arg2string(b)}`
   throwError(assertDescription, errMsg);
 }
 
@@ -62,6 +62,13 @@ export function assertThrow(assertDescription, cb, errString) {
   }
   const errMsg = `Test Assertion Error: ${cb.name} did not throw an exception`
   throwError(assertDescription, errMsg);
+}
+
+function arg2string(arg) {
+  if (arg === '') return `"empty string"`;
+  else if (typeof arg === 'undefined') return 'undefined';
+  else if (arg === null) return 'null';
+  return arg;
 }
 
 /** вспомогательная фукнция, выкидывает исключение */
