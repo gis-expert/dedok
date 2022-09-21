@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>full html</title>
+
+  <style>
+    p { color: gray }
+    .pressed { color: green; }
+    .unpressed { color: red; }
+  </style>
+</head>
+
+<body>
+  <p id='p'>unknown</p>
+  <button id='btn'>Toggle status</button>
+  <script>
+    document.getElementById('btn').onclick = () => {
+          let p = document.getElementById('p');
+          if (p.textContent === 'pressed') {
+            p.textContent = 'unpressed';
+            p.setAttribute('class', 'unpressed');
+          } else {
+            p.textContent = 'pressed';
+            p.setAttribute('class', 'pressed');
+          }
+        }
+  </script>
+</body>
+</html>

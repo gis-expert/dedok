@@ -1,6 +1,6 @@
-import { assertToBe, assertThrow } from '../asserts/assert.js';
-import { testsForHtml } from '../asserts/assert2html.js';
-import { repeat } from './string-utils.js';
+import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
+import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
+import { repeat, substring } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 
@@ -35,6 +35,27 @@ export function repeatTests() {
   return 'repeatTests - success runned';
 }
 
+export function substringTests() {
+  assertToBe('получить два первых символа', substring(complexText, 0, 2), 'He');
+  // assertToBe('если индексы лежат за пределами, то возвзращается пустая строка', substring('a', 2, 5), '');
+  // assertToBe('получить с индекса 2 по 5 индекс', substring(complexText, 2, 5), 'llo');
+  // assertToBe('если передать одинаковый индекс, то возвращается пустая строка', substring(complexText, 5, 5), '');
+  // assertToBe('если не передавать индексы, то возвращается копия строки', substring(complexText), complexText);
+  // assertToBe('если не передавать второй индекс, то возвращается до конца текста', substring(complexText, 20), 'terminator');
+  // assertToBe('если второй индекс больше длины, то возвращается до конца текста', substring(complexText, 20, 60), 'terminator');
+  // assertToBe('если второй индекс больше первого, то индексы меняются местами', substring(complexText, 5, 2), 'llo');
+  // assertToBe('если второй индекс отрицательный, то возвращается с 0 индекса по значение первого аргумента',
+  //     substring(complexText, 5, -2), 'Hello');
+  // assertToBe('если первый индекс отрицательный, то он равен 0', substring(complexText, -5, 2), 'He');
+  // assertToBe('если оба индексы отрицательные, то они равны 0', substring(complexText, -5, -2), '');
+  // assertToBe('индексы приводятся в тип числа', substring(complexText, true, '5'), 'ello');
+
+  // let errCb = () => substring();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', substring(true, 2), 'text must be of type string');
+
+  return 'substringTests - success runned';
+}
 //substring
 //indexOf
 //trim
@@ -62,6 +83,7 @@ export function repeatTests() {
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
   repeatTests,
+  substringTests,
 ];
 
 testsForHtml(allTestCallBacks);
