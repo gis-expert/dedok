@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>local let</title>
+  <script type="text/javascript" src="local-let.js"> </script>
+</head>
+
+<body>
+  <script>
+    // будем тестировать доступ к глобальной видимости
+    // с уровня html файла
+    console.log('--- run html script started');
+
+    // с html файла у нас тоже есть доступ к глобальной видимости
+    // поэтому вызов функции будет успешным.
+    // Но внутри функции нас ждет ошибка выполнения
+    letFunction();
+
+    // этот код тоже не будет выполнен, потому что вызов
+    // функции letFunction() приведет к ошибке и поток выполнения
+    // прервется.
+    console.log('--- run html script finished');
+  </script>
+</body>
+</html>

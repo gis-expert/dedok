@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>local var</title>
+  <script type="text/javascript" src="local-var.js"> </script>
+</head>
+
+<body>
+  <script>
+    console.log('--- run html script started');
+
+    // следующий код нормально выполнится, что доказывает
+    // что переменная имеет глобальную видимость
+    console.log(`blockGlobalVar value: "${blockGlobalVar}"`);
+
+    // функция тоже доступна и она отработает без ошибок
+    varFunction();
+
+    // выполнение следующего кода вызовет ошибку,
+    // так как данная переменная была объявлена в локальном
+    // пространстве функции.
+    console.log(`fnLocalVar value: "${fnLocalVar}"`);
+
+    // этот код никогда не выполнится
+    console.log('--- run html script finished');
+  </script>
+</body>
+</html>
