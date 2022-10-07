@@ -1,3 +1,9 @@
+/** по индексу проверяет совпадают ли все остальные символы
+ * между text и searchString и возвращает булевое значение.*/
+export function isItMatch(firstText, secondText) {
+
+  }
+
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count) {
 
