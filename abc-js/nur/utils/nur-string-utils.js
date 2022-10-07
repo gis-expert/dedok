@@ -1,3 +1,20 @@
+/** по индексу проверяет совпадают ли все остальные символы
+ * между text и searchString и возвращает булевое значение.*/
+export function isItMatch(firstText, secondText) {
+  if (typeof firstText === 'undefined' || typeof secondText === 'undefined')
+    throw Error('both parameters are required');
+
+  if (typeof firstText !== 'string' || typeof secondText !== 'string')
+    return false;
+
+  if (firstText.length !== secondText.length) return false;
+
+  for (let i = 0; i < firstText.length; i += 1) {
+    if (firstText[i] !== secondText[i]) return false;
+  }
+  return true;
+  }
+
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count = 1) {
   if (typeof text === 'undefined') throw Error('text must not be of undefined');
@@ -49,4 +66,15 @@ export function substring(text, start, end) {
     result += text[i];
   }
   return result;
+}
+
+/** Выполняет поиск строки searchString в строке text
+ * и возвращает первую найденную позицию.
+ * Если в вхождение не найдено, то возвращает значение -1.
+ * Параметр position задает начальную позицию с которой необходимо
+ * начать поиск.*/
+export function indexOf(text, searchString, position) {
+  for (let i = 0; i < text.length; i += 1) {
+    
+  }
 }

@@ -1,8 +1,25 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
-import { repeat, substring } from './nur-string-utils.js';
+import { isItMatch, repeat, substring, indexOf } from './nur-string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
+
+export function isItMatchTests() {
+  assertToBe('одиночные одинаковые символы', isItMatch('a', 'a'), true);
+  assertToBe('одиночные одинаковые символы', isItMatch('a', 'b'), false);
+  assertToBe('пустые строки', isItMatch('', ''), true);
+  assertToBe('пустые и непустая строка', isItMatch('', 'a'), false);
+  assertToBe('сложные одинаковые строки', isItMatch(complexText, complexText), true);
+  assertToBe('сложные неодинаковые строки', isItMatch(complexText + 'a', complexText), false);
+  assertToBe('тип не строки приводит к отрицательному результату', isItMatch('2', 2), false);
+
+  let errCb = () => isItMatch('a');
+  assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
+  errCb = () => isItMatch();
+  assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
+
+  return 'isItMatchTests - success runned';
+}
 
 export function repeatTests() {
   assertToBe('повторено несколько раз - простой текст', repeat('a', 3), 'aaa');
@@ -62,7 +79,12 @@ export function substringTests() {
   return 'substringTests - success runned';
 }
 
-//indexOf
+export function indexOfTests() {
+  assertToBe('получить два первых символа', indexOf(complexText, 'Terminator'), 20);
+
+  return 'indexOfTests - success runned';
+}
+
 //trim
 //trimEnd
 //trimStart
@@ -75,6 +97,7 @@ export function substringTests() {
 //endsWith
 //startsWith
 //includes
+//toString
 //upperCase
 //lowerCase
 //title
@@ -87,8 +110,10 @@ export function substringTests() {
 
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
+  isItMatchTests,
   repeatTests,
   substringTests,
+  indexOfTests,
 ];
 
 testsForHtml(allTestCallBacks);
