@@ -1,6 +1,6 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
-import { repeat, substring } from './string-utils.js';
+import { repeat, substring, indexOf } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 
@@ -37,27 +37,37 @@ export function repeatTests() {
 
 export function substringTests() {
   assertToBe('получить два первых символа', substring(complexText, 0, 2), 'He');
-  // assertToBe('если индексы лежат за пределами, то возвзращается пустая строка', substring('a', 2, 5), '');
   // assertToBe('получить с индекса 2 по 5 индекс', substring(complexText, 2, 5), 'llo');
   // assertToBe('если передать одинаковый индекс, то возвращается пустая строка', substring(complexText, 5, 5), '');
-  // assertToBe('если не передавать индексы, то возвращается копия строки', substring(complexText), complexText);
   // assertToBe('если не передавать второй индекс, то возвращается до конца текста', substring(complexText, 20), 'terminator');
+  // assertToBe('если не передавать индексы, то возвращается копия строки', substring(complexText), complexText);
   // assertToBe('если второй индекс больше длины, то возвращается до конца текста', substring(complexText, 20, 60), 'terminator');
   // assertToBe('если второй индекс больше первого, то индексы меняются местами', substring(complexText, 5, 2), 'llo');
+  // assertToBe('если первый индекс отрицательный, то он равен 0', substring(complexText, -5, 2), 'He');
   // assertToBe('если второй индекс отрицательный, то возвращается с 0 индекса по значение первого аргумента',
   //     substring(complexText, 5, -2), 'Hello');
-  // assertToBe('если первый индекс отрицательный, то он равен 0', substring(complexText, -5, 2), 'He');
   // assertToBe('если оба индексы отрицательные, то они равны 0', substring(complexText, -5, -2), '');
+  // assertToBe('если индексы лежат за пределами, то возвзращается пустая строка', substring('a', 2, 5), '');
   // assertToBe('индексы приводятся в тип числа', substring(complexText, true, '5'), 'ello');
+  // assertToBe('третий параметр не число становятся равным 0,', substring(complexText, 4, 's'), 'Hell');
+  // assertToBe('второй параметр не число становятся равным 0,', substring(complexText, 's', 5), 'Hello');
+  // assertToBe('второй и третий параметр не число и становятся равным 0,', substring(complexText, 's', 't'), '');
+  // assertToBe('дробная часть второго и третьего параметра отбрасывается', substring(complexText, 1.7, 3.1415), 'el');
 
   // let errCb = () => substring();
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
-  // assertThrow('если тип первого аргумента на строка, то будет исключение', substring(true, 2), 'text must be of type string');
+  // errCb = () => substring(true, 2);
+  // assertThrow('если тип первого аргумента нe строка, то будет исключение', errCb, 'text must be of type string');
 
   return 'substringTests - success runned';
 }
-//substring
-//indexOf
+
+export function indexOfTests() {
+  assertToBe('получить два первых символа', indexOf(complexText, 'Terminator'), 20);
+
+  return 'indexOfTests - success runned';
+}
+
 //trim
 //trimEnd
 //trimStart
@@ -84,6 +94,7 @@ export function substringTests() {
 const allTestCallBacks = [
   repeatTests,
   substringTests,
+  indexOfTests,
 ];
 
 testsForHtml(allTestCallBacks);

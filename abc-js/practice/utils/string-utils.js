@@ -9,3 +9,12 @@ export function repeat(text, count) {
 export function substring(text, start, end) {
 
 }
+
+/** Выполняет поиск строки searchString в строке text
+ * и возвращает первую найденную позицию.
+ * Если в вхождение не найдено, то возвращает значение -1.
+ * Параметр position задает начальную позицию с которой необходимо
+ * начать поиск.*/
+export function indexOf(text, searchString, position) {
+
+}
