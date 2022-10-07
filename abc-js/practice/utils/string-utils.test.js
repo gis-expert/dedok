@@ -1,6 +1,6 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
-import { repeat, substring } from './string-utils.js';
+import { repeat, substring, indexOf } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 
@@ -62,8 +62,12 @@ export function substringTests() {
   return 'substringTests - success runned';
 }
 
-//substring
-//indexOf
+export function indexOfTests() {
+  assertToBe('получить два первых символа', indexOf(complexText, 'Terminator'), 20);
+
+  return 'indexOfTests - success runned';
+}
+
 //trim
 //trimEnd
 //trimStart
@@ -90,6 +94,7 @@ export function substringTests() {
 const allTestCallBacks = [
   repeatTests,
   substringTests,
+  indexOfTests,
 ];
 
 testsForHtml(allTestCallBacks);
