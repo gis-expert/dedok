@@ -1,24 +1,49 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
-import { isItMatch, repeat, substring, indexOf } from './string-utils.js';
+import { isMatch, repeat, substring, indexOf } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 
-export function isItMatchTests() {
-  assertToBe('одиночные одинаковые символы', isItMatch('a', 'a'), true);
-  // assertToBe('одиночные одинаковые символы', isItMatch('a', 'b'), false);
-  // assertToBe('пустые строки', isItMatch('', ''), true);
-  // assertToBe('пустые и непустая строка', isItMatch('', 'a'), false);
-  // assertToBe('сложные одинаковые строки', isItMatch(complexText, complexText), true);
-  // assertToBe('сложные неодинаковые строки', isItMatch(complexText + 'a', complexText), false);
-  // assertToBe('тип не строки приводит к отрицательному результату', isItMatch('2', 2), false);
+export function isMatchTests() {
+  assertToBe('одиночные одинаковые символы', isMatch('a', 'a'), true);
+  // assertToBe('одиночные одинаковые символы', isMatch('a', 'b'), false);
+  // assertToBe('пустые строки', isMatch('', ''), true);
+  // assertToBe('пустые и непустая строка', isMatch('', 'a'), false);
+  // assertToBe('сложные одинаковые строки', isMatch(complexText, complexText), true);
+  // assertToBe('сложные неодинаковые строки', isMatch(complexText + 'a', complexText), false);
+  // assertToBe('тип не строки приводит к отрицательному результату', isMatch('2', 2), false);
 
-  // let errCb = () => isItMatch('a');
+  // let errCb = () => isMatch('a');
   // assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
-  // errCb = () => isItMatch();
+  // errCb = () => isMatch();
   // assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
 
-  return 'isItMatchTests - success runned';
+  // return 'isItMatchTests - success runned';
+// }
+
+export function toStringTests() {
+  assertToBe('перевод строки в строку', toString('any text'), 'any text');
+  // assertToBe('перевод булевого значения true в строку', toString(true), 'true');
+  // assertToBe('перевод булевого значения false в строку', toString(false), 'false');
+  // assertToBe('перевод undefined в строку', toString(undefined), 'undefined');
+  // assertToBe('перевод null в строку', toString(null), 'null');
+  // assertToBe('перевод числа 3 в строку', toString(3), '3');
+  // assertToBe('перевод числа 0 в строку', toString(0), '0');
+  // assertToBe('перевод числа 1 в строку', toString(1), '1');
+  // assertToBe('перевод числа 10 в строку', toString(10), '10');
+  // assertToBe('перевод числа 100 в строку', toString(100), '100');
+  // assertToBe('перевод многозначного целого числа в строку', toString(323459), '323459');
+  // assertToBe('перевод отрицательного целого числа в строку', toString(-3), '-3');
+  // assertToBe('перевод минус ноль в строку', toString(-0), '0');
+  // assertToBe('перевод минус один в строку', toString(-1), '-1');
+  // assertToBe('перевод минус сто в строку', toString(-100), '-100');
+  // assertToBe('перевод положительного целого числа в строку', toString(+3), '3');
+  // assertToBe('перевод дробного числа в строку, раз', toString(3.1415), '3.1415');
+  
+  let errCb = () => toString([2]);
+  assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
+
+  return 'toString - success runned';
 }
 
 export function repeatTests() {
@@ -80,7 +105,36 @@ export function substringTests() {
 }
 
 export function indexOfTests() {
-  assertToBe('получить два первых символа', indexOf(complexText, 'Terminator'), 20);
+  assertToBe('найти текст с середины текста', indexOf(complexText, 'terminator'), 20);
+  // assertToBe('найти текст с начала текста', indexOf(complexText, 'Hello'), 0);
+  // assertToBe('найти текст с начала текста с одиночным символом', indexOf(complexText, 'H'), 0);
+  // assertToBe('текст не найден', indexOf(complexText, 'Help'), -1);
+  // assertToBe('регистр имеет значение', indexOf(complexText, 'hello'), -1);
+  // assertToBe('слово есть, но длина больше', indexOf(complexText, 'terminator.'), -1);
+  // assertToBe('поиск первого совпадения', indexOf(complexText, 't'), 16);
+  // assertToBe('поиск первого совпадения с тем же индексом', indexOf(complexText, 't', 16), 16);
+  // assertToBe('поиск второго совпадения', indexOf(complexText, 't', 17), 20);
+  // assertToBe('поиск третьего совпадения', indexOf(complexText, 't', 21), 27);
+  // assertToBe('после 27 символе нет символа t', indexOf(complexText, 't', 28), -1);
+  // assertToBe('отрицательный начальный индекс равнозначен нулю', indexOf(complexText, 't', -17), 16);
+  // assertToBe('пустой второй параметр дает возвращает 0', indexOf(complexText, ''), 0);
+  // assertToBe('пустой второй параметр с заполненным нач. индексом возвращает тот же индекс',
+  //     indexOf(complexText, '', 5), 5);
+  // assertToBe('пустой первый параметр дает возвращает -1', indexOf('', 'q'), -1);
+  // assertToBe('дробные числа округляются', indexOf('HeH', 'H', 2.2), 2);
+  // assertToBe('дробные числа округляются', indexOf('HeH', 'H', 2.9), 2);
+  // assertToBe('третий параметр переводится в тип числа', indexOf('HeH', 'H', true), 2);
+  // assertToBe('третий параметр переводится в тип числа', indexOf('HeH', 'H', '1'), 2);
+  // assertToBe('третий параметр переводится в тип числа', indexOf('HeH', 'H', 's'), -1);
+  // assertToBe('третий параметр переводится в тип числа', indexOf('HeH', 'H', 's'), -1);
+  // assertToBe('если второй параметр не передать, то возвратится -1', indexOf('HeH'), -1);
+  // assertToBe('если тип второго параметра не равен string, то возвратится -1', indexOf('HeH', true), -1);
+  // assertToBe('если тип второго параметра не равен string, то возвратится -1', indexOf('HeH', {}), -1);
+
+  // let errCb = () => indexOf();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => substring(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
 
   return 'indexOfTests - success runned';
 }
@@ -109,7 +163,7 @@ export function indexOfTests() {
 
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
-  isItMatchTests,
+  isMatchTests,
   repeatTests,
   substringTests,
   indexOfTests,
