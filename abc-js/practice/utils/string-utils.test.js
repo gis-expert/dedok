@@ -2,7 +2,7 @@ import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
   isMatch, toString, repeat, substring, indexOf,
-  trim, trimLeft, trimRight,
+  trim, trimLeft, trimRight, reverse, replace
 } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
