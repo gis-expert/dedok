@@ -20,6 +20,10 @@
  * 3. Объекты, в том числе массивы (для string-utils, number-utils, boolean-utils);
  */
 
+//** символы с данной константы будут удалятся функциями
+// trim(), trimLeft(), trimRight(). */
+const TRIM_SYMBOLS = ' \n\t\v'; 
+
 /** по индексу проверяет совпадают ли все остальные символы
  * между text и searchString и возвращает булевое значение.*/
 export function isMatch(firstText, secondText) {
@@ -36,6 +40,24 @@ export function toString(value) {
 
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count) {
+
+}
+
+/** Возвращает копию строки с удаленными пробелами в начале и конце строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trim(text) {
+
+}
+
+/** Возвращает копию строки с удаленными пробелами в начале строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trimLeft(text) {
+
+}
+
+/** Возвращает копию строки с удаленными пробелами в конце строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trimRight(text) {
 
 }
 

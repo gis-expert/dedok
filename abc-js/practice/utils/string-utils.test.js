@@ -1,6 +1,9 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
-import { isMatch, repeat, substring, indexOf } from './string-utils.js';
+import {
+  isMatch, toString, repeat, substring, indexOf,
+  trim, trimLeft, trimRight,
+} from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 
@@ -12,6 +15,7 @@ export function isMatchTests() {
   // assertToBe('сложные одинаковые строки', isMatch(complexText, complexText), true);
   // assertToBe('сложные неодинаковые строки', isMatch(complexText + 'a', complexText), false);
   // assertToBe('тип не строки приводит к отрицательному результату', isMatch('2', 2), false);
+  // assertToBe('тип не строки приводит к отрицательному результату', isMatch(2, '2'), false);
 
   // let errCb = () => isMatch('a');
   // assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
@@ -19,7 +23,7 @@ export function isMatchTests() {
   // assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
 
   // return 'isItMatchTests - success runned';
-// }
+}
 
 export function toStringTests() {
   assertToBe('перевод строки в строку', toString('any text'), 'any text');
@@ -104,6 +108,64 @@ export function substringTests() {
   return 'substringTests - success runned';
 }
 
+export function trimLeftTests() {
+  assertToBe('удалить пробелы спереди', trimLeft('  Hi'), 'Hi');
+  // assertToBe('удалить перевод строки и пробел спереди', trimLeft('\n Hi'), 'Hi');
+  // assertToBe('удалить табуляция и пробел спереди', trimLeft('\t Hi'), 'Hi');
+  // assertToBe('удалить верт. табуляция и пробел спереди', trimLeft('\v Hi'), 'Hi');
+  // assertToBe('символы сзади не трогаются', trimLeft('  Hi '), 'Hi ');
+  // assertToBe('перевод строки сзади не трогаются', trimLeft('  Hi \n'), 'Hi \n');
+  // assertToBe('табуляция сзади не трогаются', trimLeft('  Hi \t'), 'Hi \t');
+  // assertToBe('верт. табуляция сзади не трогаются', trimLeft('  Hi \v'), 'Hi \v');
+  // assertToBe('без символов к удалению, возвращается копия строки', trimLeft('Hi'), 'Hi');
+  // assertToBe('пробелы после символа не трогаются', trimRight(', Hi'), ', Hi');
+  // assertToBe('строка полностью из удаляемых символов', trimLeft(' \v \n \t\t'), '');
+
+  // let errCb = () => trimLeft();
+  // assertThrow('если не передать аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => trimLeft(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'trimLeft - success runned';
+}
+
+export function trimRightTests() {
+  assertToBe('удалить пробелы спереди', trimRight('Hi  '), 'Hi');
+  // assertToBe('удалить перевод строки и пробел сзади', trimRight('Hi\n '), 'Hi');
+  // assertToBe('удалить табуляция и пробел сзади', trimRight('Hi\t '), 'Hi');
+  // assertToBe('удалить верт. табуляция и пробел сзади', trimRight('Hi\v '), 'Hi');
+  // assertToBe('символы спереди не трогаются', trimRight('  Hi '), '  Hi');
+  // assertToBe('перевод строки спереди не трогаются', trimRight(' \nHi '), ' \nHi');
+  // assertToBe('табуляция спереди не трогаются', trimRight(' \tHi '), ' \tHi');
+  // assertToBe('верт. табуляция спереди не трогаются', trimRight(' \vHi '), ' \vHi');
+  // assertToBe('без символов к удалению, возвращается копия строки', trimRight('Hi'), 'Hi');
+  // assertToBe('пробелы после символа не трогаются', trimRight('Hi ,'), 'Hi ,');
+  // assertToBe('строка полностью из удаляемых символов', trimRight(' \v \n \t\t'), '');
+
+  // let errCb = () => trimRight();
+  // assertThrow('если не передать аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => trimRight(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'trimRight - success runned';
+}
+
+export function trimTests() {
+  assertToBe('удалить пробелы спереди', trim('  Hi'), 'Hi');
+  // assertToBe('удалить перевод строки и пробел сзади', trimRight('Hi\n '), 'Hi');
+  // assertToBe('удалить табуляция и пробел сзади', trim('Hi\t '), 'Hi');
+  // assertToBe('удалить верт. табуляция и пробел сзади', trim('Hi\v '), 'Hi');
+  // assertToBe('удалить символы спереди', trim('  Hi '), 'Hi');
+  // assertToBe('удалить перевод строки', trim(' \nHi '), 'Hi');
+  // assertToBe('удалить табуляцию спереди', trim(' \tHi '), 'Hi');
+  // assertToBe('удалить верт. табуляция спереди', trim(' \vHi '), 'Hi');
+  // assertToBe('без символов к удалению, возвращается копия строки', trim('Hi'), 'Hi');
+  // assertToBe('пробелы после символа не трогаются', trim(',  Hi .'), ',  Hi .');
+  // assertToBe('строка полностью из удаляемых символов', trim(' \v \n \t\t'), '');
+
+  return 'trim - success runned';
+}
+
 export function indexOfTests() {
   assertToBe('найти текст с середины текста', indexOf(complexText, 'terminator'), 20);
   // assertToBe('найти текст с начала текста', indexOf(complexText, 'Hello'), 0);
@@ -139,14 +201,11 @@ export function indexOfTests() {
   return 'indexOfTests - success runned';
 }
 
-//trim
-//trimEnd
-//trimStart
-//padEnd
-//padStart
 //reverse
 //replace
 //replaceAll
+//padEnd
+//padStart
 //slice
 //endsWith
 //startsWith
@@ -164,8 +223,12 @@ export function indexOfTests() {
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
   isMatchTests,
+  toStringTests,
   repeatTests,
   substringTests,
+  trimLeftTests,
+  trimRightTests,
+  trimTests,
   indexOfTests,
 ];
 
