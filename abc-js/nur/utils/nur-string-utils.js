@@ -117,6 +117,17 @@ function shiftFirstDigit() {
   residualNumber = residualNumber - nextRoundValue;
 }
 
+/** Возвращает "развернутую" копию text */
+export function reverse(text) {
+  requiredString(text);
+
+  let resultValue = '';
+  for (let i = text.length - 1; i >= 0 ; i -= 1) {
+    resultValue += text[i];
+  }
+  return resultValue;
+}
+
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count = 1) {
   requiredString(text);

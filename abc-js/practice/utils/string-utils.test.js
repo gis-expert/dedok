@@ -44,10 +44,24 @@ export function toStringTests() {
   // assertToBe('перевод положительного целого числа в строку', toString(+3), '3');
   // assertToBe('перевод дробного числа в строку, раз', toString(3.1415), '3.1415');
   
-  let errCb = () => toString([2]);
-  assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
+  // let errCb = () => toString([2]);
+  // assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
 
   return 'toString - success runned';
+}
+
+export function reverseTests() {
+  assertToBe('возвращается перевернутая копия строки', reverse('Hmmm'), 'mmmH');
+  // assertToBe('возвращается перевернутая копия строки 2', reverse('  Hmmm.'), '.mmmH  ');
+  // assertToBe('пустая строка остается пустой', reverse(''), '');
+  // assertToBe('один символ остается одним символом', reverse(' '), ' ');
+
+  // let errCb = () => reverse();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => reverse(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'reversTests - success runned';
 }
 
 export function repeatTests() {
@@ -201,7 +215,6 @@ export function indexOfTests() {
   return 'indexOfTests - success runned';
 }
 
-//reverse
 //replace
 //replaceAll
 //padEnd
@@ -224,6 +237,7 @@ export function indexOfTests() {
 const allTestCallBacks = [
   isMatchTests,
   toStringTests,
+  reverseTests,
   repeatTests,
   substringTests,
   trimLeftTests,

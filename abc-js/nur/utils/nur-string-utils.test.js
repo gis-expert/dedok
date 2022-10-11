@@ -2,7 +2,7 @@ import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
   isMatch, toString, repeat, substring, indexOf,
-  trim, trimLeft, trimRight,
+  trim, trimLeft, trimRight, reverse,
 } from './nur-string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
@@ -50,6 +50,20 @@ export function toStringTests() {
   assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
 
   return 'toString - success runned';
+}
+
+export function reverseTests() {
+  assertToBe('возвращается перевернутая копия строки', reverse('Hmmm'), 'mmmH');
+  assertToBe('возвращается перевернутая копия строки 2', reverse('  Hmmm.'), '.mmmH  ');
+  assertToBe('пустая строка остается пустой', reverse(''), '');
+  assertToBe('один символ остается одним символом', reverse(' '), ' ');
+
+  let errCb = () => reverse();
+  assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  errCb = () => reverse(true);
+  assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'reversTests - success runned';
 }
 
 export function repeatTests() {
@@ -203,7 +217,6 @@ export function indexOfTests() {
   return 'indexOfTests - success runned';
 }
 
-//reverse
 //replace
 //replaceAll
 //padEnd
@@ -226,6 +239,7 @@ export function indexOfTests() {
 const allTestCallBacks = [
   isMatchTests,
   toStringTests,
+  reverseTests,
   repeatTests,
   substringTests,
   trimLeftTests,

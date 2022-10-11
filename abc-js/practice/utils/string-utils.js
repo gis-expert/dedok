@@ -38,6 +38,11 @@ export function toString(value) {
 
 }
 
+/** Возвращает "развернутую" копию text */
+export function reverse(text) {
+
+}
+
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count) {
 
