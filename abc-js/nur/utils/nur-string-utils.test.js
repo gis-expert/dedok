@@ -212,7 +212,6 @@ export function indexOfTests() {
 //endsWith
 //startsWith
 //includes
-//toString
 //upperCase
 //lowerCase
 //title

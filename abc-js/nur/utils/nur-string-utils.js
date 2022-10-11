@@ -130,6 +130,35 @@ export function repeat(text, count = 1) {
   return result;
 }
 
+/** Возвращает копию строки с удаленными пробелами в начале и конце строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trim(text) {
+  let result = trimLeft(text);
+  return trimRight(result);
+}
+
+/** Возвращает копию строки с удаленными пробелами в начале строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trimLeft(text) {
+  requiredString(text);
+  let i = 0;
+  for (; i < text.length; i += 1) {
+    if (indexOf(TRIM_SYMBOLS, text[i]) === -1) break; 
+  }
+  return substring(text, i);
+}
+
+/** Возвращает копию строки с удаленными пробелами в конце строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trimRight(text) {
+  requiredString(text);
+  let i = text.length;
+  for (; i !== 0; i -= 1) {
+    if (indexOf(TRIM_SYMBOLS, text[i - 1]) === -1) break; 
+  }
+  return substring(text, 0, i);
+}
+
 /** Возвращает копию text начиная с индекса start до индекса end.
  * Символ с индексом end не включается в выборку.
  * Если end не передано, то будет возвращено text до последнего символа*/
@@ -166,35 +195,6 @@ export function substring(text, start, end) {
     result += text[i];
   }
   return result;
-}
-
-/** Возвращает копию строки с удаленными пробелами в начале и конце строки.
- * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
-export function trim(text) {
-  let result = trimLeft(text);
-  return trimRight(result);
-}
-
-/** Возвращает копию строки с удаленными пробелами в начале строки.
- * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
-export function trimLeft(text) {
-  requiredString(text);
-  let i = 0;
-  for (; i < text.length; i += 1) {
-    if (indexOf(TRIM_SYMBOLS, text[i]) === -1) break; 
-  }
-  return substring(text, i);
-}
-
-/** Возвращает копию строки с удаленными пробелами в конце строки.
- * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
-export function trimRight(text) {
-  requiredString(text);
-  let i = text.length;
-  for (; i !== 0; i -= 1) {
-    if (indexOf(TRIM_SYMBOLS, text[i - 1]) === -1) break; 
-  }
-  return substring(text, 0, i);
 }
 
 /** Выполняет поиск строки searchString в строке text
