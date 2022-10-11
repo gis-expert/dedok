@@ -233,8 +233,32 @@ export function indexOf(text, searchString, position) {
   return -1;
 }
 
-function requiredString(text) {
+/** Возвращает строку text, где первое вхождение subStr поменяно на newSubStr.
+ * text: строка, копию которой нужно получить.
+ * subStr: строка которое нужно поменять.
+ * newSubStr: строка, на которую нужно поменять. 
+ * Это упрощенная реализация anyString.replace(subStr, newSubstr),
+ * для ознакомления с возможностями полной версии: читать документацию. */
+export function replace(text, subStr, newSubStr) {
+  requiredString(text);
+
+  if (subStr === undefined) requiredString(subStr, 'subStr');
+  const validatedSubStr = toString(subStr);
+  
+  if (newSubStr === undefined) requiredString(newSubStr, 'newSubStr');
+  const validatedNewSubStr = toString(newSubStr);
+
+  const startIndex = indexOf(text, validatedSubStr);
+  if (startIndex === -1) return text;
+
+  const finishIndex = startIndex + validatedSubStr.length;
+  const leftPart = substring(text, 0, startIndex);
+  const rightPart = substring(text, finishIndex )
+  return leftPart + validatedNewSubStr + rightPart;
+}
+
+function requiredString(text, attrName='text') {
   // аргумент text обязателен и тип строки
-  if (typeof text === 'undefined') throw Error('text must not be of undefined');
-  if (typeof text !== 'string') throw Error('text must be of type string');
+  if (typeof text === 'undefined') throw Error(`${attrName} must not be of undefined`);
+  if (typeof text !== 'string') throw Error(`${attrName} must be of type string`);
 }

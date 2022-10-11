@@ -81,3 +81,13 @@ export function substring(text, start, end) {
 export function indexOf(text, searchString, position) {
 
 }
+
+/** Возвращает строку text, где первое вхождение subStr поменяно на newSubStr.
+ * text: строка, копию которой нужно получить.
+ * subStr: строка которое нужно поменять.
+ * newSubStr: строка, на которую нужно поменять. 
+ * Это упрощенная реализация anyString.replace(subStr, newSubstr),
+ * для ознакомления с возможностями полной версии: читать документацию. */
+export function replace(text, subStr, newSubStr) {
+
+}

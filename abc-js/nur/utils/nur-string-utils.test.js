@@ -2,7 +2,7 @@ import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
   isMatch, toString, repeat, substring, indexOf,
-  trim, trimLeft, trimRight, reverse,
+  trim, trimLeft, trimRight, reverse, replace,
 } from './nur-string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
@@ -217,7 +217,46 @@ export function indexOfTests() {
   return 'indexOfTests - success runned';
 }
 
-//replace
+export function replaceTests() {
+  assertToBe(
+    'поменять вхождение текста',
+    replace(complexText, "It's", "It is not"),
+    'Hello world!!! It is not terminator'
+  );
+  assertToBe('не найденное вхождение, текст остался', replace(complexText, "It`s", "It is"), complexText);
+  assertToBe('меняется только первое вхождение в начале строки', replace('he he ho he', 'he', 'uh'), 'uh he ho he');
+  assertToBe('меняется только первое вхождение в середине строки', replace('ha he ho he', 'he', 'uh'), 'ha uh ho he');
+  assertToBe(
+    'удалить вхождение текста (передав пустую строку)',
+    replace('Hi, my name is Jon', ' is', ''),
+    'Hi, my name Jon'
+  );
+  assertToBe('тип третьего параметра меняется на строку', replace('he ha', 'ha', 2), 'he 2');
+  assertToBe('тип второго параметра меняется на строку', replace('he 2', 2, 'ha'), 'he ha');
+
+  let errCb = () => replace(complexText, 'It');
+  assertThrow('если не передать третий аргумент, то будет исключение', errCb, 'newSubStr must not be of undefined');
+
+  errCb = () => replace(complexText);
+  assertThrow('если не передать второй аргумент, то будет исключение', errCb, 'subStr must not be of undefined');
+
+  errCb = () => replace();
+  assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  errCb = () => replace(true);
+  assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'replaceTests - success runned';
+}
+
+// +++++++++++++++++ Секция для гиков +++++++++++++++++
+
+/** Расширить функцию replace. */
+export function advancedReplaceTests() {
+  // эти тесты будут добавлены позже
+  // третий аргумент функция
+  // второй аргумент регуляроное выражение
+}
+
 //replaceAll
 //padEnd
 //padStart
@@ -233,7 +272,8 @@ export function indexOfTests() {
 //charIsUpperCase
 //charToUpperCase
 //charToLowerCase
-//
+
+// +++++++++++++++++ Секция запуска тестов +++++++++++++++++
 
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
@@ -246,6 +286,10 @@ const allTestCallBacks = [
   trimRightTests,
   trimTests,
   indexOfTests,
+  replaceTests,
+
+  // если вы гик и любите сложности то реализуйте еще эти тесты
+  // advancedReplaceTests,
 ];
 
 testsForHtml(allTestCallBacks);
