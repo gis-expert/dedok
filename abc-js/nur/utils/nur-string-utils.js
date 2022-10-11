@@ -23,6 +23,10 @@
 /** для получения цифры строки по его индексу */
 const DIGIT_STRINGS = '0123456789';
 
+//** символы с данной константы будут удалятся функциями
+// trim(), trimLeft(), trimRight(). */
+const TRIM_SYMBOLS = ' \n\t\v'; 
+
 /** по индексу проверяет совпадают ли все остальные символы
  * между text и searchString и возвращает булевое значение.*/
 export function isMatch(firstText, secondText) {
@@ -115,8 +119,7 @@ function shiftFirstDigit() {
 
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count = 1) {
-  if (typeof text === 'undefined') throw Error('text must not be of undefined');
-  if (typeof text !== 'string') throw Error('text must be of type string');
+  requiredString(text);
   let validatedCount = count ?? 1;
   if (validatedCount < 0) throw Error('repeat count must be positive value or zero');
   validatedCount = validatedCount % 1 === 0 ? validatedCount : validatedCount - (validatedCount % 1);
@@ -132,8 +135,7 @@ export function repeat(text, count = 1) {
  * Если end не передано, то будет возвращено text до последнего символа*/
 export function substring(text, start, end) {
   // аргумент text обязателен и тип строки
-  if (typeof text === 'undefined') throw Error('text must not be of undefined');
-  if (typeof text !== 'string') throw Error('text must be of type string');
+  requiredString(text);
 
   // добавляем пропущенные индексы
   let validatedStart = start ?? 0;
@@ -166,15 +168,42 @@ export function substring(text, start, end) {
   return result;
 }
 
+/** Возвращает копию строки с удаленными пробелами в начале и конце строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trim(text) {
+  let result = trimLeft(text);
+  return trimRight(result);
+}
+
+/** Возвращает копию строки с удаленными пробелами в начале строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trimLeft(text) {
+  requiredString(text);
+  let i = 0;
+  for (; i < text.length; i += 1) {
+    if (indexOf(TRIM_SYMBOLS, text[i]) === -1) break; 
+  }
+  return substring(text, i);
+}
+
+/** Возвращает копию строки с удаленными пробелами в конце строки.
+ * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+export function trimRight(text) {
+  requiredString(text);
+  let i = text.length;
+  for (; i !== 0; i -= 1) {
+    if (indexOf(TRIM_SYMBOLS, text[i - 1]) === -1) break; 
+  }
+  return substring(text, 0, i);
+}
+
 /** Выполняет поиск строки searchString в строке text
  * и возвращает первую найденную позицию.
  * Если в вхождение не найдено, то возвращает значение -1.
  * Параметр position задает начальную позицию с которой необходимо
  * начать поиск.*/
 export function indexOf(text, searchString, position) {
-  // аргумент text обязателен и тип строки
-  if (typeof text === 'undefined') throw Error('text must not be of undefined');
-  if (typeof text !== 'string') throw Error('text must be of type string');
+  requiredString(text);
 
   let startIndex = position ?? 0;
   if (typeof startIndex !== 'number') startIndex = Number(startIndex);
@@ -191,4 +220,10 @@ export function indexOf(text, searchString, position) {
     }
   }
   return -1;
+}
+
+function requiredString(text) {
+  // аргумент text обязателен и тип строки
+  if (typeof text === 'undefined') throw Error('text must not be of undefined');
+  if (typeof text !== 'string') throw Error('text must be of type string');
 }
