@@ -2,7 +2,7 @@ import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
   isMatch, toString, repeat, substring, indexOf,
-  trim, trimLeft, trimRight,
+  trim, trimLeft, trimRight, reverse, replace, replaceAll,
 } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
@@ -44,10 +44,24 @@ export function toStringTests() {
   // assertToBe('перевод положительного целого числа в строку', toString(+3), '3');
   // assertToBe('перевод дробного числа в строку, раз', toString(3.1415), '3.1415');
   
-  let errCb = () => toString([2]);
-  assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
+  // let errCb = () => toString([2]);
+  // assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
 
   return 'toString - success runned';
+}
+
+export function reverseTests() {
+  assertToBe('возвращается перевернутая копия строки', reverse('Hmmm'), 'mmmH');
+  // assertToBe('возвращается перевернутая копия строки 2', reverse('  Hmmm.'), '.mmmH  ');
+  // assertToBe('пустая строка остается пустой', reverse(''), '');
+  // assertToBe('один символ остается одним символом', reverse(' '), ' ');
+
+  // let errCb = () => reverse();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => reverse(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'reversTests - success runned';
 }
 
 export function repeatTests() {
@@ -201,9 +215,79 @@ export function indexOfTests() {
   return 'indexOfTests - success runned';
 }
 
-//reverse
-//replace
-//replaceAll
+export function replaceTests() {
+  assertToBe(
+    'поменять вхождение текста',
+    replace(complexText, "It's", "It is not"),
+    'Hello world!!! It is not terminator'
+  );
+  // assertToBe('не найденное вхождение, текст остался', replace(complexText, "It`s", "It is"), complexText);
+  // assertToBe('меняется только первое вхождение в начале строки', replace('he he ho he', 'he', 'uh'), 'uh he ho he');
+  // assertToBe('меняется только первое вхождение в середине строки', replace('ha he ho he', 'he', 'uh'), 'ha uh ho he');
+  // assertToBe(
+  //   'удалить вхождение текста (передав пустую строку)',
+  //   replace('Hi is guy, my name is Jon', ' is', ''),
+  //   'Hi guy, my name is Jon'
+  // );
+  // assertToBe('тип третьего параметра меняется на строку', replace('he ha', 'ha', 2), 'he 2');
+  // assertToBe('тип второго параметра меняется на строку', replace('he 2', 2, 'ha'), 'he ha');
+  // assertToBe('случай, когда заменяемое слово включает слово поиска', replace('Happy', 'app', ' app '), 'H app y');
+
+  // let errCb = () => replace(complexText, 'It');
+  // assertThrow('если не передать третий аргумент, то будет исключение', errCb, 'newSubStr must not be of undefined');
+
+  // errCb = () => replace(complexText);
+  // assertThrow('если не передать второй аргумент, то будет исключение', errCb, 'subStr must not be of undefined');
+
+  // errCb = () => replace();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => replace(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'replaceTests - success runned';
+}
+
+export function replaceAllTests() {
+  assertToBe(
+    'поменять вхождение текста',
+    replaceAll(complexText, "It's", "It is not"),
+    'Hello world!!! It is not terminator'
+  );
+  // assertToBe('не найденное вхождение, текст остался', replaceAll(complexText, "It`s", "It is"), complexText);
+  // assertToBe('меняется все вхождения в начале и конце строки', replaceAll('he he ho he', 'he', 'uh'), 'uh uh ho uh');
+  // assertToBe('меняется все вхождения в середине строки', replaceAll('hh he ho he hm', 'he', 'uh'), 'hh uh ho uh hm');
+  // assertToBe(
+  //   'удалить вхождение текста (передав пустую строку)',
+  //   replaceAll('Hi is gui, my name is Jon', ' is', ''),
+  //   'Hi gui, my name Jon'
+  // );
+  // assertToBe('тип третьего параметра меняется на строку', replaceAll('he ha', 'ha', 2), 'he 2');
+  // assertToBe('тип второго параметра меняется на строку', replaceAll('he 2', 2, 'ha'), 'he ha');
+  // assertToBe('случай, когда заменяемое слово включает слово поиска', replaceAll('Happy', 'app', ' app '), 'H app y');
+
+  // let errCb = () => replaceAll(complexText, 'It');
+  // assertThrow('если не передать третий аргумент, то будет исключение', errCb, 'newSubStr must not be of undefined');
+
+  // errCb = () => replaceAll(complexText);
+  // assertThrow('если не передать второй аргумент, то будет исключение', errCb, 'subStr must not be of undefined');
+
+  // errCb = () => replaceAll();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => replaceAll(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'replaceAllTests - success runned';
+}
+
+// +++++++++++++++++ Секция для гиков +++++++++++++++++
+
+/** Расширить функцию replace. */
+export function advancedReplaceTests() {
+  // эти тесты будут добавлены позже
+  // третий аргумент функция
+  // второй аргумент регуляроное выражение
+}
+
 //padEnd
 //padStart
 //slice
@@ -218,18 +302,25 @@ export function indexOfTests() {
 //charIsUpperCase
 //charToUpperCase
 //charToLowerCase
-//
+
+// +++++++++++++++++ Секция запуска тестов +++++++++++++++++
 
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
   isMatchTests,
   toStringTests,
+  reverseTests,
   repeatTests,
   substringTests,
   trimLeftTests,
   trimRightTests,
   trimTests,
   indexOfTests,
+  replaceTests,
+  replaceAllTests,
+
+  // если вы гик и любите сложности то реализуйте еще эти тесты
+  // advancedReplaceTests,
 ];
 
 testsForHtml(allTestCallBacks);

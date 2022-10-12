@@ -38,6 +38,11 @@ export function toString(value) {
 
 }
 
+/** Возвращает "развернутую" копию text */
+export function reverse(text) {
+
+}
+
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count) {
 
@@ -74,5 +79,25 @@ export function substring(text, start, end) {
  * Параметр position задает начальную позицию с которой необходимо
  * начать поиск.*/
 export function indexOf(text, searchString, position) {
+
+}
+
+/** Возвращает строку text, где первое вхождение subStr поменяно на newSubStr.
+ * text: строка, копию которой нужно получить.
+ * subStr: строка которое нужно поменять.
+ * newSubStr: строка, на которую нужно поменять. 
+ * Это упрощенная реализация anyString.replace(subStr, newSubstr),
+ * для ознакомления с возможностями полной версии: читать документацию. */
+export function replace(text, subStr, newSubStr) {
+
+}
+
+/** Возвращает строку text, где все вхождения subStr поменяно на newSubStr.
+ * text: строка, копию которой нужно получить.
+ * subStr: строка которое нужно поменять.
+ * newSubStr: строка, на которую нужно поменять. 
+ * Это упрощенная реализация anyString.replaceAll(subStr, newSubstr),
+ * для ознакомления с возможностями полной версии: читать документацию. */
+export function replaceAll(text, subStr, newSubStr) {
 
 }
