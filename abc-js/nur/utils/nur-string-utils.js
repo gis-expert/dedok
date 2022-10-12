@@ -241,24 +241,53 @@ export function indexOf(text, searchString, position) {
  * для ознакомления с возможностями полной версии: читать документацию. */
 export function replace(text, subStr, newSubStr) {
   requiredString(text);
-
-  if (subStr === undefined) requiredString(subStr, 'subStr');
-  const validatedSubStr = toString(subStr);
-  
-  if (newSubStr === undefined) requiredString(newSubStr, 'newSubStr');
-  const validatedNewSubStr = toString(newSubStr);
+  const validatedSubStr = requiredToString(subStr, 'subStr');
+  const validatedNewSubStr = requiredToString(newSubStr, 'newSubStr');
 
   const startIndex = indexOf(text, validatedSubStr);
   if (startIndex === -1) return text;
 
-  const finishIndex = startIndex + validatedSubStr.length;
   const leftPart = substring(text, 0, startIndex);
-  const rightPart = substring(text, finishIndex )
+  const finishIndex = startIndex + validatedSubStr.length;
+  const rightPart = substring(text, finishIndex);
   return leftPart + validatedNewSubStr + rightPart;
 }
 
+/** Возвращает строку text, где все вхождения subStr поменяно на newSubStr.
+ * text: строка, копию которой нужно получить.
+ * subStr: строка которое нужно поменять.
+ * newSubStr: строка, на которую нужно поменять. 
+ * Это упрощенная реализация anyString.replaceAll(subStr, newSubstr),
+ * для ознакомления с возможностями полной версии: читать документацию. */
+export function replaceAll(text, subStr, newSubStr) {
+  requiredString(text);
+  const validatedSubStr = requiredToString(subStr, 'subStr');
+  const validatedNewSubStr = requiredToString(newSubStr, 'newSubStr');
+
+  let resultValue = '';
+  let rightPart = text;
+  let startIndex = indexOf(rightPart, validatedSubStr);
+  while (startIndex !== -1) {
+    const leftPart = substring(rightPart, 0, startIndex) + validatedNewSubStr;
+    resultValue += leftPart;
+    const finishIndex = startIndex + validatedSubStr.length;
+    rightPart = substring(rightPart, finishIndex);
+    startIndex = indexOf(rightPart, validatedSubStr);
+  }
+  resultValue += rightPart;
+  return resultValue;
+}
+
+/** Возвращает text с приведением в строковый тип предварительно
+ * проверив что text объявлен. */
+function requiredToString(text, attrName='text') {
+  if (text === undefined) requiredString(text, attrName);
+  return toString(text);
+}
+
+/** Если text не объявлен или имеет не строковый тип,
+ * то выкинет исключение. */
 function requiredString(text, attrName='text') {
-  // аргумент text обязателен и тип строки
   if (typeof text === 'undefined') throw Error(`${attrName} must not be of undefined`);
   if (typeof text !== 'string') throw Error(`${attrName} must be of type string`);
 }
