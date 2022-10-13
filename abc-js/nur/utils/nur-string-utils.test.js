@@ -3,7 +3,7 @@ import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
   isMatch, toString, repeat, substring, indexOf,
   trim, trimLeft, trimRight, reverse, replace, replaceAll,
-  padEnd,
+  padEnd, padStart,
 } from './nur-string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
@@ -282,6 +282,29 @@ export function replaceAllTests() {
   return 'replaceAllTests - success runned';
 }
 
+export function padStartTests() {
+  assertToBe('увеличить до необходимой длины', padStart('he', 4), '  he');
+  assertToBe('если длина совпадает, то вернется то же значение', padStart('hehe', 4), 'hehe');
+  assertToBe('если макс. длина меньше, то вернется то же значение', padStart('hehe', 3), 'hehe');
+  assertToBe('если макс. длина равна нулю, то вернется то же значение', padStart('hehe', 0), 'hehe');
+  assertToBe('если макс. длина отрицательна, то вернется то же значение', padStart('hehe', -7), 'hehe');
+  assertToBe('если макс. длина отсутствует, то вернется то же значение', padStart('hehe'), 'hehe');
+  assertToBe('если макс. несоответствующего типа, то вернется то же значение', padStart('hehe', null), 'hehe');
+  assertToBe('если макс. несоответствующего типа, то вернется то же значение', padStart('hehe', 1), 'hehe');
+  assertToBe('если макс. несоответствующего типа, то вернется то же значение', padStart('hehe', 's'), 'hehe');
+  assertToBe('другая строка заполнения', padStart('he', 4, '*'), '**he');
+  assertToBe('случай с длинной строкой заполнения', padStart('he', 6, 'Abcd'), 'Abcdhe');
+  assertToBe('строка заполнения не кратен вставке', padStart('he', 8, 'Abcd'), 'AbcdAbhe');
+  assertToBe('строка заполнения не строковая, пирводит к приведению типа', padStart('he', 8, true), 'truetrhe');
+
+  let errCb = () => padStart();
+  assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  errCb = () => padStart(true);
+  assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'padStartTests - success runned';
+}
+
 export function padEndTests() {
   assertToBe('увеличить до необходимой длины', padEnd('he', 4), 'he  ');
   assertToBe('если длина совпадает, то вернется то же значение', padEnd('hehe', 4), 'hehe');
@@ -305,7 +328,6 @@ export function padEndTests() {
   return 'padEndTests - success runned';
 }
 
-//padStart
 //slice
 //endsWith
 //startsWith
@@ -346,6 +368,7 @@ const allTestCallBacks = [
   indexOfTests,
   replaceTests,
   replaceAllTests,
+  padStartTests,
   padEndTests,
 
   // если вы гик и любите сложности то реализуйте еще эти тесты
