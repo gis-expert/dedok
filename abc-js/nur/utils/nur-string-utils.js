@@ -278,6 +278,28 @@ export function replaceAll(text, subStr, newSubStr) {
   return resultValue;
 }
 
+/** Возвращает копию text увеличенный до длины maxLength
+ * символами fillString.
+ * Допускается в fillString передавать строку из нескольких символов. */
+export function padEnd(text, maxLength, fillString = ' ') {
+  requiredString(text);
+  const validatedFillString = requiredToString(fillString);
+
+  let resultValue = text;
+  let currentIndex = resultValue.length
+  while (currentIndex < maxLength) {
+    const diff = maxLength - currentIndex;
+    if (diff >= validatedFillString.length) {
+      resultValue += validatedFillString;
+      currentIndex += validatedFillString.length;
+    } else {
+      resultValue += substring(validatedFillString, 0, diff);
+      currentIndex += diff;
+    }
+  }
+  return resultValue;
+}
+
 /** Возвращает text с приведением в строковый тип предварительно
  * проверив что text объявлен. */
 function requiredToString(text, attrName='text') {
