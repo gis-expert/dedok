@@ -101,3 +101,10 @@ export function replace(text, subStr, newSubStr) {
 export function replaceAll(text, subStr, newSubStr) {
 
 }
+
+/** Возвращает копию text увеличенный до длины maxLength
+ * символами fillString.
+ * Допускается в fillString передавать строку из нескольких символов. */
+export function padEnd(text, maxLength, fillString = ' ') {
+
+}

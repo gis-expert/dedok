@@ -3,6 +3,7 @@ import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
   isMatch, toString, repeat, substring, indexOf,
   trim, trimLeft, trimRight, reverse, replace, replaceAll,
+  padEnd,
 } from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
@@ -279,16 +280,29 @@ export function replaceAllTests() {
   return 'replaceAllTests - success runned';
 }
 
-// +++++++++++++++++ Секция для гиков +++++++++++++++++
+export function padEndTests() {
+  assertToBe('увеличить до необходимой длины', padEnd('he', 4), 'he  ');
+  // assertToBe('если длина совпадает, то вернется то же значение', padEnd('hehe', 4), 'hehe');
+  // assertToBe('если макс. длина меньше, то вернется то же значение', padEnd('hehe', 3), 'hehe');
+  // assertToBe('если макс. длина равна нулю, то вернется то же значение', padEnd('hehe', 0), 'hehe');
+  // assertToBe('если макс. длина отрицательна, то вернется то же значение', padEnd('hehe', -7), 'hehe');
+  // assertToBe('если макс. длина отсутствует, то вернется то же значение', padEnd('hehe'), 'hehe');
+  // assertToBe('если макс. несоответствующего типа, то вернется то же значение', padEnd('hehe', null), 'hehe');
+  // assertToBe('если макс. несоответствующего типа, то вернется то же значение', padEnd('hehe', 1), 'hehe');
+  // assertToBe('если макс. несоответствующего типа, то вернется то же значение', padEnd('hehe', 's'), 'hehe');
+  // assertToBe('другая строка заполнения', padEnd('he', 4, '*'), 'he**');
+  // assertToBe('случай с длинной строкой заполнения', padEnd('he', 6, 'Abcd'), 'heAbcd');
+  // assertToBe('строка заполнения не кратен вставке', padEnd('he', 8, 'Abcd'), 'heAbcdAb');
+  // assertToBe('строка заполнения не строковая, пирводит к приведению типа', padEnd('he', 8, true), 'hetruetr');
 
-/** Расширить функцию replace. */
-export function advancedReplaceTests() {
-  // эти тесты будут добавлены позже
-  // третий аргумент функция
-  // второй аргумент регуляроное выражение
+  // let errCb = () => padEnd();
+  // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
+  // errCb = () => padEnd(true);
+  // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
+
+  return 'padEndTests - success runned';
 }
 
-//padEnd
 //padStart
 //slice
 //endsWith
@@ -302,6 +316,18 @@ export function advancedReplaceTests() {
 //charIsUpperCase
 //charToUpperCase
 //charToLowerCase
+//разобраться с обработкой ошибки в html где все зеленое
+//добавить угловые скобки <...> not to be <...> или закрасить в другие цвета
+//удалить 'testName - success runned' и добавить в провалившиеся тесты название функции теста
+
+// +++++++++++++++++ Секция для гиков +++++++++++++++++
+
+/** Расширить функцию replace. */
+export function advancedReplaceTests() {
+  // эти тесты будут добавлены позже
+  // третий аргумент функция
+  // второй аргумент регуляроное выражение
+}
 
 // +++++++++++++++++ Секция запуска тестов +++++++++++++++++
 
@@ -318,6 +344,7 @@ const allTestCallBacks = [
   indexOfTests,
   replaceTests,
   replaceAllTests,
+  padEndTests,
 
   // если вы гик и любите сложности то реализуйте еще эти тесты
   // advancedReplaceTests,
