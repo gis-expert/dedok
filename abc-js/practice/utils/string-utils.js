@@ -26,7 +26,7 @@ const TRIM_SYMBOLS = ' \n\t\v';
 
 /** по индексу проверяет совпадают ли все остальные символы
  * между text и searchString и возвращает булевое значение.*/
-export function isMatch(firstText, secondText) {
+export function isEqual(firstText, secondText) {
 
 }
 

@@ -29,7 +29,7 @@ const TRIM_SYMBOLS = ' \n\t\v';
 
 /** по индексу проверяет совпадают ли все остальные символы
  * между text и searchString и возвращает булевое значение.*/
-export function isMatch(firstText, secondText) {
+export function isEqual(firstText, secondText) {
   if (typeof firstText === 'undefined' || typeof secondText === 'undefined')
     throw Error('both parameters are required');
 
@@ -227,7 +227,7 @@ export function indexOf(text, searchString, position) {
   for (let i = startIndex; i < text.length; i += 1) {
     if (text[i] === searchString[0]) {
       const cuttedText = substring(text, i, i + searchString.length);
-      if (isMatch(cuttedText, searchString)) return i;
+      if (isEqual(cuttedText, searchString)) return i;
     }
   }
   return -1;

@@ -1,29 +1,29 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
-  isMatch, toString, repeat, substring, indexOf,
+  isEqual, toString, repeat, substring, indexOf,
   trim, trimLeft, trimRight, reverse, replace, replaceAll,
   padEnd, padStart,
 } from './nur-string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 
-export function isMatchTests() {
-  assertToBe('одиночные одинаковые символы', isMatch('a', 'a'), true);
-  assertToBe('одиночные одинаковые символы', isMatch('a', 'b'), false);
-  assertToBe('пустые строки', isMatch('', ''), true);
-  assertToBe('пустые и непустая строка', isMatch('', 'a'), false);
-  assertToBe('сложные одинаковые строки', isMatch(complexText, complexText), true);
-  assertToBe('сложные неодинаковые строки', isMatch(complexText + 'a', complexText), false);
-  assertToBe('тип не строки приводит к отрицательному результату', isMatch('2', 2), false);
-  assertToBe('тип не строки приводит к отрицательному результату', isMatch(2, '2'), false);
+export function isEqualTests() {
+  assertToBe('одиночные одинаковые символы', isEqual('a', 'a'), true);
+  assertToBe('одиночные одинаковые символы', isEqual('a', 'b'), false);
+  assertToBe('пустые строки', isEqual('', ''), true);
+  assertToBe('пустые и непустая строка', isEqual('', 'a'), false);
+  assertToBe('сложные одинаковые строки', isEqual(complexText, complexText), true);
+  assertToBe('сложные неодинаковые строки', isEqual(complexText + 'a', complexText), false);
+  assertToBe('тип не строки приводит к отрицательному результату', isEqual('2', 2), false);
+  assertToBe('тип не строки приводит к отрицательному результату', isEqual(2, '2'), false);
 
-  let errCb = () => isMatch('a');
+  let errCb = () => isEqual('a');
   assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
-  errCb = () => isMatch();
+  errCb = () => isEqual();
   assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
 
-  return 'isMatchTests - success runned';
+  return 'isEqualTests - success runned';
 }
 
 export function toStringTests() {
@@ -357,7 +357,7 @@ export function advancedReplaceTests() {
 
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
-  isMatchTests,
+  isEqualTests,
   toStringTests,
   reverseTests,
   repeatTests,
