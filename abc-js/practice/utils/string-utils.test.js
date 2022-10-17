@@ -26,8 +26,6 @@ export function isEqualTests() {
   // assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
   // errCb = () => isEqual();
   // assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
-
-  return 'isEqualTests - success runned';
 }
 
 export function isMoreTests() {
@@ -52,8 +50,6 @@ export function isMoreTests() {
   // assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
   // errCb = () => isMore();
   // assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
-
-  return 'isMoreTests - success runned';
 }
 
 export function toStringTests() {
@@ -77,8 +73,6 @@ export function toStringTests() {
   
   // let errCb = () => toString([2]);
   // assertThrow('другие типы вызывают ошибку', errCb, 'this type is not supported');
-
-  return 'toString - success runned';
 }
 
 export function reverseTests() {
@@ -91,8 +85,6 @@ export function reverseTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => reverse(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'reversTests - success runned';
 }
 
 export function repeatTests() {
@@ -122,8 +114,6 @@ export function repeatTests() {
   // assertThrow('пропущеный текст вызывает исключение', errCb, 'text must not be of undefined');
   // errCb = () => repeat(true);
   // assertThrow('первый тип не строка вызывает исключение', errCb, 'text must be of type string');
-
-  return 'repeatTests - success runned';
 }
 
 export function substringTests() {
@@ -149,8 +139,6 @@ export function substringTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => substring(true, 2);
   // assertThrow('если тип первого аргумента нe строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'substringTests - success runned';
 }
 
 export function trimLeftTests() {
@@ -170,8 +158,6 @@ export function trimLeftTests() {
   // assertThrow('если не передать аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => trimLeft(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'trimLeft - success runned';
 }
 
 export function trimRightTests() {
@@ -191,8 +177,6 @@ export function trimRightTests() {
   // assertThrow('если не передать аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => trimRight(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'trimRight - success runned';
 }
 
 export function trimTests() {
@@ -207,8 +191,6 @@ export function trimTests() {
   // assertToBe('без символов к удалению, возвращается копия строки', trim('Hi'), 'Hi');
   // assertToBe('пробелы после символа не трогаются', trim(',  Hi .'), ',  Hi .');
   // assertToBe('строка полностью из удаляемых символов', trim(' \v \n \t\t'), '');
-
-  return 'trim - success runned';
 }
 
 export function indexOfTests() {
@@ -242,8 +224,6 @@ export function indexOfTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => substring(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'indexOfTests - success runned';
 }
 
 export function replaceTests() {
@@ -274,8 +254,6 @@ export function replaceTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => replace(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'replaceTests - success runned';
 }
 
 export function replaceAllTests() {
@@ -306,8 +284,6 @@ export function replaceAllTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => replaceAll(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'replaceAllTests - success runned';
 }
 
 export function padStartTests() {
@@ -329,8 +305,6 @@ export function padStartTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => padStart(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'padStartTests - success runned';
 }
 
 export function padEndTests() {
@@ -352,8 +326,6 @@ export function padEndTests() {
   // assertThrow('если не передать первый аргумент, то будет исключение', errCb, 'text must not be of undefined');
   // errCb = () => padEnd(true);
   // assertThrow('если тип первого аргумента на строка, то будет исключение', errCb, 'text must be of type string');
-
-  return 'padEndTests - success runned';
 }
 
 //slice
@@ -368,9 +340,6 @@ export function padEndTests() {
 //charIsUpperCase
 //charToUpperCase
 //charToLowerCase
-//разобраться с обработкой ошибки в html где все зеленое
-//добавить угловые скобки <...> not to be <...> или закрасить в другие цвета
-//удалить 'testName - success runned' и добавить в провалившиеся тесты название функции теста
 
 // +++++++++++++++++ Секция для гиков +++++++++++++++++
 
