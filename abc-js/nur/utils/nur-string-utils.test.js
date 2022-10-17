@@ -1,22 +1,26 @@
 import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js';
 import { testsForHtml } from '../../../dependencies/asserts/assert2html.js';
 import {
-  isEqual, toString, repeat, substring, indexOf,
+  isEqual, isMore, toString, repeat, substring, indexOf,
   trim, trimLeft, trimRight, reverse, replace, replaceAll,
   padEnd, padStart,
 } from './nur-string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
+const ZERO_CODE_CHAR = String.fromCharCode(0);
 
 export function isEqualTests() {
   assertToBe('одиночные одинаковые символы', isEqual('a', 'a'), true);
   assertToBe('одиночные одинаковые символы', isEqual('a', 'b'), false);
+  assertToBe('количество символов одинаково, но не равны', isEqual('abc', 'abb'), false);
+  assertToBe('равны, но у первого больше символов', isEqual('abbb', 'abb'), false);
+  assertToBe('равны, но у второго больше символов', isEqual('abb', 'abbb'), false);
   assertToBe('пустые строки', isEqual('', ''), true);
   assertToBe('пустые и непустая строка', isEqual('', 'a'), false);
   assertToBe('сложные одинаковые строки', isEqual(complexText, complexText), true);
-  assertToBe('сложные неодинаковые строки', isEqual(complexText + 'a', complexText), false);
-  assertToBe('тип не строки приводит к отрицательному результату', isEqual('2', 2), false);
-  assertToBe('тип не строки приводит к отрицательному результату', isEqual(2, '2'), false);
+  assertToBe('сложные строки различной длины', isEqual(complexText + ZERO_CODE_CHAR, complexText), false);
+  assertToBe('разные типы приводят к ЛОЖЬ', isEqual('2', 2), false);
+  assertToBe('разные типы приводят к ЛОЖЬ', isEqual(2, '2'), false);
 
   let errCb = () => isEqual('a');
   assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
@@ -24,6 +28,32 @@ export function isEqualTests() {
   assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
 
   return 'isEqualTests - success runned';
+}
+
+export function isMoreTests() {
+  assertToBe('первая строка больше второй по первому символу', isMore('ca', 'ba'), true);
+  assertToBe('первая строка больше второй по последнему символу', isMore('abc', 'abb'), true);
+  assertToBe('первая и вторая равны', isMore('abb', 'abb'), false);
+  assertToBe('вторая строка не больше первой по последнему символу', isMore('abb', 'abc'), false);
+  assertToBe('первая и вторая равны по содержанию, но первая больше по длине', isMore('abba', 'abb'), true);
+  assertToBe(
+    'первая и вторая равны по содержанию, но первая больше по длине',
+    isMore('abb' + ZERO_CODE_CHAR, 'abb'),
+    true
+  );
+  assertToBe('пустые строки', isMore('', ''), false);
+  assertToBe('пустая строка не больше чем непустая строка', isMore('', ZERO_CODE_CHAR), false);
+  assertToBe('не пустая строка больше чем пустая', isMore(ZERO_CODE_CHAR, ''), true);
+  assertToBe('первая и вторая равны по содержанию, но первая меньше по длине', isMore('abb', 'abba'), false);
+  assertToBe('разные типы приводят к ЛОЖЬ', isEqual('2', 2), false);
+  assertToBe('разные типы приводят к ЛОЖЬ', isEqual(2, '2'), false);
+
+  let errCb = () => isMore('a');
+  assertThrow('если не передать второй аргумент, то будет ошибка', errCb, 'both parameters are required');
+  errCb = () => isMore();
+  assertThrow('если не передать аргументы, то будет ошибка', errCb, 'both parameters are required');
+
+  return 'isMoreTests - success runned';
 }
 
 export function toStringTests() {
@@ -358,6 +388,7 @@ export function advancedReplaceTests() {
 /** функции которые необходимо запустить */
 const allTestCallBacks = [
   isEqualTests,
+  isMoreTests,
   toStringTests,
   reverseTests,
   repeatTests,

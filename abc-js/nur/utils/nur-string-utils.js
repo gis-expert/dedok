@@ -27,8 +27,7 @@ const DIGIT_STRINGS = '0123456789';
 // trim(), trimLeft(), trimRight(). */
 const TRIM_SYMBOLS = ' \n\t\v'; 
 
-/** по индексу проверяет совпадают ли все остальные символы
- * между text и searchString и возвращает булевое значение.*/
+/** возвращает булевый ответ равны ли параметры firstText и secondText. */
 export function isEqual(firstText, secondText) {
   if (typeof firstText === 'undefined' || typeof secondText === 'undefined')
     throw Error('both parameters are required');
@@ -42,7 +41,24 @@ export function isEqual(firstText, secondText) {
     if (firstText[i] !== secondText[i]) return false;
   }
   return true;
+}
+
+/** возвращает булевый ответ больше ли параметр firstText чем secondText. */
+export function isMore(firstText, secondText) {
+  if (typeof firstText === 'undefined' || typeof secondText === 'undefined')
+    throw Error('both parameters are required');
+
+  if (typeof firstText !== 'string' || typeof secondText !== 'string')
+    return false;
+
+  const firstLarged = firstText.length > secondText.length;
+  const finishIndex = firstLarged ? secondText.length : firstText.length;
+  for (let i = 0; i < finishIndex; i += 1) {
+    if (firstText[i] > secondText[i]) return true;
+    else if (firstText[i] < secondText[i]) return false;
   }
+  return firstLarged;
+}
 
 /** Переводит переданный аргумент в тип строки.
  * Можно переводить в строку только простые типы:
