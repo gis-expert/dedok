@@ -24,9 +24,12 @@
 // trim(), trimLeft(), trimRight(). */
 const TRIM_SYMBOLS = ' \n\t\v'; 
 
-/** по индексу проверяет совпадают ли все остальные символы
- * между text и searchString и возвращает булевое значение.*/
+/** возвращает булевый ответ равны ли параметры firstText и secondText. */
 export function isEqual(firstText, secondText) {
+
+}
+/** возвращает булевый ответ больше ли параметр firstText чем secondText. */
+export function isMore(firstText, secondText) {
 
 }
 
