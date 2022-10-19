@@ -7,5 +7,17 @@
     <script type="module" src="assert.test.js"></script>
   </head>
   <body class="w3-container">
+    <div id="test-input">
+      <p><textarea id="testFilter" placeholder="Тесты к выполнению"></textarea></p>
+      <p><input id="showErrors" type="checkbox"></p>
+      <p><input id="showSuccesses" type="checkbox"></p>
+    </div>
+    <div>
+      <h1>Результаты теста</h1>
+      <p>Протестировано: <span id="testCount">0</span></p>
+      <p>Тестов провалено: <span id="testFailCount">0</span></p>
+      <p>Ошибок выполнения: <span id="runtimeErrorCount">0</span></p>
+    </div>
+    <div id="testDetails"></div>
   </body>
 </html>
