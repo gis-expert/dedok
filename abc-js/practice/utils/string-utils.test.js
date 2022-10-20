@@ -51,6 +51,7 @@ describe('isEqualTests', () => {
 });
 
 describe('isMoreTests', () => {
+  test('всегда хорошо', () => { });
   test('первая строка больше второй по первому символу', () => {
     assertToBe(isMore('ca', 'ba'), true);
   });

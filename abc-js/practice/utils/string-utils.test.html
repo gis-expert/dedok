@@ -7,17 +7,33 @@
     <script type="module" src="string-utils.test.js"></script>
   </head>
   <body class="w3-container">
-    <div id="test-input">
-      <p><textarea id="testFilter" placeholder="Тесты к выполнению"></textarea></p>
-      <p><input id="showErrors" type="checkbox"></p>
-      <p><input id="showSuccesses" type="checkbox"></p>
+
+    <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+
+      <form class="w3-grey w3-cell w3-border-right w3-border-white" style="width: 50%;">
+        <h2 class="w3-center">Параметры теста</h2>
+        <div class="w3-margin">
+          <input id="showErrors" class="w3-check" type="checkbox" checked>
+          <label class="w3-large w3-margin-left">Показать ошибки</label>
+        </div>
+        <div class="w3-margin">
+          <input id="showSuccesses" class="w3-check" type="checkbox" checked>
+          <label class="w3-large w3-margin-left">Показать успешные тесты</label>
+        </div>
+        <div class="w3-margin">
+          <textarea id="testFilter" placeholder="Тесты к выполнению" style="width: 90%; height: 100px"></textarea>
+        </div>
+      </form>
+
+      <div class="w3-grey w3-margin-right w3-margin-left w3-cell w3-border-left w3-border-white">
+        <h2 class="w3-center">Результаты теста</h2>
+        <p class="w3-large w3-margin-left">Протестировано: <span id="testCount" class="w3-xlarge">0</span></p>
+        <p class="w3-large w3-margin-left">Тестов провалено: <span id="testFailCount" class="w3-xlarge">0</span></p>
+        <p class="w3-large w3-margin-left">Ошибок выполнения: <span id="runtimeErrorCount" class="w3-xlarge">0</span></p>
+      </div>
+
     </div>
-    <div>
-      <h1>Результаты теста</h1>
-      <p>Протестировано: <span id="testCount">0</span></p>
-      <p>Тестов провалено: <span id="testFailCount">0</span></p>
-      <p>Ошибок выполнения: <span id="runtimeErrorCount">0</span></p>
-    </div>
+
     <div id="testDetails"></div>
   </body>
 </html>

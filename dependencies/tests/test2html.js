@@ -33,7 +33,7 @@ function showTestDetails() {
   showDetails += needShowErrors ? 'Error' : '';
 
   const testCalls = selectTests(document.testResult.testCalls, showDetails);
-  processTests(testCalls, detailsEl);
+  processTests(testCalls, detailsEl, '-outer');
 }
 
 /** Сделать выборку тестов для отображения */
@@ -57,62 +57,64 @@ function selectTests(testResult, showDetails) {
 }
 
 /** Обрабатывает все результаты теста */
-function processTests(testCalls, parentEl) {
+function processTests(testCalls, parentEl, scopeSuffix) {
+  let i = 0;
+  let j = 0;
   for (let key in testCalls) {
-    const padding = parentEl.style.paddingLeft === '' ? '0px' : '40px';
-
     const isTest = testCalls[key].state !== undefined;
     if (isTest) {
       const testResult = testCalls[key];
-      const scopeEl = createTestScope(key, testResult, padding);
+      const scopeEl = createTestScope(key, testResult, scopeSuffix);
       parentEl.appendChild(scopeEl);
       if (testResult.state !== 'Success') showErrorDetails(testResult, scopeEl);
+      i += 1;
+      if (i === 2) break;
     } else {
-      const scopeEl = createDescribeScope(key, padding);
+      const scopeEl = createDescribeScope(key, scopeSuffix);
       parentEl.appendChild(scopeEl);
-      processTests(testCalls[key], scopeEl);
+      processTests(testCalls[key], scopeEl, '-inner');
+      j += 1;
+      if (j === 2) break;
     }
   }
 }
 
 /** создать и вернуть элемент describe */
-function createDescribeScope(describeDescription, padding) {
-  const scopeEl = createScopeEl(padding);
-
-  const hEl = document.createElement('h1');
+function createDescribeScope(describeDescription, scopeSuffix) {
+  const hEl = document.createElement('h2');
   hEl.textContent = describeDescription;
-  hEl.style.margin = '0px';
-  setElAttribute(hEl, 'test-scope');
+  setClassValue(hEl, 'describe-head' + scopeSuffix);
 
+  const scopeEl = createScopeEl('describe-scope' + scopeSuffix);
   scopeEl.appendChild(hEl);
   return scopeEl;
 }
 
 /** создать и вернуть элемент test */
-function createTestScope(testDescription, testResult, padding) {
+function createTestScope(testDescription, testResult) {
   let funcDetail, clsName;
   if (testResult.state === 'Success') {
     funcDetail = 'success';
-    clsName = 'test-success';
+    clsName = 'test-head-success';
   } else {
     funcDetail = testResult.err === 'TestError: ' ? 'test fail' : 'runtime error';
-    clsName = 'test-fail';
+    clsName = 'test-head-fail';
   }
   const spanIndex = testDescription.length + 1;
-  const funcHeaderEl = createTestElement(`${testDescription}: ${funcDetail}`, 'h1', clsName, spanIndex);
-  funcHeaderEl.style.margin = '0px';
+  const funcHeaderEl = createTestElement(
+    `${testDescription}: ${funcDetail}`, 'h2', clsName, spanIndex
+  );
+  setClassValue(funcHeaderEl, clsName);
 
-  const scopeEl = createScopeEl(padding);
+  const scopeEl = createScopeEl('test-scope');
   scopeEl.appendChild(funcHeaderEl);
   return scopeEl;
 }
 
 /** Создает и возвращает елемент scope */
-function createScopeEl(padding) {
+function createScopeEl(clsAttr) {
   const scopeEl = document.createElement('div');
-  if (padding !== '0px')
-    setElAttribute(scopeEl, 'test-scope');
-  scopeEl.style.paddingLeft = padding;
+  setClassValue(scopeEl, clsAttr);
   return scopeEl;
 }
 
@@ -121,17 +123,17 @@ function showErrorDetails(testResult, scopeEl) {
   const { callStack, errDesc } = testResult;
 
   const spanIndex = errDesc.indexOf(': ') + 1;
-  scopeEl.appendChild(createTestElement(errDesc, 'h2', 'test-err', spanIndex));
+  scopeEl.appendChild(createTestElement(errDesc, 'h3', 'error-desc', spanIndex));
 
   const callStackEl = document.createElement('div');
-  setElAttribute(callStackEl, 'test-stack');
+  setClassValue(callStackEl, 'stack-scope');
   scopeEl.appendChild(callStackEl);
 
   callStack.split('\n').forEach((strItem) => {
     const txtLine = strItem.trim();
     let spanIndex = txtLine.indexOf('(');
     if (spanIndex === -1) spanIndex = txtLine.length;
-    callStackEl.appendChild(createTestElement(txtLine, 'p', 'test-stack', spanIndex));
+    callStackEl.appendChild(createTestElement(txtLine, 'p', 'stack-desc', spanIndex));
   });
 }
 
@@ -142,43 +144,42 @@ function showErrorDetails(testResult, scopeEl) {
 function createTestElement(textContent, tagName, clsName, spanIndex) {
   const elText = textContent.substring(0, spanIndex);
   const testEl = document.createElement(tagName);
-  setElAttribute(testEl, clsName);
+  setClassValue(testEl, clsName);
   testEl.textContent = elText;
 
   if (spanIndex < textContent.length) {
-    const span = document.createElement('span');
-    span.textContent = textContent.substring(spanIndex);
-    setElAttribute(span, clsName);
-    testEl.appendChild(span);
+    const spanEl = document.createElement('span');
+    spanEl.textContent = textContent.substring(spanIndex);
+    setClassValue(spanEl, clsName + '-span');
+    testEl.appendChild(spanEl);
   }
   return testEl;
 }
 
-/** Установить атрибут html элемента. */
-function setElAttribute(el, value, attrName = 'class') {
-  if (attrName === 'class') {
-    const clsName = getClsName(el.tagName.toLowerCase(), value);
-    if (clsName) el.setAttribute(attrName, clsName);
-  } else {
-    el.setAttribute(attrName, value);
-  }
+/** Установить атрибут класса. */
+function setClassValue(el, value) {
+  const clsName = getClassAttributes(value);
+  if (clsName) el.setAttribute('class', clsName);
 }
 
 /** Выдает имена w3.css из переданного элемента html и доменного описания. */
-function getClsName(elType, clsName) {
-  const token = `${elType}:${clsName}`;
-  if (token === 'div:test') return 'w3-card'
-  else if (token === 'div:test-stack') return 'w3-container, w3-margin-left, w3-light-gray';
-  else if (token === 'div:test-scope') return 'w3-gray';
-  else if (token === 'h1:test-scope') return 'w3-gray';
-  else if (token === 'h1:test-success') return '';
-  else if (token === 'h1:test-fail') return '';
-  else if (token === 'h2:test-err') return 'w3-khaki';
-  else if (token === 'p:test-stack') return '';
-  else if (token === 'span:test-scope') return 'w3-text-green';
-  else if (token === 'span:test-success') return 'w3-text-green';
-  else if (token === 'span:test-fail') return 'w3-text-red';
-  else if (token === 'span:test-err') return 'w3-text-red';
-  else if (token === 'span:test-stack') return 'w3-text-red';
+function getClassAttributes(elemType) {
+  const underLine = ' w3-bottombar w3-border-dark-grey';
+  const shiftLeft = ' w3-margin-left';
+
+  if (elemType === 'describe-scope-outer') return 'w3-grey w3-panel';
+  else if (elemType === 'describe-scope-inner') return shiftLeft;
+  else if (elemType === 'test-scope') return shiftLeft + underLine;
+  else if (elemType === 'describe-head-outer') return '';
+  else if (elemType === 'describe-head-inner') return '';
+  else if (elemType === 'test-head-success') return 'w3-khaki';
+  else if (elemType === 'test-head-success-span') return 'w3-text-green';
+  else if (elemType === 'test-head-fail') return 'w3-khaki';
+  else if (elemType === 'test-head-fail-span') return 'w3-text-red';
+  else if (elemType === 'error-desc') return 'w3-khaki';
+  else if (elemType === 'error-desc-span') return 'w3-text-red';
+  else if (elemType === 'stack-scope') return 'w3-light-grey';
+  else if (elemType === 'stack-desc') return '';
+  else if (elemType === 'stack-desc-span') return 'w3-text-red';
   else throw Error('not valid element type and class name');
 }
