@@ -2,7 +2,7 @@ import { assertToBe, assertThrow } from '../../../dependencies/asserts/assert.js
 import { describe, test } from '../../../dependencies/tests/test.js';
 import { testHtmlMain } from '../../../dependencies/tests/test2html.js';
 import {
-  isEqual, isMore, toString, repeat, substring, indexOf,
+  isEqual, isMore, isLess, toString, repeat, substring, indexOf,
   trim, trimLeft, trimRight, reverse, replace, replaceAll,
   padEnd, padStart,
 } from './string-utils.js';
@@ -92,6 +92,51 @@ describe('isMoreTests', () => {
   // });
   // test('если не передать аргументы, то будет ошибка', () => {
   //   assertThrow(() => isMore(), 'both parameters are required');
+  // });
+});
+
+describe('isLessTests', () => {
+  test('первая строка меньше второй по первому символу', () => {
+    assertToBe(isLess('ba', 'ca'), true);
+  });
+  // test('первая строка меньше второй по последнему символу', () => {
+  //   assertToBe(isLess('abb', 'abc'), true);
+  // });
+  // test('первая и вторая равны', () => {
+  //   assertToBe(isLess('abb', 'abb'), false);
+  // });
+  // test('вторая строка не меньше первой по последнему символу', () => {
+  //   assertToBe(isLess('abc', 'abb'), false);
+  // });
+  // test('первая и вторая равны по содержанию, но первая меньше по длине', () => {
+  //   assertToBe(isLess('abb', 'abb' + ZERO_CODE_CHAR), true);
+  // });
+  // test('первая и вторая равны по содержанию, но первая не меньше по длине', () => {
+  //   assertToBe(isLess('abb' + ZERO_CODE_CHAR, 'abb'), false);
+  // });
+  // test('пустые строки', () => {
+  //   assertToBe(isLess('', ''), false);
+  // });
+  // test('пустая строка меньше чем непустая строка', () => {
+  //   assertToBe(isLess('', ZERO_CODE_CHAR), true);
+  // });
+  // test('не пустая строка больше чем пустая', () => {
+  //   assertToBe(isLess(ZERO_CODE_CHAR, ''), false);
+  // });
+  // test('первая и вторая равны по содержанию, но первая меньше по длине', () => {
+  //   assertToBe(isLess('abb', 'abba'), true);
+  // });
+  // test('разные типы приводят к ЛОЖЬ', () => {
+  //   assertToBe(isEqual('2', 2), false);
+  // });
+  // test('разные типы приводят к ЛОЖЬ', () => {
+  //   assertToBe(isEqual(2, '2'), false);
+  // });
+  // test('если не передать второй аргумент, то будет ошибка', () => {
+  //   assertThrow(() => isLess('a'), 'both parameters are required');
+  // });
+  // test('если не передать аргументы, то будет ошибка', () => {
+  //   assertThrow(() => isLess(), 'both parameters are required');
   // });
 });
 
