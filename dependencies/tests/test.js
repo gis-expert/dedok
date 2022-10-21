@@ -3,51 +3,109 @@
  * куда будут сложены все тесты согласно иерархии.
  * Вызов testRunner вернет результаты выполнения тестов.*/
 
+/** позволяет объединить несколько тестов в одну единицу теста. */
+export function describe(description, cb) {
+  if (typeof description !== 'string')
+    throw Error('describe description must be only string type');
+  if (description === '') throw Error('describe description required');
+  description = description.trim();
+
+  if (document.tests === undefined) document.tests = {};
+  if (document.tests.lastObj === undefined)
+    document.tests.lastObj = document.tests;
+
+  const oldObj = document.tests['lastObj'];
+  oldObj[description] = {};
+  document.tests['lastObj'] = oldObj[description];
+  cb();
+  if (oldObj === document.tests) {
+    delete document.tests.lastObj
+  } else {
+    document.tests.lastObj = oldObj;
+  };
+}
+
+/** тестирует отдельный случай */
+export function test(testDescription, testCb) {
+  if (typeof testDescription !== 'string')
+    throw Error('test description must be only string type');
+  if (testDescription === '') throw Error('test description required');
+
+  document.tests.lastObj[testDescription.trim()] = testCb;
+}
+
 /** Выполняет тесты. Результат выполнения теста в document.testResults */
 export function testRunner(descriptions=[]) {
   document.testResult = {};
-  document.testResult.testCount = 0;
-  document.testResult.testFailCount = 0;
-  document.testResult.runtimeErrorCount = 0;
-  document.testResult.testCalls = {};
 
-  processTests(document.tests, document.testResult.testCalls);
+  const trimmedDescs = descriptions.map((item) => item.trim());
+  const tests = selectTests(document.tests, trimmedDescs);
+  const [testResults, testCounts] = processTests(tests);
+
+  document.testResult.testCalls = testResults;
+  document.testResult.testCount = testCounts.testCount;
+  document.testResult.testSuccessCount = testCounts.testSuccessCount ;
+  document.testResult.testFailCount = testCounts.testFailCount;
+  document.testResult.runtimeErrorCount = testCounts.runtimeErrorCount;
+}
+
+function selectTests(tests, descriptions) {
+  if (descriptions.length === 0) return tests;
+
+  const resultTests = {};
+  for (let key in tests) {
+    if (descriptions.includes(key)) {
+      resultTests[key] = tests[key];
+    }
+    else if (typeof tests[key] !== 'function') {
+      const childTests = selectTests(tests[key], descriptions);
+      if (Object.keys(childTests).length !== 0)
+        resultTests[key] = childTests;
+    }
+  }
+  return resultTests;
 }
 
 /** выполняет тесты единицы теста (describe) */
-function processTests(obj, testCalls) {
-  for (let key in obj) {
+function processTests(tests) {
+  const testCounts = {
+    testCount: 0,
+    testSuccessCount: 0,
+    testFailCount: 0,
+    runtimeErrorCount: 0,
+  }
+  const testResults = {};
+  for (let key in tests) {
     try {
-      if (typeof obj[key] === 'function') {
-        document.testResult.testCount += 1;
-        obj[key]();
-        processSuccess(key, testCalls);
+      if (typeof tests[key] === 'function') {
+        testCounts.testCount += 1;
+        tests[key]();
+
+        testResults[key] = { state: 'Success' };
+        testCounts.testSuccessCount += 1;
       } else {
-        testCalls[key] = {};
-        processTests(obj[key], testCalls[key]);
+        const [childTestResult, childTestCounts] = processTests(tests[key]);
+        testResults[key] = childTestResult;
+        for (let cntKey in childTestCounts) {
+          testCounts[cntKey] += childTestCounts[cntKey];
+        }
       }
     } catch (e) {
-      processError(`${e.stack}`, key, testCalls);
+      testResults[key] = processError(`${e.stack}`, testCounts);
     }
   }
-}
-
-function processSuccess(fName, testCalls) {
-  const scss = {
-    state: 'Success'
-  }
-  testCalls[fName] = scss;
+  return [testResults, testCounts];
 }
 
 /** обрабатывает ошибки теста */
-function processError(errMsg, fName, testCalls) {
+function processError(errMsg, testCounts) {
   const errNameIndex = errMsg.indexOf(': ') + 2;
   let errName = errMsg.substring(0, errNameIndex);
   if (errName === 'Error: ') {
     errName = 'TestError: ';
-    document.testResult.testFailCount += 1;
+    testCounts.testFailCount += 1;
   } else {
-    document.testResult.runtimeErrorCount += 1;
+    testCounts.runtimeErrorCount += 1;
   }
 
   const firstLineIndex = errMsg.indexOf('\n');
@@ -59,35 +117,5 @@ function processError(errMsg, fName, testCalls) {
     errDesc,
     callStack: otherLines,
   }
-  testCalls[fName] = err;
-}
-
-/** позволяет объединить несколько тестов в одну единицу теста. */
-export function describe(desc, cb) {
-  if (typeof desc !== 'string')
-    throw Error('describe description must be only string type');
-  if (desc === '') throw Error('describe description required');
-
-  if (document.tests === undefined) document.tests = {};
-  if (document.tests.lastObj === undefined)
-    document.tests.lastObj = document.tests;
-
-  const oldObj = document.tests['lastObj'];
-  oldObj[desc] = {};
-  document.tests['lastObj'] = oldObj[desc];
-  cb();
-  if (oldObj === document.tests) {
-    delete document.tests.lastObj
-  } else {
-    document.tests.lastObj = oldObj;
-  };
-}
-
-/** тестирует отдельный случай */
-export function test(testDesc, testCb) {
-  if (typeof testDesc !== 'string')
-    throw Error('test description must be only string type');
-  if (testDesc === '') throw Error('test description required');
-
-  document.tests.lastObj[testDesc] = testCb;
+  return err;
 }

@@ -2,19 +2,36 @@
  * */
 import { testRunner } from '../../../dependencies/tests/test.js';
 
-/** Выполняет тесты и добавляет их результаты в html документ. */
-export function runTestsForHtml() {
+/** Выполнеяет все необходимые для корректной работы установки */
+export function testHtmlMain() {
   document.getElementById('showErrors').onclick = showTestDetails;
   document.getElementById('showSuccesses').onclick = showTestDetails;
+  document.getElementById('runTests').onclick = runTestsForHtml;
 
-  testRunner();
+  //если не хотите автоматически запускать тесты при загрузке
+  //то закоменьте следующую строку.
+  runTestsForHtml();
+}
+/** Выполняет тесты и добавляет их результаты в html документ. */
+export function runTestsForHtml() {
+
+  const testFilter = document.getElementById('testFilter').value;
+  let descriptions = [];
+  if (testFilter !== '') {
+    descriptions = testFilter.indexOf('\n') !== -1
+      ? testFilter.split('\n')
+      : testFilter.split(';');
+  }
+  descriptions = descriptions.map((item) => item.trim());
+
+  testRunner(descriptions);
   showTestResults();
 }
 
 /** Добавляет результаты теста в html документ. */
 export function showTestResults() {
   const tResult = document.testResult;
-  const attrs = ['testCount', 'testFailCount', 'runtimeErrorCount']
+  const attrs = ['testCount', 'testSuccessCount', 'testFailCount', 'runtimeErrorCount']
   for (let attr of attrs) {
     const cntEl = document.getElementById(attr);
     cntEl.textContent = tResult[attr];
@@ -58,8 +75,6 @@ function selectTests(testResult, showDetails) {
 
 /** Обрабатывает все результаты теста */
 function processTests(testCalls, parentEl, scopeSuffix) {
-  let i = 0;
-  let j = 0;
   for (let key in testCalls) {
     const isTest = testCalls[key].state !== undefined;
     if (isTest) {
@@ -67,14 +82,10 @@ function processTests(testCalls, parentEl, scopeSuffix) {
       const scopeEl = createTestScope(key, testResult, scopeSuffix);
       parentEl.appendChild(scopeEl);
       if (testResult.state !== 'Success') showErrorDetails(testResult, scopeEl);
-      i += 1;
-      if (i === 2) break;
     } else {
       const scopeEl = createDescribeScope(key, scopeSuffix);
       parentEl.appendChild(scopeEl);
       processTests(testCalls[key], scopeEl, '-inner');
-      j += 1;
-      if (j === 2) break;
     }
   }
 }
@@ -82,7 +93,7 @@ function processTests(testCalls, parentEl, scopeSuffix) {
 /** создать и вернуть элемент describe */
 function createDescribeScope(describeDescription, scopeSuffix) {
   const hEl = document.createElement('h2');
-  hEl.textContent = describeDescription;
+  hEl.textContent = `describe('${describeDescription}')`;
   setClassValue(hEl, 'describe-head' + scopeSuffix);
 
   const scopeEl = createScopeEl('describe-scope' + scopeSuffix);
@@ -100,10 +111,9 @@ function createTestScope(testDescription, testResult) {
     funcDetail = testResult.err === 'TestError: ' ? 'test fail' : 'runtime error';
     clsName = 'test-head-fail';
   }
-  const spanIndex = testDescription.length + 1;
-  const funcHeaderEl = createTestElement(
-    `${testDescription}: ${funcDetail}`, 'h2', clsName, spanIndex
-  );
+  const textContent = `test('${testDescription}'): ${funcDetail}`;
+  const spanIndex = textContent.indexOf(': ') + 1;
+  const funcHeaderEl = createTestElement(textContent, 'h2', clsName, spanIndex);
   setClassValue(funcHeaderEl, clsName);
 
   const scopeEl = createScopeEl('test-scope');
