@@ -286,7 +286,7 @@ describe('trimLeftTests', () => {
     assertToBe(trimLeft('  Hi'), 'Hi');
   });
   // test('удалить перевод строки и пробел спереди', () => {
-  //   assertToBe(trimLeft('nnn Hi'), 'Hi');
+  //   assertToBe(trimLeft('\n Hi'), 'Hi');
   // });
   // test('удалить табуляция и пробел спереди', () => {
   //   assertToBe(trimLeft('\t Hi'), 'Hi');
@@ -298,7 +298,7 @@ describe('trimLeftTests', () => {
   //   assertToBe(trimLeft('  Hi '), 'Hi ');
   // });
   // test('перевод строки сзади не трогаются', () => {
-  //   assertToBe(trimLeft('  Hi nnn'), 'Hi nnn');
+  //   assertToBe(trimLeft('  Hi \n'), 'Hi \n');
   // });
   // test('табуляция сзади не трогаются', () => {
   //   assertToBe(trimLeft('  Hi \t'), 'Hi \t');
@@ -313,7 +313,7 @@ describe('trimLeftTests', () => {
   //   assertToBe(trimRight(', Hi'), ', Hi');
   // });
   // test('строка полностью из удаляемых символов', () => {
-  //   assertToBe(trimLeft(' \v nnn \t\t'), '');
+  //   assertToBe(trimLeft(' \v \n \t\t'), '');
   // });
   // test('если не передать аргумент, то будет исключение', () => {
   //   assertThrow(() => trimLeft(), 'text must not be of undefined');
@@ -328,7 +328,7 @@ describe('trimRightTests', () => {
     assertToBe(trimRight('Hi  '), 'Hi');
   });
   // test('удалить перевод строки и пробел сзади', () => {
-  //   assertToBe(trimRight('Hinnn '), 'Hi');
+  //   assertToBe(trimRight('Hi\n '), 'Hi');
   // });
   // test('удалить табуляция и пробел сзади', () => {
   //   assertToBe(trimRight('Hi\t '), 'Hi');
@@ -340,7 +340,7 @@ describe('trimRightTests', () => {
   //   assertToBe(trimRight('  Hi '), '  Hi');
   // });
   // test('перевод строки спереди не трогаются', () => {
-  //   assertToBe(trimRight(' nnnHi '), ' nnnHi');
+  //   assertToBe(trimRight(' \nHi '), ' \nHi');
   // });
   // test('табуляция спереди не трогаются', () => {
   //   assertToBe(trimRight(' \tHi '), ' \tHi');
@@ -352,10 +352,10 @@ describe('trimRightTests', () => {
   //   assertToBe(trimRight('Hi'), 'Hi');
   // });
   // test('пробелы после символа не трогаются', () => {
-  //   assertToBe(trimRight('Hi ,'), 'Hi, ');
+    // assertToBe(trimRight('. Hi ,'), '. Hi ,');
   // });
   // test('строка полностью из удаляемых символов', () => {
-  //   assertToBe(trimRight(' \v nnn \t\t'), '');
+  //   assertToBe(trimRight(' \v \n \t\t'), '');
   // });
   // test('если не передать аргумент, то будет исключение', () => {
   //   assertThrow(() => trimRight(), 'text must not be of undefined');
@@ -370,7 +370,7 @@ describe('trimTests', () => {
     assertToBe(trim('  Hi'), 'Hi');
   });
   // test('удалить перевод строки и пробел сзади', () => {
-  //   assertToBe(trimRight('Hinnn '), 'Hi');
+  //   assertToBe(trimRight('Hi\n '), 'Hi');
   // });
   // test('удалить табуляция и пробел сзади', () => {
   //   assertToBe(trim('Hi\t '), 'Hi');
@@ -382,7 +382,7 @@ describe('trimTests', () => {
   //   assertToBe(trim('  Hi '), 'Hi');
   // });
   // test('удалить перевод строки', () => {
-  //   assertToBe(trim(' nnnHi '), 'Hi');
+  //   assertToBe(trim(' \nHi '), 'Hi');
   // });
   // test('удалить табуляцию спереди', () => {
   //   assertToBe(trim(' \tHi '), 'Hi');
@@ -394,10 +394,10 @@ describe('trimTests', () => {
   //   assertToBe(trim('Hi'), 'Hi');
   // });
   // test('пробелы после символа не трогаются', () => {
-  //   assertToBe(trim(',  Hi .'), ', Hi .');
+    // assertToBe(trim(',  Hi .'), ',  Hi .');
   // });
   // test('строка полностью из удаляемых символов', () => {
-  //   assertToBe(trim(' \v nnn \t\t'), '');
+  //   assertToBe(trim(' \v \n \t\t'), '');
   // });
 });
 
@@ -563,7 +563,7 @@ describe('replaceAllTests', () => {
 describe('padStartTests', () => {
   test('увеличить до необходимой длины', () => {
     assertToBe(padStart('he', 4), '  he');
-    assertToBe(padEnd('heh', 6), '   heh');
+    assertToBe(padStart('heh', 6), '   heh');
   });
   // test('если длина совпадает, то вернется то же значение', () => {
   //   assertToBe(padStart('hehe', 4), 'hehe');
