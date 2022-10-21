@@ -8,6 +8,10 @@ export function testHtmlMain() {
   document.getElementById('showSuccesses').onclick = showTestDetails;
   document.getElementById('runTests').onclick = runTestsForHtml;
 
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  document.getElementById('testFilter').value = urlParams.get('tests');
+
   //если не хотите автоматически запускать тесты при загрузке
   //то закоменьте следующую строку.
   runTestsForHtml();
