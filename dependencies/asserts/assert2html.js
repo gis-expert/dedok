@@ -1,84 +1,110 @@
 /** модуль позволяет делать тест assert.js через браузер.
  * */
+import { testRunner } from '../../../dependencies/tests/test.js';
 
-/** Вызвает тесты и добавляет их результаты в html документ. */
-export function testsForHtml(callBacks) {
-  for (let testCb of callBacks) {
-    assert2html(testCb);
-  }
+/** Выполняет тесты и добавляет их результаты в html документ. */
+export function runTestsForHtml() {
+  document.getElementById('showErrors').onclick = updateDetails;
+  document.getElementById('showSuccesses').onclick = updateDetails;
+
+  testRunner();
+  showTestResults();
 }
 
-/** Вызывает один тест (testCb) и добавить его результат в html документ. */
-export function assert2html(testCb) {
-  const testEl = document.createElement('div');
-  setElAttribute(testEl, 'test');
-  document.body.appendChild(testEl)
-
-  const funcName = testCb.name;
-  try {
-    testCb();
-    updateElement(testEl, string2html(`Success: ${funcName} - success runned`));
-  } catch (e) {
-    const err = `${e.stack}`;
-
-    const errNameIndex = err.indexOf(': ') + 2;
-    let errName = err.substring(0, errNameIndex);
-    if (errName === 'Error: ') errName = 'TestError: ';
-    const firstLineIndex = err.indexOf('\n');
-    const errDesc = err.substring(errNameIndex, firstLineIndex);
-    const otherLines = err.substring(firstLineIndex);
-    updateElement(testEl, string2html(`${errName}${funcName}(${errDesc})${otherLines}`));
+/** Добавляет результаты теста в html документ. */
+export function showTestResults() {
+  const tResult = document.testResult;
+  const attrs = ['testCount', 'testFailCount', 'runtimeErrorCount']
+  for (let i in attrs) {
+    const cntEl = document.getElementById(attrs[i]);
+    cntEl.textContent = tResult[attrs[i]];
   }
+  updateDetails();
 }
 
-/** Показывает результат выполнения теста в html странице. */
-function string2html(str) {
-  const errEl = document.createElement('div');
-  const leadText = str.substring(0, str.indexOf(': ') + 2);
-  if (leadText !== 'Success: ') {
-    appendError(errEl, str, leadText);
+/** Обновить детали тестов */
+function updateDetails() {
+  const detailEl = document.getElementById('testDetails');
+  detailEl.textContent = '';
+
+  const showErrorsChecked = document.getElementById('showErrors').checked;
+  const showSuccessChecked = document.getElementById('showSuccesses').checked;
+
+  let showType;
+  if (showSuccessChecked && showErrorsChecked) {
+    showType = 'Success && Error';
+  } else if (showSuccessChecked) {
+    showType = 'Success';
+  } else if (showErrorsChecked){
+    showType = 'Error';
   } else {
-    errEl.appendChild(createTestElement(str, 'h1', 'Success: ', 'test-success'));
+    showType = '';
   }
-  return errEl.outerHTML;
+  processTestCalls(document.testResult.testCalls, showType);
+}
+
+/** Обрабатывает все результаты теста соглано критерия */
+function processTestCalls(testCalls, showType) {
+  if (showType === '') return;
+
+  for (let key in testCalls) {
+    const state = testCalls[key].state;
+    if (state !== undefined) {
+      if (showType.includes(state))
+        showDetails(testCalls[key], key);
+    } else {
+      if (key === '0') throw Error('arr');
+      processTestCalls(testCalls[key], showType);
+    }
+  }
 }
 
 /** Показывает результат выполнения теста в html странице. */
-function appendError(errEl, str, leadText) {
-  const strArr = str.split('\n');
-  const firstErrLine = strArr.shift();
-  errEl.appendChild(createTestElement(firstErrLine, 'h1', leadText, 'test-desc'));
-  if(strArr[0].startsWith('Test Assertion Error: ')) {
-    const secondErrLine = strArr.shift();
-    errEl.appendChild(createTestElement(secondErrLine, 'h2', 'Test Assertion Error: ', 'test-err'));
+function showDetails(testResult, fName) {
+  const detailEl = document.getElementById('testDetails');
+  if (testResult.state !== 'Success') {
+    appendError(testResult, fName);
+  } else {
+    detailEl.appendChild(createTestElement(`Success: ${fName} - success runned`, 'h1', 'test-detail'));
   }
-  else {
-    const secondErrLine = 'Runtime Error: the error is not a test';
-    errEl.appendChild(createTestElement(secondErrLine, 'h2', 'Runtime Error: ', 'test-err'));
-  }
+  return detailEl.outerHTML;
+}
+
+/** Добавляет ошибку в html страницy. */
+function appendError(testResult, fName) {
+  const detailEl = document.getElementById('testDetails');
+  const { err, callStack, errDesc } = testResult;
+
+  const errType = err === 'TestError: ' ? 'test fail' : 'error'
+  const errDetail = `${err}${fName} - ${errType}`
+  const errEl = createTestElement(errDetail, 'h1', 'test-detail');
+  detailEl.appendChild(errEl);
+  errEl.appendChild(createTestElement(errDesc, 'h2', 'test-err'));
 
   const stackBlockEl = document.createElement('div');
   setElAttribute(stackBlockEl, 'test-stack');
   errEl.appendChild(stackBlockEl);
 
-  strArr.forEach((strItem) => {
+  callStack.split('\n').forEach((strItem) => {
     const txtLine = strItem.trim();
-    stackBlockEl.appendChild(createTestElement(txtLine, 'p', 'at ', 'test-stack'));
+    const prefixLen = txtLine.indexOf('(');
+    stackBlockEl.appendChild(createTestElement(txtLine, 'p', 'test-stack', prefixLen));
   });
 }
 
 /** Создает на страничке html новый элемент теста. */
-function createTestElement(textCnt, elType, prefixText, clsName) {
-  const i = prefixText.length;
+function createTestElement(textContent, elType, clsName, prefixLength) {
+  const prefixLen = prefixLength ?? textContent.indexOf(': ') + 2;
+  const prefixText = textContent.substring(0, prefixLen);
   const span = document.createElement('span');
-  span.textContent = textCnt.substring(i);
+  span.textContent = textContent.substring(prefixLen);
   setElAttribute(span, clsName);
 
-  const p = document.createElement(elType);
-  setElAttribute(p, clsName);
-  p.textContent = prefixText;
-  p.appendChild(span);
-  return p;
+  const el = document.createElement(elType);
+  setElAttribute(el, clsName);
+  el.textContent = prefixText;
+  el.appendChild(span);
+  return el;
 }
 
 /** Установить атрибут html элемента. */
@@ -96,14 +122,12 @@ function getClsName(elType, clsName) {
   const token = `${elType}:${clsName}`;
   if (token === 'div:test') return 'w3-card'
   else if (token === 'div:test-stack') return 'w3-container, w3-margin-left, w3-light-gray';
-  else if (token === 'h1:test-success') return 'w3-gray';
-  else if (token === 'h1:test-desc') return 'w3-gray';
+  else if (token === 'h1:test-detail') return 'w3-gray';
   else if (token === 'h2:test-err') return 'w3-khaki';
   else if (token === 'p:test-stack') return '';
-  else if (token === 'span:test-desc') return 'w3-text-green';
+  else if (token === 'span:test-detail') return 'w3-text-green';
   else if (token === 'span:test-err') return 'w3-text-red';
   else if (token === 'span:test-stack') return 'w3-text-red';
-  else if (token === 'span:test-success') return 'w3-text-green';
   else throw Error('not valid element type and class name');
 }
 

@@ -5,65 +5,94 @@ import {
   assertToBe, assertNotToBe, assertEqual, assertNotEqual,
   assertThrow,
 } from './assert.js';
-import { testsForHtml } from './assert2html.js'
+import { runTestsForHtml } from '../tests/test2html.js'
+import { describe, test } from '../tests/test.js'
 
-export function assertToBeTests() {
-  assertToBe('test two string to be', 'f', 'f');
-  assertToBe( 'test empty strings to be', '', (() => '')());
-  assertToBe('test two number to be', 0, 1 - 1);
-  assertToBe('test boolean values to be', true, 0 === 0);
+describe('assertToBeTests', () => {
+  test('test two string to be', () => {
+    assertToBe('f', 'f');
+  });
+  test('test empty strings to be', () => {
+    assertToBe( '', (() => '')());
+  });
+  test('test two number to be', () => {
+    assertToBe(0, 1 - 1);
+  });
+  test('test boolean values to be', () => {
+    assertToBe(true, 0 === 0);
+  });
 
   const obj = {};
-  assertToBe('test object values', obj, (() => obj)());
+  test('test object values', () => {
+    assertToBe(obj, (() => obj)());
+  });
 
   //* reverse assertions */
   {
-    assertThrow(
-    'test not to be throw error',
-    () => assertToBe('test string values', 'f', 'r'),
-    'f not to be r'
-    );
+    test('test not to be throw error', () => {
+      const cb = () => assertToBe('f', 'r');
+      assertThrow(cb, '<f> not to be <r>');
+    });
   }
+});
 
-  return 'assertToBe - success runned';
-}
-
-export function assertNotToBeTests() {
-  assertNotToBe('test two string not to be', 'f', 'k');
-  assertNotToBe('test two number not to be', 1, 0);
-  assertNotToBe('test array not to be', [], []);
-  assertNotToBe('test obj not to be', {}, {});
+describe('assertNotToBeTests', () => {
+  test('test two string not to be', () => {
+    assertNotToBe('f', 'k');
+  });
+  test('test two number not to be', () => {
+    assertNotToBe(1, 0);
+  });
+  test('test array not to be', () => {
+    assertNotToBe([], []);
+  });
+  test('test obj not to be', () => {
+    assertNotToBe({}, {});
+  });
 
   //* reverse assertions */
   {
-    assertThrow(
-    'test to be throw error',
-    () => assertNotToBe('test string values', 'f', 'f'),
-    'f to be f'
-    );
+    test('test to be throw error', () => {
+      const cb = () => assertNotToBe('f', 'f');
+      assertThrow(cb, '<f> to be <f>');
+    });
   }
+});
 
-  return 'assertNotToBe - success runned';
-}
-
-export function assertEqualTests() {
-  assertEqual('test empty string values equal', '', '');
-  assertEqual('test string values equal', 'val', 'val');
-  assertEqual('test number values equal', 5, 5);
+describe('assertEqualTests', () => {
+  test('test empty string values equal', () => {
+    assertEqual('', '');
+  });
+  test('test string values equal', () => {
+    assertEqual('val', 'val');
+  });
+  test('test number values equal', () => {
+    assertEqual(5, 5);
+  });
 
   {
-    assertEqual('test empty arrays values equal', [], []);
-    assertEqual('test filled arrays values equal', [1, 4, 54], [1, 4, 54]);
+    test('test empty arrays values equal', () => {
+      assertEqual([], []);
+    });
+    test('test filled arrays values equal', () => {
+      assertEqual([1, 4, 54], [1, 4, 54]);
+    });
     const a = [
       '', 'simple', -3, [2, 3, true, [undefined], ''], 5
     ]
     const b = [...a];
-    assertEqual('test nested and complex arrays values equal', a, b);
+    test('test nested and complex arrays values equal', () => {
+      assertEqual(a, b);
+    });
   }
 
   {
-    assertEqual('test empty objects values equal', {}, {});
-    assertEqual('test filled objects values equal', {i: 5, isRed: true}, {i: 5, isRed: true});
+    test('test empty objects values equal', () => {
+      assertEqual({}, {});
+    });
+    test('test filled objects values equal', () => {
+      assertEqual({i: 5, isRed: true}, {i: 5, isRed: true});
+    });
     const a = {
       i: 5,
       person: {
@@ -73,7 +102,9 @@ export function assertEqualTests() {
       }
     }
     const b = {...a};
-    assertEqual('test nested and complex objects values equal', a, b);
+    test('test nested and complex objects values equal', () => {
+      assertEqual(a, b);
+    });
   }
 
   //* reverse assertions */
@@ -83,32 +114,39 @@ export function assertEqualTests() {
     ]
     const b = [...a];
     b[0] = '1';
-    assertThrow(
-    'test equal throw error',
-    () => assertEqual('test not equal array values', a, b),
-    'not equal'
-    );
+    test('test equal throw error', () => {
+      const cb = () => assertEqual('test not equal array values', a, b);
+      assertThrow(cb, 'not equal');
+    });
   }
+});
 
-  return 'assertEqual - success runned';
-}
-
-export function assertNotEqualTests() {
-  assertNotEqual('test string values not equal', 'Val', 'val');
-  assertNotEqual('test number values equal', 5, -5);
+describe('assertNotEqualTests', () => {
+  test('test string values not equal', () => {
+    assertNotEqual('Val', 'val');
+  });
+  test('test number values equal', () => {
+    assertNotEqual(5, -5);
+  });
 
   {
-    assertNotEqual('test filled arrays values equal', [1, 4, 55], [1, 4, 54]);
+    test('test filled arrays values equal', () => {
+      assertNotEqual([1, 4, 55], [1, 4, 54]);
+    });
     const a = [
       0, '', 'simple', -3, [2, 3, true, [undefined], ''], 5
     ]
     const b = [...a];
     b[0] = 1;
-    assertNotEqual('test nested and complex arrays values equal', a, b);
+    test('test nested and complex arrays values equal', () => {
+      assertNotEqual(a, b);
+    });
   }
 
   {
-    assertNotEqual('test filled objects values equal', {i: 4, isRed: true}, {i: 5, isRed: true});
+    test('test filled objects values equal', () => {
+      assertNotEqual({i: 4, isRed: true}, {i: 5, isRed: true});
+    });
     const a = {
       i: 4,
       person: {
@@ -119,7 +157,9 @@ export function assertNotEqualTests() {
     }
     const b = {...a};
     b.i = 5;
-    assertNotEqual('test nested and complex objects values equal', a, b);
+    test('test nested and complex objects values equal', () => {
+      assertNotEqual(a, b);
+    });
   }
 
   //* reverse assertions */
@@ -128,39 +168,32 @@ export function assertNotEqualTests() {
       '', 'simple', -3, [2, 3, true, [undefined], ''], 5
     ]
     const b = [...a];
-    assertThrow(
-    'test not equal throw error',
-    () => assertNotEqual('test equal array values', a, b),
-    'equal'
-    );
+    test('test not equal throw error', () => {
+      const cb = () => assertNotEqual(a, b);
+      assertThrow(cb, 'equal');
+    });
   }
+});
 
-  return 'assertNotEqual - success runned';
-}
-
-export function assertThrowTests() {
-  assertThrow('function throw exeption', () => {throw Error()});
+describe('assertThrowTests', () => {
+  test('function throw exeption', () => {
+    assertThrow(() => {throw Error()});
+  });
   const errStr = 'Это очень большое описание ошибки, чтобы по ней можно было сверить тест';
-  assertThrow('function throw exeption', () => {throw Error(errStr)}, 'можно было');
+  test('function throw exeption', () => {
+    assertThrow(() => {throw Error(errStr)}, 'можно было');
+  });
 
   //* reverse assertions */
   {
-    assertThrow('function not throw exeption', () => assertThrow('not exept throw', () => {}))
-    assertThrow('function throwed exeption, but not include err message', () => assertThrow(
-      'exept throw cb', () => {throw Error(errStr)}, 'not included text'
-    ))
+    test('function not throw exeption', () => {
+      assertThrow(() => assertThrow('not exept throw', () => {}))
+    });
+    test('function throwed exeption, but not include err message', () => {
+      const cb = () => assertThrow(() => {throw Error(errStr)}, 'not included text');
+      assertThrow(cb)
+    });
   }
+});
 
-  return 'assertThrow - success runned';
-}
-
-/** функции которые необходимо запустить */
-const allTestCallBacks = [
-  assertToBeTests,
-  assertNotToBeTests,
-  assertEqualTests,
-  assertNotEqualTests,
-  assertThrowTests,
-];
-
-testsForHtml(allTestCallBacks);
+runTestsForHtml();

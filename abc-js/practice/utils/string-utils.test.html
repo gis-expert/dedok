@@ -7,5 +7,40 @@
     <script type="module" src="string-utils.test.js"></script>
   </head>
   <body class="w3-container">
+
+    <div class="w3-cell-row w3-margin-bottom w3-margin-top">
+      <div class="w3-grey w3-cell w3-border-right w3-border-white">
+        <h2 class="w3-center">Результаты теста</h2>
+        <p class="w3-large w3-margin-left">Протестировано: <span id="testCount" class="w3-xlarge">0</span></p>
+        <p class="w3-large w3-margin-left">Успешно: <span id="testSuccessCount" class="w3-xlarge">0</span></p>
+        <p class="w3-large w3-margin-left">Тестов провалено: <span id="testFailCount" class="w3-xlarge">0</span></p>
+        <p class="w3-large w3-margin-left">Ошибок выполнения: <span id="runtimeErrorCount" class="w3-xlarge">0</span></p>
+      </div>
+
+      <form class="w3-grey w3-cell w3-border-left w3-border-white" style="width: 50%;">
+        <h2 class="w3-center">Параметры теста</h2>
+        <div class="w3-margin">
+          <input id="showErrors" class="w3-check" type="checkbox" checked>
+          <label class="w3-large w3-margin-left">Показать ошибки</label>
+        </div>
+        <div class="w3-margin">
+          <input id="showSuccesses" class="w3-check" type="checkbox">
+          <label class="w3-large w3-margin-left">Показать успешные тесты</label>
+        </div>
+        <div class="w3-margin w3-border w3-border-dark-grey w3-padding">
+          <div class="w3-row">
+            <p class="w3-col w3-large" style="width: 75%">
+            Введите описания тестов через <span class="w3-dark-gray w3-padding"><b>;</b></span><br>
+            или каждое описание в новой строке
+            </p>
+            <p id="runTests" class="w3-btn w3-light-grey w3-rest w3-padding">Выполнить</p>
+          </div>
+
+          <textarea id="testFilter" style="width: 90%; height: 100px" placeholder="Выполнить только определенные тесты"></textarea>
+        </div>
+      </form>
+    </div>
+
+    <div id="testDetails"></div>
   </body>
 </html>
