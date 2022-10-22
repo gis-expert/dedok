@@ -4,13 +4,30 @@ import { testRunner } from '../../../dependencies/tests/test.js';
 
 /** Выполнеяет все необходимые для корректной работы установки */
 export function testHtmlMain() {
-  document.getElementById('showErrors').onclick = showTestDetails;
-  document.getElementById('showSuccesses').onclick = showTestDetails;
-  document.getElementById('runTests').onclick = runTestsForHtml;
-
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
+
+  // устанавливаем checkbox showErrors по параметрам url
+  const showErrorsEl = document.getElementById('showErrors');
+  showErrorsEl.onclick = showTestDetails;
+  const currShowErrorsValue = showErrorsEl.checked;
+  const paramsShowErrorsValue = urlParams.get('showErrors');
+  showErrorsEl.checked = paramsShowErrorsValue === null
+    ? currShowErrorsValue
+    : paramsShowErrorsValue === 'true';
+
+  // устанавливаем checkbox showSuccesses по параметрам url
+  const showSuccessesEl = document.getElementById('showSuccesses');
+  showSuccessesEl.onclick = showTestDetails;
+  const currShowSuccessesValue = showSuccessesEl.checked;
+  const paramsShowSuccessesValue = urlParams.get('showSuccesses');
+  showSuccessesEl.checked = paramsShowSuccessesValue === null
+    ? currShowSuccessesValue
+    : paramsShowSuccessesValue === 'true';
+
   document.getElementById('testFilter').value = urlParams.get('tests');
+
+  document.getElementById('runTests').onclick = runTestsForHtml;
 
   //если не хотите автоматически запускать тесты при загрузке
   //то закоменьте следующую строку.
