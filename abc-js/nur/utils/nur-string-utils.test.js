@@ -145,45 +145,42 @@ describe('isMoreOrEqualTests', () => {
   test('первая строка больше второй по первому символу', () => {
     assertToBe(isMoreOrEqual('ca', 'ba'), true);
   });
-  // test('первая строка больше второй по последнему символу', () => {
-  //   assertToBe(isMoreOrEqual('abc', 'abb'), true);
-  // });
-  // test('первая и вторая равны', () => {
-  //   assertToBe(isMoreOrEqual('abb', 'abb'), false);
-  // });
-  // test('вторая строка не больше первой по последнему символу', () => {
-  //   assertToBe(isMoreOrEqual('abb', 'abc'), false);
-  // });
-  // test('первая и вторая равны по содержанию, но первая больше по длине', () => {
-  //   assertToBe(isMoreOrEqual('abba', 'abb'), true);
-  // });
-  // test('первая и вторая равны по содержанию, но первая больше по длине', () => {
-  //   assertToBe(isMoreOrEqual('abb' + ZERO_CODE_CHAR, 'abb'), true);
-  // });
-  // test('пустые строки', () => {
-  //   assertToBe(isMoreOrEqual('', ''), false);
-  // });
-  // test('пустая строка не больше чем непустая строка', () => {
-  //   assertToBe(isMoreOrEqual('', ZERO_CODE_CHAR), false);
-  // });
-  // test('не пустая строка больше чем пустая', () => {
-  //   assertToBe(isMoreOrEqual(ZERO_CODE_CHAR, ''), true);
-  // });
-  // test('первая и вторая равны по содержанию, но первая меньше по длине', () => {
-  //   assertToBe(isMoreOrEqual('abb', 'abba'), false);
-  // });
-  // test('разные типы приводят к ЛОЖЬ', () => {
-  //   assertToBe(isMoreOrEqual('2', 2), false);
-  // });
-  // test('разные типы приводят к ЛОЖЬ', () => {
-  //   assertToBe(isMoreOrEqual(2, '2'), false);
-  // });
-  // test('если не передать второй аргумент, то будет ошибка', () => {
-  //   assertThrow(() => isMoreOrEqual('a'), 'both parameters are required');
-  // });
-  // test('если не передать аргументы, то будет ошибка', () => {
-  //   assertThrow(() => isMoreOrEqual(), 'both parameters are required');
-  // });
+  test('первая строка больше второй по последнему символу', () => {
+    assertToBe(isMoreOrEqual('abc', 'abb'), true);
+  });
+  test('первая и вторая равны', () => {
+    assertToBe(isMoreOrEqual('abb', 'abb'), true);
+  });
+  test('вторая строка не больше первой по последнему символу', () => {
+    assertToBe(isMoreOrEqual('abb', 'abc'), false);
+  });
+  test('первая и вторая равны по содержанию, но первая больше по длине', () => {
+    assertToBe(isMoreOrEqual('abb' + ZERO_CODE_CHAR, 'abb'), true);
+  });
+  test('пустые строки', () => {
+    assertToBe(isMoreOrEqual('', ''), true);
+  });
+  test('пустая строка не больше чем непустая строка', () => {
+    assertToBe(isMoreOrEqual('', ZERO_CODE_CHAR), false);
+  });
+  test('не пустая строка больше чем пустая', () => {
+    assertToBe(isMoreOrEqual(ZERO_CODE_CHAR, ''), true);
+  });
+  test('первая и вторая равны по содержанию, но первая меньше по длине', () => {
+    assertToBe(isMoreOrEqual('abb', 'abb' + ZERO_CODE_CHAR), false);
+  });
+  test('разные типы приводят к ЛОЖЬ', () => {
+    assertToBe(isMoreOrEqual('2', 2), false);
+  });
+  test('разные типы приводят к ЛОЖЬ', () => {
+    assertToBe(isMoreOrEqual(2, '2'), false);
+  });
+  test('если не передать второй аргумент, то будет ошибка', () => {
+    assertThrow(() => isMoreOrEqual('a'), 'both parameters are required');
+  });
+  test('если не передать аргументы, то будет ошибка', () => {
+    assertThrow(() => isMoreOrEqual(), 'both parameters are required');
+  });
 });
 
 describe('isLessOrEqualTests', () => {

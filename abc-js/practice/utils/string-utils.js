@@ -16,6 +16,16 @@ export function isLess(firstText, secondText) {
 
 }
 
+/** возвращает булевый ответ больше или равно ли параметр firstText чем secondText. */
+export function isMoreOrEqual(firstText, secondText) {
+
+}
+
+/** возвращает булевый ответ меньше или равно ли параметр firstText чем secondText. */
+export function isLessOrEqual(firstText, secondText) {
+
+}
+
 /** Переводит переданный аргумент в тип строки.
  * Можно переводить в строку только простые типы:
  * number, boolean, string, undefined, null.

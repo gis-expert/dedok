@@ -43,7 +43,7 @@ export function isLess(firstText, secondText) {
 export function isMoreOrEqual(firstText, secondText) {
   if (checkComparisonArgs(firstText, secondText) === false)
     return false;
-  return !(isMore(firstText, secondText));
+  return isMore(firstText, secondText) || isEqual(firstText, secondText);
 }
 
 /** возвращает булевый ответ меньше или равно ли параметр firstText чем secondText. */
@@ -53,6 +53,7 @@ export function isLessOrEqual(firstText, secondText) {
   return !(isMore(firstText, secondText));
 }
 
+/** выполняет проверки входящих параметров */
 function checkComparisonArgs(firstText, secondText) {
   if (typeof firstText === 'undefined' || typeof secondText === 'undefined')
     throw Error('both parameters are required');
