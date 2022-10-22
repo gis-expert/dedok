@@ -6,7 +6,7 @@ import {
   toString, repeat, substring, indexOf,
   trim, trimLeft, trimRight, reverse, replace, replaceAll,
   padEnd, padStart,
-} from './nur-string-utils.js';
+} from './string-utils.js';
 
 const complexText = "Hello world!!! It's terminator";
 const ZERO_CODE_CHAR = String.fromCharCode(0);
