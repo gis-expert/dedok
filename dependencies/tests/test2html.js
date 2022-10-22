@@ -51,11 +51,10 @@ export function runTestsForHtml() {
 
 /** Добавляет результаты теста в html документ. */
 export function showTestResults() {
-  const tResult = document.testResult;
   const attrs = ['testCount', 'testSuccessCount', 'testFailCount', 'runtimeErrorCount']
   for (let attr of attrs) {
     const cntEl = document.getElementById(attr);
-    cntEl.textContent = tResult[attr];
+    cntEl.textContent = document.testResult[attr];
   }
   showTestDetails();
 }
@@ -70,43 +69,43 @@ function showTestDetails() {
   let showDetails = needShowSuccess ? 'Success' : '';
   showDetails += needShowErrors ? 'Error' : '';
 
-  const testCalls = selectTests(document.testResult.testCalls, showDetails);
-  processTests(testCalls, detailsEl, '-outer');
+  const testResults = selectTestResults(document.testResult.testResults, showDetails);
+  processTestResults(testResults, detailsEl, '-outer');
 }
 
 /** Сделать выборку тестов для отображения */
-function selectTests(testResult, showDetails) {
-  const resultCalls = {};
-  if (showDetails === '') return resultCalls;
+function selectTestResults(allTestResults, showDetails) {
+  const selectedResults = {};
+  if (showDetails === '') return selectedResults;
 
-  for (let key in testResult) {
-    const state = testResult[key].state;
+  for (let key in allTestResults) {
+    const state = allTestResults[key].state;
     if (state !== undefined) {
       if (showDetails.includes(state)) {
-        resultCalls[key] = testResult[key];
+        selectedResults[key] = allTestResults[key];
       }
     } else {
-      const childResult = selectTests(testResult[key], showDetails);
+      const childResult = selectTestResults(allTestResults[key], showDetails);
       if (Object.keys(childResult).length !== 0)
-        resultCalls[key] = childResult;
+        selectedResults[key] = childResult;
     }
   }
-  return resultCalls;
+  return selectedResults;
 }
 
 /** Обрабатывает все результаты теста */
-function processTests(testCalls, parentEl, scopeSuffix) {
-  for (let key in testCalls) {
-    const isTest = testCalls[key].state !== undefined;
+function processTestResults(testResults, parentEl, scopeSuffix) {
+  for (let key in testResults) {
+    const isTest = testResults[key].state !== undefined;
     if (isTest) {
-      const testResult = testCalls[key];
+      const testResult = testResults[key];
       const scopeEl = createTestScope(key, testResult, scopeSuffix);
       parentEl.appendChild(scopeEl);
       if (testResult.state !== 'Success') showErrorDetails(testResult, scopeEl);
     } else {
       const scopeEl = createDescribeScope(key, scopeSuffix);
       parentEl.appendChild(scopeEl);
-      processTests(testCalls[key], scopeEl, '-inner');
+      processTestResults(testResults[key], scopeEl, '-inner');
     }
   }
 }
