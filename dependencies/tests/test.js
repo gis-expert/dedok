@@ -14,9 +14,13 @@ export function describe(description, cb) {
   if (document.tests.lastObj === undefined)
     document.tests.lastObj = document.tests;
 
+  if (document.tests.lastObj[description] !== undefined)
+    throw Error('already describe description: ' + description);
+
   const oldObj = document.tests['lastObj'];
-  oldObj[description] = {};
-  document.tests['lastObj'] = oldObj[description];
+  const newObj = {}
+  document.tests['lastObj'][description] = newObj;
+  document.tests['lastObj'] = newObj;
   cb();
   if (oldObj === document.tests) {
     delete document.tests.lastObj
@@ -31,6 +35,9 @@ export function test(testDescription, testCb) {
     throw Error('test description must be only string type');
   if (testDescription === '') throw Error('test description required');
 
+  if (document.tests.lastObj[testDescription] !== undefined)
+    throw Error('already test description: ' + testDescription);
+
   document.tests.lastObj[testDescription.trim()] = testCb;
 }
 
@@ -42,7 +49,7 @@ export function testRunner(descriptions=[]) {
   const tests = selectTests(document.tests, trimmedDescs);
   const [testResults, testCounts] = processTests(tests);
 
-  document.testResult.testCalls = testResults;
+  document.testResult.testResults = testResults;
   document.testResult.testCount = testCounts.testCount;
   document.testResult.testSuccessCount = testCounts.testSuccessCount ;
   document.testResult.testFailCount = testCounts.testFailCount;
