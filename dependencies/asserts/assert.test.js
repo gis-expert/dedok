@@ -115,7 +115,7 @@ describe('assertEqualTests', () => {
     const b = [...a];
     b[0] = '1';
     test('test equal throw error', () => {
-      const cb = () => assertEqual('test not equal array values', a, b);
+      const cb = () => assertEqual(a, b);
       assertThrow(cb, 'not equal');
     });
   }
@@ -187,7 +187,7 @@ describe('assertThrowTests', () => {
   //* reverse assertions */
   {
     test('function not throw exeption', () => {
-      assertThrow(() => assertThrow('not exept throw', () => {}))
+      assertThrow(() => assertThrow(() => {}))
     });
     test('function throwed exeption, but not include err message', () => {
       const cb = () => assertThrow(() => {throw Error(errStr)}, 'not included text');

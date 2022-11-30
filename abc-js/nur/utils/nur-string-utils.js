@@ -236,6 +236,7 @@ export function indexOf(text, searchString, position) {
 
   let startIndex = position ?? 0;
   if (typeof startIndex !== 'number') startIndex = Number(startIndex);
+  if (isNaN(startIndex)) startIndex = 0;
   startIndex = Math.floor(startIndex);
   if (startIndex < 0) startIndex = 0;
 

@@ -34,11 +34,12 @@ export function test(testDescription, testCb) {
   if (typeof testDescription !== 'string')
     throw Error('test description must be only string type');
   if (testDescription === '') throw Error('test description required');
+  testDescription = testDescription.trim();
 
   if (document.tests.lastObj[testDescription] !== undefined)
     throw Error('already test description: ' + testDescription);
 
-  document.tests.lastObj[testDescription.trim()] = testCb;
+  document.tests.lastObj[testDescription] = testCb;
 }
 
 /** Выполняет тесты. Результат выполнения теста в document.testResults */
