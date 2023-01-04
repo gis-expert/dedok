@@ -1,9 +1,8 @@
 /** модуль позволяет делать тест assert.js через браузер.
  * */
-import { testRunner } from '../../../dependencies/tests/test.js';
 
 /** Выполнеяет все необходимые для корректной работы установки */
-export function testHtmlMain() {
+function testHtmlMain() {
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
 
@@ -33,8 +32,9 @@ export function testHtmlMain() {
   //то закоменьте следующую строку.
   runTestsForHtml();
 }
+
 /** Выполняет тесты и добавляет их результаты в html документ. */
-export function runTestsForHtml() {
+function runTestsForHtml() {
 
   const testFilter = document.getElementById('testFilter').value;
   let descriptions = [];
@@ -45,12 +45,12 @@ export function runTestsForHtml() {
   }
   descriptions = descriptions.map((item) => item.trim());
 
-  testRunner(descriptions);
+  document.testRunner(descriptions);
   showTestResults();
 }
 
 /** Добавляет результаты теста в html документ. */
-export function showTestResults() {
+function showTestResults() {
   const attrs = ['testCount', 'testSuccessCount', 'testFailCount', 'runtimeErrorCount']
   for (let attr of attrs) {
     const cntEl = document.getElementById(attr);

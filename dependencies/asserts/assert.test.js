@@ -5,7 +5,6 @@ import {
   assertToBe, assertNotToBe, assertEqual, assertNotEqual,
   assertThrow,
 } from './assert.js';
-import { runTestsForHtml } from '../tests/test2html.js'
 import { describe, test } from '../tests/test.js'
 
 describe('assertToBeTests', () => {
@@ -176,24 +175,23 @@ describe('assertNotEqualTests', () => {
 });
 
 describe('assertThrowTests', () => {
-  test('function throw exeption', () => {
+  test('выброшенное исключение ловится', () => {
     assertThrow(() => {throw Error()});
   });
   const errStr = 'Это очень большое описание ошибки, чтобы по ней можно было сверить тест';
-  test('function throw exeption', () => {
+  test('выброшенное исключение можно выловить по описанию ошибки', () => {
     assertThrow(() => {throw Error(errStr)}, 'можно было');
   });
 
   //* reverse assertions */
   {
-    test('function not throw exeption', () => {
-      assertThrow(() => assertThrow(() => {}))
+    test('ошибка не выброшена, что вызывает ошибку тестирования', () => {
+      const notThrowTest = () => assertThrow(() => {});
+      assertThrow(notThrowTest, 'did not throw an exception');
     });
-    test('function throwed exeption, but not include err message', () => {
+    test('ошибка выбрасывается, но текст ошибки не совпадает', () => {
       const cb = () => assertThrow(() => {throw Error(errStr)}, 'not included text');
-      assertThrow(cb)
+      assertThrow(cb, 'not inculdes by')
     });
   }
 });
-
-runTestsForHtml();
