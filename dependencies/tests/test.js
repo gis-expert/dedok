@@ -1,7 +1,8 @@
 /** Модуль объявляет функции для выполнения автотестов.
  * После загрузки в объекте документ будет атрибут tests,
- * куда будут сложены все тесты согласно иерархии.
- * Вызов testRunner вернет результаты выполнения тестов.*/
+ * куда будут сложены все тесты согласно иерархии,
+ * а также функция testRunner вызов которого вернет результаты
+ * выполнения тестов.*/
 
 /** позволяет объединить несколько тестов в одну единицу теста. */
 export function describe(description, cb) {
@@ -27,6 +28,9 @@ export function describe(description, cb) {
   } else {
     document.tests.lastObj = oldObj;
   };
+
+  if (document.testRunner === undefined)
+    document.testRunner = testRunner;
 }
 
 /** тестирует отдельный случай */
@@ -43,7 +47,7 @@ export function test(testDescription, testCb) {
 }
 
 /** Выполняет тесты. Результат выполнения теста в document.testResults */
-export function testRunner(descriptions=[]) {
+function testRunner(descriptions=[]) {
   document.testResult = {};
 
   const trimmedDescs = descriptions.map((item) => item.trim());
