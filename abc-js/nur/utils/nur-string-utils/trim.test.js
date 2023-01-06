@@ -31,10 +31,16 @@ describe('trimLeftTests', () => {
     assertToBe(trimLeft('Hi'), 'Hi');
   });
   test('пробелы после символа не трогаются', () => {
-    assertToBe(trimRight(', Hi'), ', Hi');
+    assertToBe(trimLeft(', Hi'), ', Hi');
   });
   test('строка полностью из удаляемых символов', () => {
     assertToBe(trimLeft(' \v \n \t\t'), '');
+  });
+  test('передан второй параметр, первый аргумент обрезается', () => {
+    assertToBe(trimLeft('hello world', 'eohd'), 'llo world');
+  });
+  test('передан второй параметр, первый аргумент не обрезается', () => {
+    assertToBe(trimLeft('hello world', 'woe'), 'hello world');
   });
   test('если не передать аргумент, то будет исключение', () => {
     assertThrow(() => trimLeft(), 'text must not be of undefined');
@@ -78,6 +84,12 @@ describe('trimRightTests', () => {
   test('строка полностью из удаляемых символов', () => {
     assertToBe(trimRight(' \v \n \t\t'), '');
   });
+  test('передан второй параметр, первый аргумент обрезается', () => {
+    assertToBe(trimRight('hello world', 'eohd'), 'hello worl');
+  });
+  test('передан второй параметр, первый аргумент не обрезается', () => {
+    assertToBe(trimRight('hello world', 'woe'), 'hello world');
+  });
   test('если не передать аргумент, то будет исключение', () => {
     assertThrow(() => trimRight(), 'text must not be of undefined');
   });
@@ -91,7 +103,7 @@ describe('trimTests', () => {
     assertToBe(trim('  Hi'), 'Hi');
   });
   test('удалить перевод строки и пробел сзади', () => {
-    assertToBe(trimRight('Hi\n '), 'Hi');
+    assertToBe(trim('Hi\n '), 'Hi');
   });
   test('удалить табуляция и пробел сзади', () => {
     assertToBe(trim('Hi\t '), 'Hi');
@@ -119,5 +131,11 @@ describe('trimTests', () => {
   });
   test('строка полностью из удаляемых символов', () => {
     assertToBe(trim(' \v \n \t\t'), '');
+  });
+  test('передан второй параметр, первый аргумент обрезается', () => {
+    assertToBe(trim('hello world', 'eohd'), 'llo worl');
+  });
+  test('передан второй параметр, первый аргумент не обрезается', () => {
+    assertToBe(trim('hello world', 'woe'), 'hello world');
   });
 });
