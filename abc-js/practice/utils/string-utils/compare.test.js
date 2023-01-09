@@ -1,7 +1,7 @@
 import { assertToBe, assertThrow } from '../../../../dependencies/asserts/assert.js';
 import { describe, test } from '../../../../dependencies/tests/test.js';
 import {
-  isEqual, isMore, isLess, isMoreOrEqual, isLessOrEqual,
+  isEqual, isNotEqual, isMore, isLess, isMoreOrEqual, isLessOrEqual,
 } from './compare.js';
 import { complexText, ZERO_CODE_CHAR } from './common.js';
 
@@ -42,6 +42,46 @@ describe('isEqualTests', () => {
   // });
   // test('если не передать аргументы, то будет ошибка', () => {
   //   assertThrow(() => isEqual(), 'both parameters are required');
+  // });
+});
+
+describe('isNotEqualTests', () => {
+  test('одиночные одинаковые символы', () => {
+    assertToBe(isNotEqual('a', 'a'), false);
+    assertToBe(isNotEqual('a', 'b'), true);
+  });
+  // test('количество символов одинаково, но не равны', () => {
+  //   assertToBe(isNotEqual('abc', 'abb'), true);
+  // });
+  // test('у первого больше символов', () => {
+  //   assertToBe(isNotEqual('abbb', 'abb'), true);
+  // });
+  // test('второго больше символов', () => {
+  //   assertToBe(isNotEqual('abb', 'abbb'), true);
+  // });
+  // test('пустые строки', () => {
+  //   assertToBe(isNotEqual('', ''), false);
+  // });
+  // test('пустые и непустая строка', () => {
+  //   assertToBe(isNotEqual('', 'a'), true);
+  // });
+  // test('сложные одинаковые строки', () => {
+  //   assertToBe(isNotEqual(complexText, complexText), false);
+  // });
+  // test('сложные строки различной длины', () => {
+  //   assertToBe(isNotEqual(complexText + ZERO_CODE_CHAR, complexText), true);
+  // });
+  // test('несоответствие типа второго аргумента приводит к ЛОЖЬ', () => {
+  //   assertToBe(isNotEqual('2', 2), true);
+  // });
+  // test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
+  //   assertToBe(isNotEqual(2, '2'), true);
+  // });
+  // test('если не передать второй аргумент, то будет ошибка', () => {
+  //   assertThrow(() => isNotEqual('a'), 'both parameters are required');
+  // });
+  // test('если не передать аргументы, то будет ошибка', () => {
+  //   assertThrow(() => isNotEqual(), 'both parameters are required');
   // });
 });
 

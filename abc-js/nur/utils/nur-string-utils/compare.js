@@ -12,6 +12,11 @@ export function isEqual(firstText, secondText) {
   return true;
 }
 
+/** возвращает true если аргументы не равны, и true в иных случаях. */
+export function isNotEqual(firstText, secondText) {
+  return !isEqual(firstText, secondText);
+}
+
 /** возвращает булевый ответ больше ли параметр firstText чем secondText. */
 export function isMore(firstText, secondText) {
   if (checkComparisonArgs(firstText, secondText) === false)
