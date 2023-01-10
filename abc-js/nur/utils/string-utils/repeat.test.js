@@ -32,9 +32,6 @@ describe('repeatTests', () => {
   test('повторено ни один раз - пустой текст', () => {
     assertToBe(repeat('', 0), '');
   });
-  test('пропущенное число повторении возвращает ту же строку', () => {
-    assertToBe(repeat('abc'), 'abc');
-  });
   test('в дробном числе повторении, дробная часть отбрасывается', () => {
     assertToBe(repeat('abc', 3.85), 'abcabcabc');
   });
@@ -44,6 +41,23 @@ describe('repeatTests', () => {
   test('второй булевый параметр приводится в число', () => {
     assertToBe(repeat('a', false), '');
   });
+  test('второй параметр не передан, возвращает ту же строку', () => {
+    assertToBe(repeat('abc'), 'abc');
+  });
+  test('второй параметр не числовой, параметр переводится в число', () => {
+    assertToBe(repeat('abc', true), 'abc');
+    assertToBe(repeat('abc', false), '');
+    assertToBe(repeat('abc', '2th'), 'abcabc');
+    assertToBe(repeat('abc', '3.1415 - pi'), 'abcabcabc');
+    assertToBe(repeat('abc', [2, 5, 8]), 'abcabc');
+  });
+  test('второй параметр не числовой, параметр нельзя сконвертировать в число, возвращается пустая строка', () => {
+    assertToBe(repeat('abc', 'ss'), '');
+    assertToBe(repeat('abc', 's2'), '');
+    assertToBe(repeat('abc', []), '');
+    assertToBe(repeat('abc', {2: 2}), '');
+  });
+
   test('отрицательное число повторении вызывает исключение', () => {
     assertThrow(() => repeat('a', -1), 'repeat count must be positive value or zero');
   });
