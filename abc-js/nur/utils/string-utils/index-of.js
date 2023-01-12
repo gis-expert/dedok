@@ -1,6 +1,7 @@
 import { requiredString } from './common.js';
 import { substring } from './substring.js';
 import { isEqual } from './compare.js';
+import { parseInteger } from '../number-utils/parse-integer.js';
 
 /** Выполняет поиск строки searchString в строке text
  * и возвращает первую найденную позицию.
@@ -11,7 +12,7 @@ export function indexOf(text, searchString, position) {
   requiredString(text);
 
   let startIndex = position ?? 0;
-  if (typeof startIndex !== 'number') startIndex = Number(startIndex);
+  if (typeof startIndex !== 'number') startIndex = parseInteger(startIndex);
   if (isNaN(startIndex)) startIndex = 0;
   startIndex = Math.floor(startIndex);
   if (startIndex < 0) startIndex = 0;

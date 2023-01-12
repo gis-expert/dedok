@@ -1,3 +1,4 @@
+import { parseInteger } from '../number-utils/parse-integer.js';
 import { requiredString } from './common.js';
 
 /** Возвращает копию text начиная с индекса start до индекса end.
@@ -8,31 +9,31 @@ export function substring(text, start, end) {
   requiredString(text);
 
   // добавляем пропущенные индексы
-  let validatedStart = start ?? 0;
-  let validatedEnd = end ?? text.length;
+  let validStart = start ?? 0;
+  let validEnd = end ?? text.length;
 
   // если индексы не пропущены, но не числа или отрицательные
-  validatedStart = Number(validatedStart);
-  validatedEnd = Number(validatedEnd);
-  if (isNaN(validatedStart) || validatedStart < 0) validatedStart = 0;
-  if (isNaN(validatedEnd) || validatedEnd < 0) validatedEnd = 0;
+  validStart = parseInteger(validStart);
+  validEnd = parseInteger(validEnd);
+  if (isNaN(validStart) || validStart < 0) validStart = 0;
+  if (isNaN(validEnd) || validEnd < 0) validEnd = 0;
 
   // отбрасываем дробную часть
-  if (validatedStart % 1 !== 0) validatedStart -= validatedStart % 1;
-  if (validatedEnd % 1 !== 0) validatedEnd -= validatedEnd % 1;
+  if (validStart % 1 !== 0) validStart -= validStart % 1;
+  if (validEnd % 1 !== 0) validEnd -= validEnd % 1;
   
   // начальный индекс должен быть не больше конечного
-  if (validatedStart > validatedEnd) {
-    const tempValue = validatedStart;
-    validatedStart = validatedEnd;
-    validatedEnd = tempValue;
+  if (validStart > validEnd) {
+    const tempValue = validStart;
+    validStart = validEnd;
+    validEnd = tempValue;
   }
 
   // конченый индекс не должен быть больше длины текста
-  if (validatedEnd > text.length) validatedEnd = text.length
+  if (validEnd > text.length) validEnd = text.length
   
   let result = '';
-  for (let i = validatedStart; i < validatedEnd; i += 1) {
+  for (let i = validStart; i < validEnd; i += 1) {
     result += text[i];
   }
   return result;

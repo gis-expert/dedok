@@ -139,7 +139,7 @@ describe('ParseIntegerTests', () => {
   //     assertToBe(isNaN(parseInteger(['s2', 4, 8])), true);
   //   });
   //
-  //   test('empty to array', () => {
+  //   test('empty array to number', () => {
   //     assertToBe(isNaN(parseInteger([])), true);
   //   });
   //
@@ -147,6 +147,11 @@ describe('ParseIntegerTests', () => {
   //     assertToBe(isNaN(parseInteger({})), true);
   //     assertToBe(isNaN(parseInteger({age: 15})), true);
   //     assertToBe(isNaN(parseInteger({1: 15})), true);
+  //   });
+  //  
+  //   test('undefined and null to array', () => {
+  //     assertToBe(isNaN(parseInteger()), true);
+  //     assertToBe(isNaN(parseInteger(null)), true);
   //   });
   });
 });
