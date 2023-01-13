@@ -70,6 +70,7 @@ describe('ParseIntegerTests', () => {
       assertToBe(parseInteger('0.157'), 0);
       assertToBe(parseInteger('0.857'), 0);
       assertToBe(parseInteger('0.00001'), 0);
+      assertToBe(parseInteger('-0.'), 0);
       assertToBe(parseInteger('-0.1'), 0);
       assertToBe(parseInteger('-0.157'), 0);
       assertToBe(parseInteger('-0.857'), 0);

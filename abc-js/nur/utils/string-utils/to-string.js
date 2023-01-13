@@ -1,4 +1,4 @@
-import { DIGIT_STRINGS } from "./common.js";
+import { DIGITS } from "./common.js";
 
 
 /** Переводит переданный аргумент в тип строки.
@@ -34,7 +34,7 @@ function intToString(value) {
   let integerPlaceCount = 0;
   while (expectNumber - currentNumber >= 1) {
     shiftFirstDigit();
-    resultValue += DIGIT_STRINGS[firstDigit];
+    resultValue += DIGITS[firstDigit];
     currentNumber = currentNumber * 10 + firstDigit;
     if (integerPlaceCount > 10) throw Error();
     integerPlaceCount += 1;
@@ -52,7 +52,7 @@ function floatToString(value) {
   while (currentNumber !== expectNumber) {
     residualNumber *= 10;
     shiftFirstDigit(residualNumber);
-    resultValue += DIGIT_STRINGS[firstDigit];
+    resultValue += DIGITS[firstDigit];
     currentNumber = currentNumber + firstDigit / (10 ** dicimalPlaceCount);
     dicimalPlaceCount += 1;
   }
