@@ -98,8 +98,14 @@ describe('isMoreTests', () => {
   // test('вторая строка не больше первой по последнему символу', () => {
   //   assertToBe(isMore('abb', 'abc'), false);
   // });
+  // test('первая больше по длине, но меньше по содержанию', () => {
+  //   assertToBe(isMore('abaa', 'abb'), false);
+  // });
   // test('первая и вторая равны по содержанию, но первая больше по длине', () => {
-  //   assertToBe(isMore('abb' + ZERO_CODE_CHAR, 'abb'), true);
+  //   assertToBe(isMore('abba', 'abb'), true);
+  // });
+  // test('первая и вторая равны по содержанию, но вторая больше по длине', () => {
+  //   assertToBe(isMore('abb', 'abba'), false);
   // });
   // test('пустые строки', () => {
   //   assertToBe(isMore('', ''), false);
