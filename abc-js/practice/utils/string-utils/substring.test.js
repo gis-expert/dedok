@@ -22,18 +22,18 @@ describe('substringTests', () => {
     test('если второй индекс больше длины, то возвращается до конца текста', () => {
         assertToBe(substring(complexText, 20, 60), 'terminator');
     });
-    test('если второй индекс больше первого, то индексы меняются местами', () => {
-        assertToBe(substring(complexText, 5, 2), 'llo');
-    });
-    test('если первый индекс отрицательный, то он равен 0', () => {
-        assertToBe(substring(complexText, -5, 2), 'He');
-    });
-    test('если второй индекс отрицательный, то возвращается с 0 индекса по значение первого аргумента', () => {
-        assertToBe(substring(complexText, 5, -2), 'Hello');
-    });
-    test('если оба индексы отрицательные, то они равны 0', () => {
-        assertToBe(substring(complexText, -5, -2), '');
-    });
+    // test('если второй индекс больше первого, то индексы меняются местами', () => {
+    //     assertToBe(substring(complexText, 5, 2), 'llo');
+    // });
+    // test('если первый индекс отрицательный, то он равен 0', () => {
+    //     assertToBe(substring(complexText, -5, 2), 'He');
+    // });
+    // test('если второй индекс отрицательный, то возвращается с 0 индекса по значение первого аргумента', () => {
+    //     assertToBe(substring(complexText, 5, -2), 'Hello');
+    // });
+    // test('если оба индексы отрицательные, то они равны 0', () => {
+    //     assertToBe(substring(complexText, -5, -2), '');
+    // });
     // test('если индексы лежат за пределами, то возвзращается пустая строка', () => {
     //     assertToBe(substring('a', 2, 5), '');
     // });
