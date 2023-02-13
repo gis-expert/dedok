@@ -20,7 +20,6 @@ export function requiredToString(text, attrName='text') {
 
 /** Если text не объявлен или имеет не строковый тип,
  * то выкинет исключение. */
-export function requiredString(text, attrName='text') {
-  if (typeof text === 'undefined') throw Error(`${attrName} must not be of undefined`);
-  if (typeof text !== 'string') throw Error(`${attrName} must be of type string`);
+export function requiredString(text, attrName='argument') {
+  if (typeof text !== 'string') throw Error(`${attrName} must be type of string`);
 }

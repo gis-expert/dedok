@@ -61,10 +61,9 @@ describe('repeatTests', () => {
   // test('отрицательное число повторении вызывает исключение', () => {
   //   assertThrow(() => repeat('a', -1), 'repeat count must be positive value or zero');
   // });
-  // test('пропущеный текст вызывает исключение', () => {
-  //   assertThrow(() => repeat(), 'text must not be of undefined');
-  // });
-  // test('первый тип не строка вызывает исключение', () => {
-  //   assertThrow(() => repeat(true), 'text must be of type string');
+  // test('текст не строкового типа вызывает исключение', () => {
+  //   assertThrow(() => repeat(), 'argument must be type of string');
+  //   assertThrow(() => repeat(1), 'argument must be type of string');
+  //   assertThrow(() => repeat(true), 'argument must be type of string');
   // });
 });

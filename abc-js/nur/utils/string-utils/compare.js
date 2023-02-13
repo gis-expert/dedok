@@ -1,3 +1,4 @@
+import { requiredString } from "./common.js";
 
 /** возвращает булевый ответ равны ли параметры firstText и secondText. */
 export function isEqual(firstText, secondText) {
@@ -54,9 +55,6 @@ export function isLessOrEqual(firstText, secondText) {
 
 /** выполняет проверки входящих параметров */
 function checkComparisonArgs(firstText, secondText) {
-  if (typeof firstText === 'undefined' || typeof secondText === 'undefined')
-    throw Error('both parameters are required');
-
-  if (typeof firstText !== 'string' || typeof secondText !== 'string')
-    return false;
+  requiredString(firstText);
+  requiredString(secondText);
 }

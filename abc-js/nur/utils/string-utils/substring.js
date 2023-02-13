@@ -1,36 +1,28 @@
-import { parseInteger } from '../number-utils/parse-integer.js';
 import { requiredString } from './common.js';
+import { len } from './len.js';
+import { isInteger } from '../number-utils/is-integer.js';
 
 /** Возвращает копию text начиная с индекса start до индекса end.
  * Символ с индексом end не включается в выборку.
  * Если end не передано, то будет возвращено text до последнего символа*/
 export function substring(text, start, end) {
-  // аргумент text обязателен и тип строки
   requiredString(text);
 
-  // добавляем пропущенные индексы
-  let validStart = start ?? 0;
-  let validEnd = end ?? text.length;
-
-  // если индексы не пропущены, но не числа или отрицательные
-  validStart = parseInteger(validStart);
-  validEnd = parseInteger(validEnd);
-  if (isNaN(validStart) || validStart < 0) validStart = 0;
-  if (isNaN(validEnd) || validEnd < 0) validEnd = 0;
-
-  // отбрасываем дробную часть
-  if (validStart % 1 !== 0) validStart -= validStart % 1;
-  if (validEnd % 1 !== 0) validEnd -= validEnd % 1;
-  
-  // начальный индекс должен быть не больше конечного
-  if (validStart > validEnd) {
-    const tempValue = validStart;
-    validStart = validEnd;
-    validEnd = tempValue;
+  function checkIndex(index, argName) {
+    const isNumber = typeof index === 'number';
+    const isPositive = () => index >= 0;
+    const isTextLength = () => index <= len(text);
+    if (!(isNumber && isInteger(index) && isPositive() && isTextLength()))
+      throw Error(`invalid ${argName} index`);
   }
 
-  // конченый индекс не должен быть больше длины текста
-  if (validEnd > text.length) validEnd = text.length
+  // добавляем пропущенные индексы
+  const validStart = start ?? 0;
+  const validEnd = end ?? text.length;
+
+  checkIndex(validStart, 'start');
+  checkIndex(validEnd, 'end');
+  if (validStart > validEnd) throw Error('invalid start and end index');
   
   let result = '';
   for (let i = validStart; i < validEnd; i += 1) {
