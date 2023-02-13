@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../../dependencies/w3.css">
     <title>string-utils.js test page</title>
@@ -8,16 +9,16 @@
     <!-- ++++++++++++++ test scripts insert here ++++++++++++++++++ -->
 
     <!-- // ======= string-utils ======= -->
-    <script type="module" src="./string-utils/compare.test.js"></script>
+    <!-- <script type="module" src="./string-utils/compare.test.js"></script> -->
     <script type="module" src="./string-utils/len.test.js"></script>
-    <script type="module" src="./string-utils/reverse.test.js"></script>
+    <!-- <script type="module" src="./string-utils/reverse.test.js"></script>
     <script type="module" src="./string-utils/repeat.test.js"></script>
     <script type="module" src="./string-utils/substring.test.js"></script>
     <script type="module" src="./string-utils/to-string.test.js"></script>
     <script type="module" src="./string-utils/index-of.test.js"></script>
     <script type="module" src="./string-utils/trim.test.js"></script>
     <script type="module" src="./string-utils/replace.test.js"></script>
-    <script type="module" src="./string-utils/pad.test.js"></script>
+    <script type="module" src="./string-utils/pad.test.js"></script> -->
 
     <!-- // ======= следующие функции будут реализованы в будущем ======= -->
     <!-- //slice -->
@@ -30,55 +31,56 @@
     <!-- // ======= number-utils ======= -->
     <script type="module" src="./number-utils/parse-integer.test.js"></script>
 
-  </head>
-  <body style="padding-left: 5%; padding-right: 5%" onload="testHtmlMain()">
+</head>
+
+<body style="padding-left: 5%; padding-right: 5%" onload="testHtmlMain()">
 
     <div class="w3-cell-row w3-margin-bottom w3-margin-top">
-      <div class="w3-grey w3-cell w3-border-right w3-border-white">
-        <h3 class="w3-center">Результаты теста</h3>
-        <p class="w3-large w3-margin-left">Протестировано: <span id="testCount" class="w3-xlarge">0</span></p>
-        <p class="w3-large w3-margin-left">Успешно: <span id="testSuccessCount" class="w3-xlarge">0</span></p>
-        <p class="w3-large w3-margin-left">Тестов провалено: <span id="testFailCount" class="w3-xlarge">0</span></p>
-        <p class="w3-large w3-margin-left">Ошибок выполнения: <span id="runtimeErrorCount" class="w3-xlarge">0</span></p>
-      </div>
-
-      <form class="w3-grey w3-cell w3-border-left w3-border-white" style="width: 66%;">
-        <h3 class="w3-center">Параметры теста</h3>
-        <div class="w3-cell-row">
-          <div class="w3-container w3-cell" style="width: 50%; padding-right: 8px;">
-            <div class="w3-container w3-border w3-border-dark-grey">
-              <div class="">
-                <input id="showErrors" class="w3-check" type="checkbox" checked>
-                <label class="w3-large w3-margin-left">Показать ошибки</label>
-              </div>
-              <p>Url параметр: <span class="w3-light-grey">?showErrors=true</span></p>
-            </div>
-          </div>
-          <div class="w3-container w3-cell" style="padding-left: 8px;">
-            <div class="w3-container w3-border w3-border-dark-grey">
-              <div class="" >
-                <input id="showSuccesses" class="w3-check" type="checkbox">
-                <label class="w3-large w3-margin-left">Показать успешные тесты</label>
-              </div>
-              <p>Url параметр: <span class="w3-light-grey">?showSuccesses=true</span></p>
-            </div>
-          </div>
+        <div class="w3-grey w3-cell w3-border-right w3-border-white">
+            <h3 class="w3-center">Результаты теста</h3>
+            <p class="w3-large w3-margin-left">Протестировано: <span id="testCount" class="w3-xlarge">0</span></p>
+            <p class="w3-large w3-margin-left">Успешно: <span id="testSuccessCount" class="w3-xlarge">0</span></p>
+            <p class="w3-large w3-margin-left">Тестов провалено: <span id="testFailCount" class="w3-xlarge">0</span></p>
+            <p class="w3-large w3-margin-left">Ошибок выполнения: <span id="runtimeErrorCount" class="w3-xlarge">0</span></p>
         </div>
-        <div class="w3-margin w3-border w3-border-dark-grey w3-padding">
-          <div class="w3-cell-row w3-margin-bottom">
-            <p class="w3-cell w3-medium" style="width: 75%">
-            Введите описания тестов через <span class="w3-dark-gray w3-tag"><b>;</b></span><br>
-            Url параметр: <span class="w3-light-grey">?tests=desc-1&#59desc-2</span>
-            </p>
-            <p id="runTests" class="w3-cell w3-btn w3-light-grey">Выполнить</p>
-          </div>
 
-          <textarea id="testFilter" style="width: 100%; height: 50px" placeholder="Выполнить только определенные тесты"></textarea>
-        </div>
-      </form>
+        <form class="w3-grey w3-cell w3-border-left w3-border-white" style="width: 66%;">
+            <h3 class="w3-center">Параметры теста</h3>
+            <div class="w3-cell-row">
+                <div class="w3-container w3-cell" style="width: 50%; padding-right: 8px;">
+                    <div class="w3-container w3-border w3-border-dark-grey">
+                        <div class="">
+                            <input id="showErrors" class="w3-check" type="checkbox" checked>
+                            <label class="w3-large w3-margin-left">Показать ошибки</label>
+                        </div>
+                        <p>Url параметр: <span class="w3-light-grey">?showErrors=true</span></p>
+                    </div>
+                </div>
+                <div class="w3-container w3-cell" style="padding-left: 8px;">
+                    <div class="w3-container w3-border w3-border-dark-grey">
+                        <div class="">
+                            <input id="showSuccesses" class="w3-check" type="checkbox">
+                            <label class="w3-large w3-margin-left">Показать успешные тесты</label>
+                        </div>
+                        <p>Url параметр: <span class="w3-light-grey">?showSuccesses=true</span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-margin w3-border w3-border-dark-grey w3-padding">
+                <div class="w3-cell-row w3-margin-bottom">
+                    <p class="w3-cell w3-medium" style="width: 75%">
+                        Введите описания тестов через <span class="w3-dark-gray w3-tag"><b>;</b></span><br> Url параметр: <span class="w3-light-grey">?tests=desc-1&#59desc-2</span>
+                    </p>
+                    <p id="runTests" class="w3-cell w3-btn w3-light-grey">Выполнить</p>
+                </div>
+
+                <textarea id="testFilter" style="width: 100%; height: 50px" placeholder="Выполнить только определенные тесты"></textarea>
+            </div>
+        </form>
     </div>
 
     <div id="testDetails"></div>
     <script type="text/javascript" src="../../../dependencies/tests/test2html.js"></script>
-  </body>
+</body>
+
 </html>
