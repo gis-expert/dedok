@@ -24,12 +24,12 @@ describe('lenTests', () => {
   // });
   //
   // test('вызов без передачи аргумента выдает ошибку исполнения', () => {
-  //   const errStr = 'text must be of type string';
+  //   const errStr = 'argument must be type of string';
   //   assertThrow(() => len(), errStr);
   // });
   //
   // test('другие типы выдают ошибку исполнения', () => {
-  //   const errStr = 'text must be of type string';
+  //   const errStr = 'argument must be type of string';
   //   assertThrow(() => len(1), errStr);
   //   assertThrow(() => len(true), errStr);
   //   assertThrow(() => len([]), errStr);
