@@ -11,13 +11,6 @@ export const complexText = "Hello world!!! It's terminator";
 
 export const ZERO_CODE_CHAR = String.fromCharCode(0);
 
-/** Возвращает text с приведением в строковый тип предварительно
- * проверив что text объявлен. */
-export function requiredToString(text, attrName='text') {
-  if (text === undefined) requiredString(text, attrName);
-  return toString(text);
-}
-
 /** Если text не объявлен или имеет не строковый тип,
  * то выкинет исключение. */
 export function requiredString(text, attrName='argument') {

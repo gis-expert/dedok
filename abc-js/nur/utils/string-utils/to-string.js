@@ -35,14 +35,12 @@ function intToString(value) {
     resultValue = '0';
   } else {
     let integerPlaceCount = 0;
-    let i = 0;
     while (expectNumber - currentNumber >= 1) {
       shiftFirstDigit();
       resultValue += DIGITS[firstDigit];
       currentNumber = currentNumber * 10 + firstDigit;
       if (integerPlaceCount > 10) throw Error();
       integerPlaceCount += 1;
-      if (++i > 20) throw Error('infinity');
     }
   }
   return value < 0 ? '-' + resultValue : resultValue;
@@ -57,14 +55,12 @@ function floatToString(value) {
 
   resultValue += '.';
   let dicimalPlaceCount = 1;
-  let i = 0;
   while (currentNumber !== expectNumber) {
     residualNumber *= 10;
     shiftFirstDigit(residualNumber);
     resultValue += DIGITS[firstDigit];
     currentNumber = currentNumber + firstDigit / (10 ** dicimalPlaceCount);
     dicimalPlaceCount += 1;
-    if (++i > 20) throw Error('float infinity');
   }
   return resultValue;
 }
