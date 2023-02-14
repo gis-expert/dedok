@@ -42,11 +42,12 @@ describe('trimLeftTests', () => {
   // test('передан второй параметр, первый аргумент не обрезается', () => {
   //   assertToBe(trimLeft('hello world', 'woe'), 'hello world');
   // });
-  // test('если не передать аргумент, то будет исключение', () => {
-  //   assertThrow(() => trimLeft(), 'text must not be of undefined');
+  // test('второй параметр должен быть только строковым', () => {
+  //   assertThrow(() => trimLeft('hello', true), 'argument trimSymbols must be type of string');
   // });
-  // test('если тип первого аргумента на строка, то будет исключение', () => {
-  //   assertThrow(() => trimLeft(true), 'text must be of type string');
+  // test('первый параметр должен быть только строковым', () => {
+  //   assertThrow(() => trimLeft(), 'argument text must be type of string');
+  //   assertThrow(() => trimLeft(true), 'argument text must be type of string');
   // });
 });
 
@@ -90,11 +91,12 @@ describe('trimRightTests', () => {
   // test('передан второй параметр, первый аргумент не обрезается', () => {
   //   assertToBe(trimRight('hello world', 'woe'), 'hello world');
   // });
-  // test('если не передать аргумент, то будет исключение', () => {
-  //   assertThrow(() => trimRight(), 'text must not be of undefined');
+  // test('второй параметр должен быть только строковым', () => {
+  //   assertThrow(() => trimRight('hello', true), 'argument trimSymbols must be type of string');
   // });
-  // test('если тип первого аргумента на строка, то будет исключение', () => {
-  //   assertThrow(() => trimRight(true), 'text must be of type string');
+  // test('первый параметр должен быть только строковым', () => {
+  //   assertThrow(() => trimRight(), 'argument text must be type of string');
+  //   assertThrow(() => trimRight(true), 'argument text must be type of string');
   // });
 });
 
@@ -132,10 +134,11 @@ describe('trimTests', () => {
   // test('строка полностью из удаляемых символов', () => {
   //   assertToBe(trim(' \v \n \t\t'), '');
   // });
-  // test('передан второй параметр, первый аргумент обрезается', () => {
-  //   assertToBe(trim('hello world', 'eohd'), 'llo worl');
+  // test('второй параметр должен быть только строковым', () => {
+  //   assertThrow(() => trim('hello', true), 'argument trimSymbols must be type of string');
   // });
-  // test('передан второй параметр, первый аргумент не обрезается', () => {
-  //   assertToBe(trim('hello world', 'woe'), 'hello world');
+  // test('первый параметр должен быть только строковым', () => {
+  //   assertThrow(() => trim(), 'argument text must be type of string');
+  //   assertThrow(() => trim(true), 'argument text must be type of string');
   // });
 });

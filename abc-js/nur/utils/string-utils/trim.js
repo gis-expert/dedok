@@ -7,7 +7,9 @@ const TRIM_SYMBOLS = ' \n\t\v';
 /** Возвращает копию строки с удаленными пробелами в начале строки.
  * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
 export function trimLeft(text, trimSymbols=TRIM_SYMBOLS) {
-  requiredString(text);
+  requiredString(text, 'argument text');
+  requiredString(trimSymbols, 'argument trimSymbols');
+
   let i = 0;
   for (; i < text.length; i += 1) {
     if (indexOf(trimSymbols, text[i]) === -1) break; 
@@ -18,7 +20,9 @@ export function trimLeft(text, trimSymbols=TRIM_SYMBOLS) {
 /** Возвращает копию строки с удаленными пробелами в конце строки.
  * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
 export function trimRight(text, trimSymbols=TRIM_SYMBOLS) {
-  requiredString(text);
+  requiredString(text, 'argument text');
+  requiredString(trimSymbols, 'argument trimSymbols');
+
   let i = text.length;
   for (; i !== 0; i -= 1) {
     if (indexOf(trimSymbols, text[i - 1]) === -1) break; 
