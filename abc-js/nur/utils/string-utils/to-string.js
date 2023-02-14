@@ -26,18 +26,24 @@ let currentNumber;
 
 /** переводит целое число в строку и возрвращает это значение*/
 function intToString(value) {
-  if (value === 0) return '0';
   residualNumber = expectNumber = value < 0 ? -value : value;
   currentNumber = 0;
 
   let resultValue = '';
-  let integerPlaceCount = 0;
-  while (expectNumber - currentNumber >= 1) {
-    shiftFirstDigit();
-    resultValue += DIGITS[firstDigit];
-    currentNumber = currentNumber * 10 + firstDigit;
-    if (integerPlaceCount > 10) throw Error();
-    integerPlaceCount += 1;
+
+  if (expectNumber - currentNumber < 1) {
+    resultValue = '0';
+  } else {
+    let integerPlaceCount = 0;
+    let i = 0;
+    while (expectNumber - currentNumber >= 1) {
+      shiftFirstDigit();
+      resultValue += DIGITS[firstDigit];
+      currentNumber = currentNumber * 10 + firstDigit;
+      if (integerPlaceCount > 10) throw Error();
+      integerPlaceCount += 1;
+      if (++i > 20) throw Error('infinity');
+    }
   }
   return value < 0 ? '-' + resultValue : resultValue;
 }
@@ -45,16 +51,20 @@ function intToString(value) {
 /** Переводит десятично число и возвращает это значение*/
 function floatToString(value) {
   let resultValue = intToString(value);
+  console.log('res: ' + residualNumber);
+  console.log('resМ: ' + resultValue);
   if (residualNumber === 0) return resultValue;
 
   resultValue += '.';
   let dicimalPlaceCount = 1;
+  let i = 0;
   while (currentNumber !== expectNumber) {
     residualNumber *= 10;
     shiftFirstDigit(residualNumber);
     resultValue += DIGITS[firstDigit];
     currentNumber = currentNumber + firstDigit / (10 ** dicimalPlaceCount);
     dicimalPlaceCount += 1;
+    if (++i > 20) throw Error('float infinity');
   }
   return resultValue;
 }
@@ -71,5 +81,6 @@ function shiftFirstDigit() {
   let nextRoundValue = 0;
   for (; (nextRoundValue + roundValue) <= residualNumber; nextRoundValue += roundValue) {};
   firstDigit = (residualNumber - (residualNumber - nextRoundValue)) / roundValue;
+  console.log('resN: ' + residualNumber);
   residualNumber = residualNumber - nextRoundValue;
 }
