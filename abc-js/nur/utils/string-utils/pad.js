@@ -1,24 +1,31 @@
-import { requiredString, requiredToString } from './common.js';
+import { requiredString } from './common.js';
 import { substring } from './substring.js';
 
 /** Возвращает копию text увеличенный до длины maxLength
  * заполненный в начале символами fillString.
  * Допускается в fillString передавать строку из нескольких символов. */
 export function padStart(text, maxLength, fillString = ' ') {
-  return getPadString(text, maxLength, fillString) + text;
+  return getPadString(text, maxLength, fillString, 'start');
 }
 
 /** Возвращает копию text увеличенный до длины maxLength
  * заполненный в конце символами fillString.
  * Допускается в fillString передавать строку из нескольких символов. */
 export function padEnd(text, maxLength, fillString = ' ') {
-  return text + getPadString(text, maxLength, fillString);
+  return text + getPadString(text, maxLength, fillString, 'end');
+}
+
+/** Возвращает копию text увеличенный до длины maxLength
+ * заполненный в начале и конце символами fillString.
+ * Допускается в fillString передавать строку из нескольких символов. */
+export function pad(text, maxLength, fillString = ' ') {
+  return text + getPadString(text, maxLength, fillString, 'start:end');
 }
 
 /** Вычисляет и возвращает строку pad. */
-function getPadString(text, maxLength, fillString) {
+function getPadString(text, maxLength, fillString, place) {
   requiredString(text);
-  const validatedFillString = requiredToString(fillString);
+  const validatedFillString = requiredString(fillString);
 
   let padString = '';
   let currentIndex = padString.length + text.length;
