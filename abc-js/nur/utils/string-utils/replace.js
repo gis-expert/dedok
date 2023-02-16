@@ -3,14 +3,14 @@ import { indexOf } from './index-of.js';
 import { len } from './len.js';
 import { substring } from './substring.js';
 
-/** Возвращает строку text, где первое вхождение search поменяно на replace.
+/** Возвращает строку text, где первое вхождение search поменяно на target.
  * text: строка, копию которой нужно получить.
  * search: строка которое нужно поменять.
- * replace: строка, на которую нужно поменять. */
-export function replace(text, search, replace) {
+ * target: строка, на которую нужно поменять. */
+export function replace(text, search, target) {
   requiredString(text, 'argument text');
   requiredString(search, 'argument search');
-  requiredString(replace, 'argument replace');
+  requiredString(target, 'argument target');
 
   const startIndex = indexOf(text, search);
   if (startIndex === -1) return text;
@@ -18,23 +18,23 @@ export function replace(text, search, replace) {
   const leftPart = substring(text, 0, startIndex);
   const finishIndex = startIndex + search.length;
   const rightPart = substring(text, finishIndex);
-  return leftPart + replace + rightPart;
+  return leftPart + target + rightPart;
 }
 
-/** Возвращает строку text, где все вхождения search поменяно на replaceValue.
+/** Возвращает строку text, где все вхождения search поменяно на target.
  * text: строка, копию которой нужно получить.
  * search: строка которое нужно поменять.
- * replaceValue: строка, на которую нужно поменять. */
-export function replaceAll(text, search, replaceValue) {
+ * target: строка, на которую нужно поменять. */
+export function replaceAll(text, search, target) {
   requiredString(text, 'argument text');
   requiredString(search, 'argument search');
-  requiredString(replaceValue, 'argument replaceValue');
+  requiredString(target, 'argument target');
 
   let resultValue = text;
   let index = indexOf(resultValue, search);
   while (index !== -1) {
-    resultValue = replace(resultValue, search, replaceValue);
-    index = indexOf(resultValue, search, index + len(replaceValue));
+    resultValue = replace(resultValue, search, target);
+    index = indexOf(resultValue, search, index + len(target));
   }
   return resultValue;
 }

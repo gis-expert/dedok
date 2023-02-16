@@ -1,13 +1,13 @@
-/** Возвращает строку text, где первое вхождение search поменяно на replace.
+/** Возвращает строку text, где первое вхождение search поменяно на target.
  * text: строка, копию которой нужно получить.
  * search: строка которое нужно поменять.
- * replace: строка, на которую нужно поменять. */
-export function replace(text, search, replace) {
+ * target: строка, на которую нужно поменять. */
+export function replace(text, search, target) {
 }
 
-/** Возвращает строку text, где все вхождения search поменяно на replaceValue.
+/** Возвращает строку text, где все вхождения search поменяно на target.
  * text: строка, копию которой нужно получить.
  * search: строка которое нужно поменять.
- * replaceValue: строка, на которую нужно поменять. */
-export function replaceAll(text, search, replaceValue) {
+ * target: строка, на которую нужно поменять. */
+export function replaceAll(text, search, target) {
 }

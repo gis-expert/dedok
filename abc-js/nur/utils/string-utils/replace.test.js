@@ -32,9 +32,9 @@ describe('replaceTests', () => {
     assertToBe(replace('Happy', 'app', ' app '), 'H app y');
   });
   test('третий параметр должен быть только строкового типа', () => {
-    assertThrow(() => replace('he ha', 'ha'), 'argument replace must be type of string');
-    assertThrow(() => replace('he ha', 'ha', 2), 'argument replace must be type of string');
-    assertThrow(() => replace('he ha', 'ha', ['hm']), 'argument replace must be type of string');
+    assertThrow(() => replace('he ha', 'ha'), 'argument target must be type of string');
+    assertThrow(() => replace('he ha', 'ha', 2), 'argument target must be type of string');
+    assertThrow(() => replace('he ha', 'ha', ['hm']), 'argument target must be type of string');
   });
   test('второй параметр должен быть только строкового типа', () => {
     assertThrow(() => replace('he ha'), 'argument search must be type of string');
@@ -83,9 +83,9 @@ describe('replaceAllTests', () => {
     assertToBe(replaceAll('Happy', 'app', ' app '), 'H app y');
   });
   test('третий параметр должен быть только строкового типа', () => {
-    assertThrow(() => replaceAll('he ha', 'ha'), 'argument replaceValue must be type of string');
-    assertThrow(() => replaceAll('he ha', 'ha', 2), 'argument replaceValue must be type of string');
-    assertThrow(() => replaceAll('he ha', 'ha', ['hm']), 'argument replaceValue must be type of string');
+    assertThrow(() => replaceAll('he ha', 'ha'), 'argument target must be type of string');
+    assertThrow(() => replaceAll('he ha', 'ha', 2), 'argument target must be type of string');
+    assertThrow(() => replaceAll('he ha', 'ha', ['hm']), 'argument target must be type of string');
   });
   test('второй параметр должен быть только строкового типа', () => {
     assertThrow(() => replaceAll('he ha'), 'argument search must be type of string');
