@@ -1,7 +1,6 @@
 import { requiredString } from './common.js';
 import { indexOf } from './index-of.js';
 import { len } from './len.js';
-import { substring } from './substring.js';
 
 /** Возвращает копию text увеличенный до длины maxLength
  * заполненный в начале символами fillString.

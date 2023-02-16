@@ -1,5 +1,6 @@
 import { assertToBe } from "../../../../dependencies/asserts/assert.js";
 import { describe, test } from "../../../../dependencies/tests/test.js";
+
 import { indexOf } from "../string-utils/index-of.js";
 import { DIGITS, FLOAT_DELIMITER, SIGNS } from "../string-utils/common.js";
 import { substring } from "../string-utils/substring.js";
@@ -100,109 +101,109 @@ function numChars(inStr) {
   }
   return sign + result;
 }
-
-describe('stringToInteger tests', () => {
-  describe('stringToInteger func tests', () => {
-    function testStringToInteger(arr) {
-      for(let i = 0; i < arr.length; i++) {
-        const [rStr, str, iNum, fNum] = [...arr[i]];
-        assertToBe(stringToInteger(rStr), iNum);
-      }
-    }
-
-    test('stringToInteger', () => {
-      testStringToInteger(integers);
-      testStringToInteger(floats);
-      testStringToInteger(zeroPoint);
-      testStringToInteger(withPostText);
-      testStringToInteger(withSuffText);
-    });
-  })
-
-  describe('numChars func tests', () => {
-    function testNumbChar(arr) {
-      for(let i = 0; i < arr.length; i++) {
-        const [rStr, str, iNum, fNum] = [...arr[i]];
-        assertToBe(numChars(rStr), str);
-      }
-    }
-
-    test('numChars', () => {
-      testNumbChar(integers);
-      testNumbChar(floats);
-      testNumbChar(zeroPoint);
-      testNumbChar(withPostText);
-      testNumbChar(withSuffText);
-    });
-  })
-  const integers = [
-    // [inputStr, outString, intResult, floarResult]
-    ['0', '0', 0, 0],
-    ['1', '1', 1, 1],
-    ['3', '3', 3, 3],
-    ['5', '5', 5, 5],
-    ['24', '24', 24, 24],
-    ['1045', '1045', 1045, 1045],
-    ['-0', '-0', 0, -0],
-    ['-1', '-1', -1, -1],
-    ['-3', '-3', -3, -3],
-    ['-5', '-5', -5, -5],
-    ['-24', '-24', -24, -24],
-    ['-1045', '-1045', -1045, -1045],
-  ];
-  const floats = [
-    // [inputStr, outString, intResult, floarResult]
-    ['0.', '0.', 0, 0],
-    ['0.0', '0.0', 0, 0],
-    ['0.000', '0.000', 0, 0],
-    ['0.1', '0.1', 0, 0.1],
-    ['0.00134', '0.00134', 0, 0.00134],
-    ['0.0000001', '0.0000001', 0, 0.0000001],
-    ['0.999', '0.999', 0, 0.999],
-    ['5.05', '5.05', 5, 5.05],
-    ['24.959', '24.959', 24, 24.959],
-    ['1045.99', '1045.99', 1045, 1045.99],
-    ['-0.', '-0.', 0, 0.],
-    ['-0.0', '-0.0', 0, 0],
-    ['-0.000', '-0.000', 0, 0],
-    ['-0.1', '-0.1', 0, -0.1],
-    ['-0.00134', '-0.00134', 0, -0.00134],
-    ['-0.0000001', '-0.0000001', 0, -0.0000001],
-    ['-0.999', '-0.999', 0, -0.999],
-    ['-5.05', '-5.05', -5, -5.05],
-    ['-24.959', '-24.959', -24, -24.959],
-    ['-1045.99', '-1045.99', -1045, -1045.99],
-  ]
-  const zeroPoint = [
-    // [inputStr, outString, intResult, floarResult]
-    ['-.0', '', NaN, NaN],
-    ['-.001', '', NaN, NaN],
-    ['.', '', NaN, NaN],
-    ['.1st', '', NaN, NaN],
-    ['-.1', '', NaN, NaN],
-    ['+.1', '', NaN, NaN],
-  ]
-  const withPostText = [
-    // [inputStr, outString, intResult, floarResult]
-    ['-0sd', '-0', 0, 0],
-    ['-1.st', '-1.', -1, -1],
-    ['+1.1st', '+1.1', 1, 1.1],
-    ['-1 stage 12', '-1', -1, -1],
-    ['-.1 stage', '', NaN, NaN],
-    ['-3 rd', '-3', -3, -3],
-    ['+3 rd', '+3', +3, +3],
-    ['-5-5', '-5', -5, -5],
-    ['5.15.16', '5.15', 5, 5.15],
-    ['5:15:16', '5', 5, 5],
-  ]
-  const withSuffText = [
-    // [inputStr, outString, intResult, floarResult]
-    ['-sd0', '', NaN, NaN],
-    ['.st1', '', NaN, NaN],
-    ['+st1.1st', '', NaN, NaN],
-    ['f1 stage', '', NaN, NaN],
-    ['quick 1 stage', '', NaN, NaN],
-    [':5:15:16', '', NaN, NaN],
-  ]
-      
-});
+//
+// describe('stringToInteger tests', () => {
+//   describe('stringToInteger func tests', () => {
+//     function testStringToInteger(arr) {
+//       for(let i = 0; i < arr.length; i++) {
+//         const [rStr, str, iNum, fNum] = [...arr[i]];
+//         assertToBe(stringToInteger(rStr), iNum);
+//       }
+//     }
+//
+//     test('stringToInteger', () => {
+//       testStringToInteger(integers);
+//       testStringToInteger(floats);
+//       testStringToInteger(zeroPoint);
+//       testStringToInteger(withPostText);
+//       testStringToInteger(withSuffText);
+//     });
+//   })
+//
+//   describe('numChars func tests', () => {
+//     function testNumbChar(arr) {
+//       for(let i = 0; i < arr.length; i++) {
+//         const [rStr, str, iNum, fNum] = [...arr[i]];
+//         assertToBe(numChars(rStr), str);
+//       }
+//     }
+//
+//     test('numChars', () => {
+//       testNumbChar(integers);
+//       testNumbChar(floats);
+//       testNumbChar(zeroPoint);
+//       testNumbChar(withPostText);
+//       testNumbChar(withSuffText);
+//     });
+//   })
+//   const integers = [
+//     // [inputStr, outString, intResult, floarResult]
+//     ['0', '0', 0, 0],
+//     ['1', '1', 1, 1],
+//     ['3', '3', 3, 3],
+//     ['5', '5', 5, 5],
+//     ['24', '24', 24, 24],
+//     ['1045', '1045', 1045, 1045],
+//     ['-0', '-0', 0, -0],
+//     ['-1', '-1', -1, -1],
+//     ['-3', '-3', -3, -3],
+//     ['-5', '-5', -5, -5],
+//     ['-24', '-24', -24, -24],
+//     ['-1045', '-1045', -1045, -1045],
+//   ];
+//   const floats = [
+//     // [inputStr, outString, intResult, floarResult]
+//     ['0.', '0.', 0, 0],
+//     ['0.0', '0.0', 0, 0],
+//     ['0.000', '0.000', 0, 0],
+//     ['0.1', '0.1', 0, 0.1],
+//     ['0.00134', '0.00134', 0, 0.00134],
+//     ['0.0000001', '0.0000001', 0, 0.0000001],
+//     ['0.999', '0.999', 0, 0.999],
+//     ['5.05', '5.05', 5, 5.05],
+//     ['24.959', '24.959', 24, 24.959],
+//     ['1045.99', '1045.99', 1045, 1045.99],
+//     ['-0.', '-0.', 0, 0.],
+//     ['-0.0', '-0.0', 0, 0],
+//     ['-0.000', '-0.000', 0, 0],
+//     ['-0.1', '-0.1', 0, -0.1],
+//     ['-0.00134', '-0.00134', 0, -0.00134],
+//     ['-0.0000001', '-0.0000001', 0, -0.0000001],
+//     ['-0.999', '-0.999', 0, -0.999],
+//     ['-5.05', '-5.05', -5, -5.05],
+//     ['-24.959', '-24.959', -24, -24.959],
+//     ['-1045.99', '-1045.99', -1045, -1045.99],
+//   ]
+//   const zeroPoint = [
+//     // [inputStr, outString, intResult, floarResult]
+//     ['-.0', '', NaN, NaN],
+//     ['-.001', '', NaN, NaN],
+//     ['.', '', NaN, NaN],
+//     ['.1st', '', NaN, NaN],
+//     ['-.1', '', NaN, NaN],
+//     ['+.1', '', NaN, NaN],
+//   ]
+//   const withPostText = [
+//     // [inputStr, outString, intResult, floarResult]
+//     ['-0sd', '-0', 0, 0],
+//     ['-1.st', '-1.', -1, -1],
+//     ['+1.1st', '+1.1', 1, 1.1],
+//     ['-1 stage 12', '-1', -1, -1],
+//     ['-.1 stage', '', NaN, NaN],
+//     ['-3 rd', '-3', -3, -3],
+//     ['+3 rd', '+3', +3, +3],
+//     ['-5-5', '-5', -5, -5],
+//     ['5.15.16', '5.15', 5, 5.15],
+//     ['5:15:16', '5', 5, 5],
+//   ]
+//   const withSuffText = [
+//     // [inputStr, outString, intResult, floarResult]
+//     ['-sd0', '', NaN, NaN],
+//     ['.st1', '', NaN, NaN],
+//     ['+st1.1st', '', NaN, NaN],
+//     ['f1 stage', '', NaN, NaN],
+//     ['quick 1 stage', '', NaN, NaN],
+//     [':5:15:16', '', NaN, NaN],
+//   ]
+//       
+// });

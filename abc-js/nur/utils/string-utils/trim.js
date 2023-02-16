@@ -4,9 +4,9 @@ import { substring } from './substring.js';
 
 const TRIM_SYMBOLS = ' \n\t\v'; 
 
-/** Возвращает копию строки с удаленными пробелами в начале строки.
- * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
-export function trimLeft(text, trimSymbols=TRIM_SYMBOLS) {
+/** Возвращает копию строки с удаленными символами со строки trimSymbols в начале строки.
+ * По умолчанию удаляются символы пробела, табуляции и перевода строки.*/
+export function trimStart(text, trimSymbols=TRIM_SYMBOLS) {
   requiredString(text, 'argument text');
   requiredString(trimSymbols, 'argument trimSymbols');
 
@@ -17,9 +17,9 @@ export function trimLeft(text, trimSymbols=TRIM_SYMBOLS) {
   return substring(text, i);
 }
 
-/** Возвращает копию строки с удаленными пробелами в конце строки.
- * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
-export function trimRight(text, trimSymbols=TRIM_SYMBOLS) {
+/** Возвращает копию строки с удаленными символами со строки trimSymbols в конце строки.
+ * По умолчанию удаляются символы пробела, табуляции и перевода строки.*/
+export function trimEnd(text, trimSymbols=TRIM_SYMBOLS) {
   requiredString(text, 'argument text');
   requiredString(trimSymbols, 'argument trimSymbols');
 
@@ -30,9 +30,10 @@ export function trimRight(text, trimSymbols=TRIM_SYMBOLS) {
   return substring(text, 0, i);
 }
 
-/** Возвращает копию строки с удаленными пробелами в начале и конце строки.
- * Удалению подлежат все символы в константе TRIM_SYMBOLS.*/
+/** Возвращает копию строки с удаленными символами
+ * со строки trimSymbols в начале и конце строки.
+ * По умолчанию удаляются символы пробела, табуляции и перевода строки.*/
 export function trim(text, trimSymbols=TRIM_SYMBOLS) {
-  let result = trimLeft(text, trimSymbols);
-  return trimRight(result, trimSymbols);
+  let result = trimStart(text, trimSymbols);
+  return trimEnd(result, trimSymbols);
 }
