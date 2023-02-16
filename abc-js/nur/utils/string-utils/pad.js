@@ -1,4 +1,6 @@
 import { requiredString } from './common.js';
+import { indexOf } from './index-of.js';
+import { len } from './len.js';
 import { substring } from './substring.js';
 
 /** Возвращает копию text увеличенный до длины maxLength
@@ -12,29 +14,48 @@ export function padStart(text, maxLength, fillString = ' ') {
  * заполненный в конце символами fillString.
  * Допускается в fillString передавать строку из нескольких символов. */
 export function padEnd(text, maxLength, fillString = ' ') {
-  return text + getPadString(text, maxLength, fillString, 'end');
+  return getPadString(text, maxLength, fillString, 'end');
 }
 
 /** Возвращает копию text увеличенный до длины maxLength
  * заполненный в начале и конце символами fillString.
  * Допускается в fillString передавать строку из нескольких символов. */
 export function pad(text, maxLength, fillString = ' ') {
-  return text + getPadString(text, maxLength, fillString, 'start:end');
+  return getPadString(text, maxLength, fillString, 'start:end');
 }
 
 /** Вычисляет и возвращает строку pad. */
 function getPadString(text, maxLength, fillString, place) {
-  requiredString(text);
-  const validatedFillString = requiredString(fillString);
+  requiredString(text, 'argument text');
+  requiredString(fillString, 'argument fillString');
+  maxLength = maxLength ?? len(text);
+  if (typeof maxLength !== 'number') throw Error('invalid type of maxLength');
 
-  let padString = '';
-  let currentIndex = padString.length + text.length;
-  while (currentIndex < maxLength) {
-    const diff = maxLength - currentIndex;
-    padString += diff >= validatedFillString.length
-      ? validatedFillString
-      : substring(validatedFillString, 0, diff);
-    currentIndex = padString.length + text.length;
+  const placeStart = indexOf(place, 'start') !== -1;
+  const placeEnd = indexOf(place, 'end') !== -1;
+  let startValue = '';
+  let endValue = '';
+  let startLength = 0;
+  let endLength = 0;
+  const textLength = len(text);
+  const isFilled = () => textLength + startLength + endLength >= maxLength;
+
+  let currFillStringIndex = 0;
+  while (true) {
+    if (isFilled()) break;
+    if (placeStart) {
+      startValue += fillString[currFillStringIndex];
+      startLength += 1;
+    }
+    if (isFilled()) break;
+    if (placeEnd) {
+      endValue += fillString[currFillStringIndex];
+      endLength += 1;
+    }
+    currFillStringIndex =
+      currFillStringIndex === fillString.length - 1
+        ? 0
+        : currFillStringIndex + 1
   }
-  return padString;
+  return startValue + text + endValue;
 }
