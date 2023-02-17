@@ -1,15 +1,15 @@
+import { isFloat } from '../number-utils/is-float.js';
 import { requiredString } from './common.js';
-import { parseInteger } from '../number-utils/parse-integer.js';
 
 /** Возвращает text повторенный count раз. */
 export function repeat(text, count = 1) {
   requiredString(text);
-  let parsedCount = parseInteger(count);
-  if (parsedCount < 0) throw Error('repeat count must be positive value or zero');
-  if (isNaN(parsedCount)) return '';
+  let validCount = count ?? 1;
+  if (typeof count !== 'number' || isFloat(count) || count < 0)
+    throw Error('invalid count');
 
   let result = '';
-  for (let i = 0; i < parsedCount; i += 1) {
+  for (let i = 0; i < validCount; i += 1) {
     result += text;
   }
   return result;
