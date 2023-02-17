@@ -3,6 +3,7 @@ import { describe, test } from '../../../../dependencies/tests/test.js';
 import { indexOf } from './index-of.js';
 import { complexText } from './common.js';
 
+
 describe('indexOfTests', () => {
   test('найти текст с середины текста', () => {
     assertToBe(indexOf(complexText, 'terminator'), 20);
@@ -37,46 +38,32 @@ describe('indexOfTests', () => {
   // test('после 27 символе нет символа t', () => {
   //   assertToBe(indexOf(complexText, 't', 28), -1);
   // });
-  // test('отрицательный начальный индекс равнозначен нулю', () => {
-  //   assertToBe(indexOf(complexText, 't', -17), 16);
-  // });
-  // test('пустой второй параметр дает возвращает 0', () => {
-  //   assertToBe(indexOf(complexText, ''), 0);
-  // });
-  // test('пустой второй параметр с заполненным нач. индексом возвращает тот же индекс', () => {
-  //   assertToBe(indexOf(complexText, '', 5), 5);
+  // test('второй параметр как пустая строка возвращает -1', () => {
+  //   assertToBe(indexOf(complexText, ''), -1);
+  //   assertToBe(indexOf(complexText, '', 5), -1);
   // });
   // test('пустой первый параметр дает возвращает -1', () => {
   //   assertToBe(indexOf('', 'q'), -1);
   // });
-  // test('дробные числа округляются', () => {
-  //   assertToBe(indexOf('HeH', 'H', 2.2), 2);
+  // test('отрицательный начальный индекс приводит к исключению', () => {
+  //   assertThrow(() => indexOf(complexText, 't', -17), 'invalid index');
   // });
-  // test('дробные числа округляются, 2', () => {
-  //   assertToBe(indexOf('HeH', 'H', 2.9), 2);
+  // test('дробные числа округляются в индексе приводит к исключению', () => {
+  //   assertThrow(() => indexOf(complexText, 't', 2.2), 'invalid index');
   // });
-  // test('третий булевый параметр переводится в тип числа', () => {
-  //   assertToBe(indexOf('HeH', 'H', true), 2);
+  // test('индекс должен быть только с числовым типом', () => {
+  //   assertThrow(() => indexOf(complexText, 't', true), 'invalid index');
+  //   assertThrow(() => indexOf(complexText, 't', '2'), 'invalid index');
   // });
-  // test('третий параметр переводится в тип числа', () => {
-  //   assertToBe(indexOf('HeH', 'H', '1'), 2);
+  // test('второй параметр обазятелен', () => {
+  //   assertThrow(() => indexOf('trusted true'), 'invalid search string');
   // });
-  // test('если третий параметр не удается перевести в число, то вернется -1', () => {
-  //   assertToBe(indexOf('feH', 'H', 's'), 2);
-  // });
-  // test('если второй параметр не передать, то возвратится -1', () => {
-  //   assertToBe(indexOf('HeH'), -1);
-  // });
-  // test('если тип второго параметра не равен string, то возвратится -1', () => {
-  //   assertToBe(indexOf('HeH', true), -1);
-  // });
-  // test('если тип второго параметра не равен string 2, то возвратится -1', () => {
-  //   assertToBe(indexOf('HeH', {}), -1);
-  // });
-  // test('если не передать первый аргумент, то будет исключение', () => {
-  //   assertThrow(() => indexOf(), 'text must not be of undefined');
+  // test('тип второго параметра должен быть string', () => {
+  //   assertThrow(() => indexOf('trusted true', true), 'invalid search string');
+  //   assertThrow(() => indexOf('only 33', 3), 'invalid search string');
   // });
   // test('если тип первого аргумента не строка, то будет исключение', () => {
-  //   assertThrow(() => indexOf(true), 'text must be of type string');
+  //   assertThrow(() => indexOf(), 'argument must be type of string');
+  //   assertThrow(() => indexOf(true), 'argument must be type of string');
   // });
 });

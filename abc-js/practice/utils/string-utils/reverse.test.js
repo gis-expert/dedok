@@ -6,7 +6,10 @@ describe('reverseTests', () => {
   test('возвращается перевернутая копия строки', () => {
     assertToBe(reverse('Hmmm'), 'mmmH');
   });
-  // test('возвращается перевернутая копия строки 2', () => {
+  // test('возвращается перевернутая версия со спецсимволами', () => {
+  //   assertToBe(reverse('\tHmmm\n'), '\nmmmH\t');
+  // });
+  // test('возвращается перевернутая копия строки и проблеы с точкой не удаляются', () => {
   //   assertToBe(reverse('  Hmmm.'), '.mmmH  ');
   // });
   // test('пустая строка остается пустой', () => {
@@ -16,9 +19,12 @@ describe('reverseTests', () => {
   //   assertToBe(reverse(' '), ' ');
   // });
   // test('если не передать первый аргумент, то будет исключение', () => {
-  //   assertThrow(() => reverse(), 'text must not be of undefined');
+  //   assertThrow(() => reverse(), 'argument must be type of string');
   // });
   // test('если тип первого аргумента на строка, то будет исключение', () => {
-  //   assertThrow(() => reverse(true), 'text must be of type string');
+  //   assertThrow(() => reverse(true), 'argument must be type of string');
+  //   assertThrow(() => reverse(1), 'argument must be type of string');
+  //   assertThrow(() => reverse([]), 'argument must be type of string');
+  //   assertThrow(() => reverse(null), 'argument must be type of string');
   // });
 });

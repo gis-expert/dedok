@@ -18,43 +18,35 @@ describe('toStringTests', () => {
   // test('перевод null в строку', () => {
   //   assertToBe(toString(null), 'null');
   // });
-  // test('перевод числа 3 в строку', () => {
-  //   assertToBe(toString(3), '3');
-  // });
-  // test('перевод числа 0 в строку', () => {
+  // test('перевод целого числа в строку', () => {
   //   assertToBe(toString(0), '0');
-  // });
-  // test('перевод числа 1 в строку', () => {
   //   assertToBe(toString(1), '1');
-  // });
-  // test('перевод числа 10 в строку', () => {
+  //   assertToBe(toString(3), '3');
+  //   assertToBe(toString(+3), '3');
   //   assertToBe(toString(10), '10');
-  // });
-  // test('перевод числа 100 в строку', () => {
   //   assertToBe(toString(100), '100');
-  // });
-  // test('перевод многозначного целого числа в строку', () => {
   //   assertToBe(toString(323459), '323459');
   // });
   // test('перевод отрицательного целого числа в строку', () => {
-  //   assertToBe(toString(-3), '-3');
-  // });
-  // test('перевод минус ноль в строку', () => {
   //   assertToBe(toString(-0), '0');
-  // });
-  // test('перевод минус один в строку', () => {
   //   assertToBe(toString(-1), '-1');
-  // });
-  // test('перевод минус сто в строку', () => {
+  //   assertToBe(toString(-3), '-3');
+  //   assertToBe(toString(-10), '-10');
   //   assertToBe(toString(-100), '-100');
-  // });
-  // test('перевод положительного целого числа в строку', () => {
-  //   assertToBe(toString(+3), '3');
+  //   assertToBe(toString(-323459), '-323459');
   // });
   // test('перевод дробного числа в строку, раз', () => {
+  //   assertToBe(toString(0.00000001), '0.00000001');
+  //   assertToBe(toString(-0.00000001), '-0.00000001');
+  //   assertToBe(toString(1.99999999999), '1.99999999999');
+  //   assertToBe(toString(+1.99999999999), '1.99999999999');
+  //   assertToBe(toString(-1.99999999999), '-1.99999999999');
   //   assertToBe(toString(3.1415), '3.1415');
+  //   assertToBe(toString(-3.1415), '-3.1415');
   // });
   // test('другие типы вызывают ошибку', () => {
   //   assertThrow(() => toString([2]), 'this type is not supported');
+  //   assertThrow(() => toString({}), 'this type is not supported');
+  //   assertThrow(() => toString(() => 1), 'this type is not supported');
   // });
 });
