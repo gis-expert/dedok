@@ -1,6 +1,6 @@
 import { assertToBe, assertThrow } from '../../../../dependencies/asserts/assert.js';
 import { describe, test } from '../../../../dependencies/tests/test.js';
-import { trim, trimLeft, trimRight } from './trim.js';
+import { trim, trimStart, trimEnd } from './trim.js';
 
 describe('trimLeftTests', () => {
     test('удалить пробелы спереди', () => {

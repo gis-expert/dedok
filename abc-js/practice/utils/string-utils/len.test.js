@@ -7,6 +7,7 @@ describe('lenTests', () => {
     test('пустая строка возвращает 0', () => {
         assertToBe(len(''), 0);
     });
+
     test('одиночные символы возвращают 1', () => {
         assertToBe(len('a'), 1);
         assertToBe(len(ZERO_CODE_CHAR), 1);
