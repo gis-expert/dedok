@@ -4,7 +4,10 @@
  * Если end не передано, то будет возвращено text до последнего символа*/
 export function substring(text, start, end) {
     let newStr = "";
-    for (let i = start; i < end; i += 1) {
+    let CYCLE_END = 0;
+    if (typeof end === 'undefined' && typeof start === 'undefined') return text;
+    CYCLE_END = typeof end === 'undefined' ? text.length : end;
+    for (let i = start; i < text.length; i += 1) {
         newStr += text[i];
     }
     return newStr;

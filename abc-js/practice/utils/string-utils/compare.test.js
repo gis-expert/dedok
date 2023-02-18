@@ -82,6 +82,7 @@ describe('isNotEqualTests', () => {
     test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
         assertToBe(isNotEqual(2, '2'), true);
     });
+
     test('если не передать второй аргумент, то будет ошибка', () => {
         assertThrow(() => isNotEqual('a'), 'both parameters are required');
     });

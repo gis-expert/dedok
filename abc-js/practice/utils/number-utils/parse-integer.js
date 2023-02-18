@@ -4,4 +4,3 @@ export function parseInteger(value) {
     if (value === false) return 0;
     return parseInt(value);
 }
-console.log(parseInteger(NaN));
