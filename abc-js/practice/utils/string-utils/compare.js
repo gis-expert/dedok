@@ -13,7 +13,8 @@ export function isEqual(firstText, secondText) {
     // console.log(`...........................`);
     // console.log(`input --- fText: ${firstText}; sText: ${secondText}`);
     parametersError(firstText, secondText);
-    if (firstText.length !== secondText.length) return false;
+    if (typeof firstText !== 'string' || typeof secondText !== 'string') return false;
+    if (len(firstText) !== len(secondText)) return false;
     for (let i = 0; i < len(firstText); i += 1) {
         // console.log(`for --- index: ${i}; fText: ${firstText[i]}; sText: ${secondText[i]}`);
         if (firstText[i] !== secondText[i]) return false;
