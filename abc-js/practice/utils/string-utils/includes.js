@@ -1,4 +1,4 @@
-/** Возвращает булево значение, включен ли search в text */
-export function includes(text, search) {
-
+/** Возвращает булево значение, включен ли searchString в text.
+  startIndex, позволяет указать с какого индекса начать поиск. */
+export function includes(text, searchString, startIndex=0) {
 }

@@ -3,7 +3,6 @@ import { describe, test } from '../../../../dependencies/tests/test.js';
 import { indexOf } from './index-of.js';
 import { complexText } from './common.js';
 
-
 describe('indexOfTests', () => {
   test('найти текст с середины текста', () => {
     assertToBe(indexOf(complexText, 'terminator'), 20);
@@ -56,11 +55,11 @@ describe('indexOfTests', () => {
     assertThrow(() => indexOf(complexText, 't', '2'), 'invalid index');
   });
   test('второй параметр обазятелен', () => {
-    assertThrow(() => indexOf('trusted true'), 'invalid search string');
+    assertThrow(() => indexOf('trusted true'), 'invalid searchString string');
   });
   test('тип второго параметра должен быть string', () => {
-    assertThrow(() => indexOf('trusted true', true), 'invalid search string');
-    assertThrow(() => indexOf('only 33', 3), 'invalid search string');
+    assertThrow(() => indexOf('trusted true', true), 'invalid searchString string');
+    assertThrow(() => indexOf('only 33', 3), 'invalid searchString string');
   });
   test('если тип первого аргумента не строка, то будет исключение', () => {
     assertThrow(() => indexOf(), 'argument must be type of string');

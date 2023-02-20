@@ -1,7 +1,7 @@
 /** Выполняет поиск строки searchString в строке text
  * и возвращает первую найденную позицию.
  * Если в вхождение не найдено, то возвращает значение -1.
- * Параметр position задает начальную позицию с которой необходимо
+ * Параметр index задает начальную индекс с которой необходимо
  * начать поиск.*/
-export function indexOf(text, searchString, position) {
+export function indexOf(text, searchString, index=0) {
 }
