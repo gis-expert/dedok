@@ -38,6 +38,9 @@ describe('indexOfTests', () => {
   // test('после 27 символе нет символа t', () => {
   //   assertToBe(indexOf(complexText, 't', 28), -1);
   // });
+  // test('искомый текст встречается после начального индекса и находится нормально', () => {
+  //   assertToBe(indexOf('I am: he hello brother. Answer: hello!', 'hello'), 9);
+  // })
   // test('второй параметр как пустая строка возвращает -1', () => {
   //   assertToBe(indexOf(complexText, ''), -1);
   //   assertToBe(indexOf(complexText, '', 5), -1);
