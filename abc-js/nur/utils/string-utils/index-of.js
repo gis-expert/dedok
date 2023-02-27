@@ -16,7 +16,10 @@ export function indexOf(text, searchString, index=0) {
   if (searchString === '') return -1;
 
   let startIndex = index ?? 0;
-  if (typeof startIndex !== 'number' || startIndex < 0 || !isInteger(startIndex)) throw Error('invalid index');
+  if (
+    typeof startIndex !== 'number' || !isInteger(startIndex)
+    || startIndex < 0  || startIndex > len(text)
+  ) throw Error('invalid index');
 
   for (let i = startIndex; i + len(searchString) <= text.length; i += 1) {
     if (text[i] === searchString[0]) {
