@@ -2,6 +2,7 @@ import { assertToBe, assertThrow } from '../../../../dependencies/asserts/assert
 import { describe, test } from '../../../../dependencies/tests/test.js';
 import { indexOf } from './index-of.js';
 import { complexText } from './common.js';
+import { len } from './len.js';
 
 describe('indexOfTests', () => {
   test('найти текст с середины текста', () => {
@@ -46,6 +47,9 @@ describe('indexOfTests', () => {
   // });
   // test('отрицательный начальный индекс приводит к исключению', () => {
   //   assertThrow(() => indexOf(complexText, 't', -17), 'invalid index');
+  // });
+  // test('начальный индекс больше длины приводит к исключениею', () => {
+  //   assertThrow(() => indexOf(complexText, 't', len(complexText) + 1), 'invalid index');
   // });
   // test('дробные числа округляются в индексе приводит к исключению', () => {
   //   assertThrow(() => indexOf(complexText, 't', 2.2), 'invalid index');
