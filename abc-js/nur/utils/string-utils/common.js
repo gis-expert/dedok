@@ -1,5 +1,3 @@
-import { toString } from './to-string.js';
-
 /** для получения цифры строки по его индексу */
 export const DIGITS = '0123456789';
 export const SIGNS = '+-';
