@@ -8,8 +8,7 @@ function check(char) {
   if (len(char) !== 1) throw Error('char must be only one symbol char');
 }
 
-/** возвращает является ли первый символ,
-   символом латиницы в нижнем регистре. */
+/** возвращает булевый ответ, является ли символ в нижнем регистре. */
 export function isLower(char) {
   check(char);
   return (
@@ -18,8 +17,7 @@ export function isLower(char) {
   );
 }
 
-/** возвращает является ли первый символ,
-   символом кириллицы в верхнем регистре. */
+/** возвращает булевый ответ, является ли символ в верхнем регистре. */
 export function isUpper(char) {
   check(char);
   return (
@@ -29,7 +27,7 @@ export function isUpper(char) {
 }
 
 /** переводит в символ в нижний регистр,
-  если символ окажется символом верхнего регистра латиницы или кириллицы,
+  если символ окажется символом верхнего регистра,
   иначе вернет старое значение. 'A' --> 'a' */
 export function toLower(char) {
   if (isUpper(char)) return String.fromCharCode(char.charCodeAt() + RUS_CHAR_SHIFT);
@@ -37,7 +35,7 @@ export function toLower(char) {
 }
 
 /** переводит в символ в верхний регистр,
-  если символ окажется символом нижнего регистра латиницы или кириллицы,
+  если символ окажется символом нижнего регистра,
   иначе вернет старое значение. 'a' --> 'A'*/
 export function toUpper(char) {
   if (isLower(char)) return String.fromCharCode(char.charCodeAt() - ENG_CHAR_SHIFT);
