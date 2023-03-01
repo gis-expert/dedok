@@ -100,12 +100,12 @@ describe('floatToIntTests', () => {
         assertToBe(floatToInt(-floatValue), -expect);
       }
     }
-  })
+  });
   test('параметр обязателен и только числового типа', () => {
     const errMsg = 'value must be only number type';
     assertThrow(() => floatToInt(), errMsg);
     assertThrow(() => floatToInt(true), errMsg);
     assertThrow(() => floatToInt('2'), errMsg);
     assertThrow(() => floatToInt([1]), errMsg);
-  })
-})
+  });
+});
