@@ -4,15 +4,32 @@ import { parseInteger } from "./parse-integer.js";
 
 describe('ParseIntegerTests', () => {
   describe('number to number', () => {
-    test('целые числа возвращается также', () => {
+    test('положительные целые числа возвращается также', () => {
       assertToBe(parseInteger(1), 1);
       assertToBe(parseInteger(5), 5);
+      assertToBe(parseInteger(10), 53);
+      assertToBe(parseInteger(12), 53);
       assertToBe(parseInteger(53), 53);
+      assertToBe(parseInteger(100), 100);
+      assertToBe(parseInteger(101), 101);
+      assertToBe(parseInteger(1000), 1000);
+      assertToBe(parseInteger(1010), 1010);
       assertToBe(parseInteger(5359), 5359);
+      assertToBe(parseInteger(10000), 10000);
+      assertToBe(parseInteger(10080), 10080);
+    });
+    test('отрицательные целые числа возвращается также', () => {
       assertToBe(parseInteger(-1), -1);
       assertToBe(parseInteger(-5), -5);
       assertToBe(parseInteger(-53), -53);
       assertToBe(parseInteger(-5359), -5359);
+      assertToBe(parseInteger(-100), -100);
+      assertToBe(parseInteger(-101), -101);
+      assertToBe(parseInteger(-1000), -1000);
+      assertToBe(parseInteger(-1010), -1010);
+      assertToBe(parseInteger(-5359), -5359);
+      assertToBe(parseInteger(-10000), -10000);
+      assertToBe(parseInteger(-10080), -10080);
     });
 
     test('число ноль возвращается также', () => {
@@ -22,24 +39,46 @@ describe('ParseIntegerTests', () => {
       assertToBe(parseInteger(-0.000), 0);
     });
 
-
-    test('дробное число обрезается до целого', () => {
+    test('положительное дробное число обрезается до целого', () => {
       assertToBe(parseInteger(1.1), 1);
       assertToBe(parseInteger(1.157), 1);
       assertToBe(parseInteger(1.857), 1);
       assertToBe(parseInteger(1.00001), 1);
+      assertToBe(parseInteger(10.00001), 10);
+      assertToBe(parseInteger(11.00001), 11);
+      assertToBe(parseInteger(11.942), 11);
+      assertToBe(parseInteger(110.942), 110);
+      assertToBe(parseInteger(100.942), 100);
+      assertToBe(parseInteger(1001.942), 1001);
+      assertToBe(parseInteger(1000.942), 1000);
+      assertToBe(parseInteger(1020.942), 1020);
+      assertToBe(parseInteger(700020.942), 700020);
       assertToBe(parseInteger(0.1), 0);
+      assertToBe(parseInteger(0.000001), 0);
       assertToBe(parseInteger(0.157), 0);
       assertToBe(parseInteger(0.857), 0);
-      assertToBe(parseInteger(0.00001), 0);
-      assertToBe(parseInteger(-0.1), 0);
-      assertToBe(parseInteger(-0.157), 0);
-      assertToBe(parseInteger(-0.857), 0);
-      assertToBe(parseInteger(-0.00001), 0);
-      assertToBe(parseInteger(-5.1), -5);
-      assertToBe(parseInteger(-5.157), -5);
-      assertToBe(parseInteger(-5.857), -5);
-      assertToBe(parseInteger(-5.00001), -5);
+      assertToBe(parseInteger(1.857), 1);
+    });
+
+    test('отрицательное дробное число обрезается до целого', () => {
+      assertToBe(parseInteger(-1.1), -1);
+      assertToBe(parseInteger(-1.157), -1);
+      assertToBe(parseInteger(-1.857), -1);
+      assertToBe(parseInteger(-1.00001), -1);
+      assertToBe(parseInteger(-10.00001), -10);
+      assertToBe(parseInteger(-11.00001), -11);
+      assertToBe(parseInteger(-11.942), -11);
+      assertToBe(parseInteger(-110.942), -110);
+      assertToBe(parseInteger(-100.942), -100);
+      assertToBe(parseInteger(-1001.942), -1001);
+      assertToBe(parseInteger(-1000.942), -1000);
+      assertToBe(parseInteger(-1020.942), -1020);
+      assertToBe(parseInteger(-700020.942), -700020);
+      assertToBe(parseInteger(-0.1), -0);
+      assertToBe(parseInteger(-0.000001), -0);
+      assertToBe(parseInteger(-0.157), -0);
+      assertToBe(parseInteger(-0.857), -0);
+      assertToBe(parseInteger(-1.857), -1);
     });
   });
 
