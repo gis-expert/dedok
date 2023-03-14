@@ -3,7 +3,6 @@ import { isInteger } from "./is-integer.js";
 
 /** возвращает целую часть числа уменьшенную в меньшую сторону */
 export function floor(value) {
-  const int = floatToInt(value);
-  if (isInteger(value)) return int;
-  return value < 0 ? int - 1 : int;
+  if (isInteger(value)) return value;
+  return value < 0 ? floatToInt(value) - 1 : floatToInt(value);
 }

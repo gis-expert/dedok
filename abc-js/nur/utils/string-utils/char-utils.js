@@ -30,7 +30,7 @@ export function isUpper(char) {
   если символ окажется символом верхнего регистра,
   иначе вернет старое значение. 'A' --> 'a' */
 export function toLower(char) {
-  if (isUpper(char)) return String.fromCharCode(char.charCodeAt() + RUS_CHAR_SHIFT);
+  if (isUpper(char)) return String.fromCharCode(char.charCodeAt() + ENG_CHAR_SHIFT);
   return char;
 }
 
