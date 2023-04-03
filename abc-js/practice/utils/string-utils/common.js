@@ -24,6 +24,7 @@ export const complexText = "Hello world!!! It's terminator";
 export function notStringRiseError(firstext, secondText) {
     if (typeof firstext !== 'string') throw Error ('argument must be type of string');
     if (typeof secondText !== 'string') throw Error ('argument must be type of string');
+    
 }
 
 export const ZERO_CODE_CHAR = String.fromCharCode(0);

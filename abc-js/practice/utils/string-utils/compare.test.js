@@ -8,6 +8,7 @@ import { complexText, ZERO_CODE_CHAR } from './common.js';
 describe('isEqualTests', () => {
   test('одиночные одинаковые символы', () => {
     assertToBe(isEqual('a', 'a'), true);
+    
     assertToBe(isEqual('a', 'b'), false);
   });
    test('количество символов одинаково, но не равны', () => {

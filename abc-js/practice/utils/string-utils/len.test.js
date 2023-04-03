@@ -3,6 +3,7 @@ import { describe, test } from '../../../../dependencies/tests/test.js';
 import { complexText, ZERO_CODE_CHAR } from './common.js';
 import { len } from './len.js';
 
+
 describe('lenTests', () => {
   test('пустая строка возвращает 0', () => {
     assertToBe(len(''), 0);

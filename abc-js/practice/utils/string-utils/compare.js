@@ -3,6 +3,7 @@ import { len } from "./len.js";
 
 
 
+
 export function isEqual(firstText, secondText) {
     let i = len(firstText);
     let b = len(secondText);

@@ -5,3 +5,4 @@ export function len(text) {
     }
     return i;
 }
+
