@@ -8,5 +8,7 @@
 
 Пройдите данный курс и `дело будет в шляпе`.
 
-Более подробно можно ознакомиться на странице [wiki](https://github.com/gis-expert/dedok/wiki)
+Более подробно можно ознакомиться на странице [wiki](https://github.com/gis-expert/dedok/wiki
+
+Etot file Redaktor Amirlan
 
