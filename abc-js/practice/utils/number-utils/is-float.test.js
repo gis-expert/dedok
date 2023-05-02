@@ -11,18 +11,18 @@ describe('isFloat', () => {
     assertToBe(isFloat(-1.00001), true);
   });
 
-  // test('число не является дробным', () => {
-  //   assertToBe(isFloat(5555), false);
-  //   assertToBe(isFloat(1), false);
-  //   assertToBe(isFloat(1.00), false);
-  //   assertToBe(isFloat(0), false);
-  //   assertToBe(isFloat(-0), false);
-  //   assertToBe(isFloat(-1), false);
-  //   assertToBe(isFloat(-555), false);
-  // });
-  //
-  // test('число должно быть только числовым типом', () => {
-  //   assertThrow(() => isFloat('1.1'), 'value must be only number type');
-  //   assertThrow(() => isFloat(true), 'value must be only number type');
-  // });
+  test('число не является дробным', () => {
+    assertToBe(isFloat(5555), false);
+    assertToBe(isFloat(1), false);
+    assertToBe(isFloat(1.00), false);
+    assertToBe(isFloat(0), false);
+    assertToBe(isFloat(-0), false);
+    assertToBe(isFloat(-1), false);
+    assertToBe(isFloat(-555), false);
+  });
+  
+  test('число должно быть только числовым типом', () => {
+    assertThrow(() => isFloat('1.1'), 'value must be only number type');
+    assertThrow(() => isFloat(true), 'value must be only number type');
+  });
 });
