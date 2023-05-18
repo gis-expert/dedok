@@ -18,13 +18,14 @@ export function trimStart(text, trimSymbols=TRIM_SYMBOLS) {
 
     for (let i = 0; i < textCount; i++){
 
+        textValue = 0;
+
         for(let j = 0; j < trimSymbols.length; j++){
             if(trimSymbols[j] !== text[i]) textValue +=1;
         }
 
-        if(textValue === 4) return text;
+        if(textValue === trimSymbols.length){
 
-        if(textValue % 3 !== 0){
 
             for(let l = i; l < textCount; l++){
                 textResult += text[l];
@@ -57,12 +58,14 @@ export function trimEnd(text, trimSymbols=TRIM_SYMBOLS) {
 
     for (let i = textCount; i >= 0; i--){
 
+        textValue = 0;
+
         for(let j = trimSymbols.length-1; j >= 0; j--){
             if(text[i] !== trimSymbols[j]) textValue += 1;
         }
 
 
-        if(textValue % 3 !== 0){
+        if(textValue === trimSymbols.length){
             for(let l = i; l >= 0; l--){
                 textResult += text[l];
             }
@@ -100,12 +103,14 @@ export function trim(text, trimSymbols=TRIM_SYMBOLS) {
 
     for (let i = 0; i < textCount; i++){
 
+        textValue = 0;
+
         for(let j = 0; j < trimSymbols.length; j++){
             if(trimSymbols[j] !== text[i]) textValue +=1;
         }
 
 
-        if(textValue % 3 !== 0){
+        if(textValue === trimSymbols.length){
 
             for(let l = i; l < textCount; l++){
                 textResult += text[l];
@@ -122,12 +127,14 @@ export function trim(text, trimSymbols=TRIM_SYMBOLS) {
 
             for (let i = textResultCount; i >= 0; i--){
 
+                textValueTrimEnd = 0;
+
                 for(let j = trimSymbols.length-1; j >= 0; j--){
                     if(textResultTrimEnd[i] !== trimSymbols[j]) textValueTrimEnd += 1;
                 }
         
         
-                if(textValueTrimEnd % 3 !== 0){
+                if(textValueTrimEnd === trimSymbols.length){
                     for(let l = i; l >= 0; l--){
                         textResultEnd += textResultTrimEnd[l];
                     }
