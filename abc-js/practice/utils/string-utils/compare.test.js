@@ -6,14 +6,21 @@ import {
 import { complexText, ZERO_CODE_CHAR } from './common.js';
 
 describe('isEqualTests', () => {
-  test('одиночные одинаковые символы', () => {
+  test('одиночные символы', () => {
     assertToBe(isEqual('a', 'a'), true);
     assertToBe(isEqual('a', 'b'), false);
   });
+<<<<<<< Updated upstream
   test('количество символов одинаково, но не равны', () => {
     assertToBe(isEqual('abc', 'abc'), true);
     assertToBe(isEqual('abc', 'abb'), false);
   });
+=======
+   test('количество символов одинаково, но не равны', () => {
+     assertToBe(isEqual('abc', 'abc'), true);
+     assertToBe(isEqual('abc', 'abb'), false);
+   });
+>>>>>>> Stashed changes
   test('символы совпадают, но у первого больше символов', () => {
     assertToBe(isEqual('abbb', 'abb'), false);
   });
@@ -125,7 +132,13 @@ describe('isMoreTests', () => {
   test('первая и вторая равны по содержанию, но первая больше по длине', () => {
     assertToBe(isMore('abba', 'abb'), true);
   });
+<<<<<<< Updated upstream
   test('первая и вторая равны по содержанию, но вторая больше по длине', () => {
+=======
+
+  test('первая и вторая равны по содержанию, но вторая больше по длине', () => {
+
+>>>>>>> Stashed changes
     assertToBe(isMore('abb', 'abba'), false);
   });
   test('первая меньше по длине и но больше по содержанию', () => {
@@ -143,7 +156,13 @@ describe('isMoreTests', () => {
   test('не пустая строка больше чем пустая', () => {
     assertToBe(isMore(ZERO_CODE_CHAR, ''), true);
   });
+<<<<<<< Updated upstream
   test('несоответствие типа второго аргумента приводит к ЛОЖЬ', () => {
+=======
+
+  test('несоответствие типа второго аргумента приводит к ЛОЖЬ', () => {
+
+>>>>>>> Stashed changes
     assertThrow(() => isMore('2', 2), 'argument must be type of string');
     assertThrow(() => isMore('2', true), 'argument must be type of string');
     assertThrow(() => isMore('2', []), 'argument must be type of string');
