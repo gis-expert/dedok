@@ -1,11 +1,12 @@
 /** Возвращает text повторенный count раз. */
+import { isNotString } from "./common.js";
+import { isInteger } from "../number-utils/is-integer.js";
+
 export function repeat(text, count = 1) {
-    if(typeof text !== 'string') throw Error ('argument must be type of string')
-    if(typeof count !== 'number') throw Error ('invalid count')
-    if(count % 1 !== 0 || count < 0) throw Error ('invalid count')
-    let valueText = '';
-    for(let i = 0; i < count; i++){
-        valueText += text
-    }
-    return valueText
+
+    isNotString(text)
+    if(typeof count !== 'number' || !isInteger(count) || count < 0) throw Error ('invalid count')
+
+    return count <= 0 ? "" : repeat(text, count - 1) + text;
 }
+
