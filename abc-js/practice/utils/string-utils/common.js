@@ -19,7 +19,21 @@ export const DIGIT_START = 48;
 export const DIGIT_FINISH = 57;
 
 // --------------- for tests ------------------
+import { len } from "./len.js";
+
 
 export const complexText = "Hello world!!! It's terminator";
 
 export const ZERO_CODE_CHAR = String.fromCharCode(0);
+
+export function isNotString(text){
+    if(typeof text !== "string") throw Error('argument must be type of string');
+}
+
+export function isNotChar(char){
+    if(typeof char !== "string") throw Error ("parameter is required and must be string type");
+}
+export function isNotCharSymbol(char){
+    if(len(char) > 1) throw Error ("char must be only one symbol char");
+}
+
