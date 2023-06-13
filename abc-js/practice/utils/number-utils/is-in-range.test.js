@@ -34,7 +34,7 @@ describe('isInRangeTests', () => {
   //   assertToBe(isInRange(-3, -7, -4), false);
   // });
   // test('все параметры обязательны', () => {
-  //   assertThrow(() => isInRange(1, 2), 'all parameter is required and must be number type');
+  //   assertThrow(() => isInRange(1, 2, undefined), 'all parameter is required and must be number type');
   //   assertThrow(() => isInRange(1, undefined, 2), 'all parameter is required and must be number type');
   //   assertThrow(() => isInRange(undefined, 1, 2), 'all parameter is required and must be number type');
   // });

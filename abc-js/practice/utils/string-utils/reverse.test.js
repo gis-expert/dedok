@@ -21,7 +21,7 @@ describe('reverseTests', () => {
   // test('если не передать первый аргумент, то будет исключение', () => {
   //   assertThrow(() => reverse(), 'argument must be type of string');
   // });
-  // test('если тип первого аргумента на строка, то будет исключение', () => {
+  // test('если тип первого аргумента не строка, то будет исключение', () => {
   //   assertThrow(() => reverse(true), 'argument must be type of string');
   //   assertThrow(() => reverse(1), 'argument must be type of string');
   //   assertThrow(() => reverse([]), 'argument must be type of string');

@@ -71,7 +71,7 @@ describe('charUtilsTests', () => {
       //   assertToBe(isUpper(String.fromCharCode(RUS_UPPER_START)), true);
       //   assertToBe(isUpper(String.fromCharCode(RUS_UPPER_FINISH)), true);
       // });
-      // test('символ не является прописной латиницей', () => {
+      // test('символ не является прописной латиницей или кириллицей', () => {
       //   assertToBe(isUpper(' '), false);
       //   assertToBe(isUpper('/'), false);
       //   assertToBe(isUpper('\n'), false);

@@ -17,7 +17,7 @@ describe('replaceTests', () => {
   //   assertToBe(replace(complexText, "It`s", "It is"), complexText);
   // });
   // test('меняется только первое вхождение в начале строки', () => {
-  //   assertToBe(replace('bbc', 'a', 'b'), 'bbc');
+  //   assertToBe(replace('bbc', 'b', 'a'), 'abc');
   //   assertToBe(replace('he he ho he', 'he', 'uh'), 'uh he ho he');
   // });
   // test('меняется только первое вхождение в середине строки', () => {

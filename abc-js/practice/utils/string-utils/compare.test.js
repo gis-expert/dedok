@@ -11,7 +11,7 @@ describe('isEqualTests', () => {
     assertToBe(isEqual('a', 'b'), false);
   });
   // test('количество символов одинаково, но не равны', () => {
-  //   assertToBe(isEqual('abc', 'abc'), true);
+  //   assertToBe(isEqual('abb', 'abc'), false);
   //   assertToBe(isEqual('abc', 'abb'), false);
   // });
   // test('символы совпадают, но у первого больше символов', () => {
@@ -41,7 +41,7 @@ describe('isEqualTests', () => {
   //   assertThrow(() => isEqual('2', true), 'argument must be type of string');
   //   assertThrow(() => isEqual('2', []), 'argument must be type of string');
   //   assertThrow(() => isEqual('2', null), 'argument must be type of string');
-  //   assertThrow(() => isEqual('2'), 'argument must be type of string');
+  //   assertThrow(() => isEqual('2', undefined), 'argument must be type of string');
   // });
   // test('несоответствие типа первого аргумента приводит к исключению', () => {
   //   assertThrow(() => isEqual(2, '2'), 'argument must be type of string');
@@ -55,7 +55,7 @@ describe('isEqualTests', () => {
 describe('isNotEqualTests', () => {
   test('одиночные одинаковые символы', () => {
     assertToBe(isNotEqual('a', 'a'), false);
-    assertToBe(isNotEqual('a', 'b'), true);
+    assertToBe(isNotEqual('b', 'b'), false);
   });
   // test('количество символов одинаково, но не равны', () => {
   //   assertToBe(isNotEqual('abc', 'abb'), true);
@@ -87,7 +87,7 @@ describe('isNotEqualTests', () => {
   //   assertThrow(() => isNotEqual('2', true), 'argument must be type of string');
   //   assertThrow(() => isNotEqual('2', []), 'argument must be type of string');
   //   assertThrow(() => isNotEqual('2', null), 'argument must be type of string');
-  //   assertThrow(() => isNotEqual('2'), 'argument must be type of string');
+  //   assertThrow(() => isNotEqual('2', undefined), 'argument must be type of string');
   // });
   // test('несоответствие типа первого аргумента приводит к исключению', () => {
   //   assertThrow(() => isNotEqual(2, '2'), 'argument must be type of string');
@@ -128,7 +128,7 @@ describe('isMoreTests', () => {
   // test('первая и вторая равны по содержанию, но вторая больше по длине', () => {
   //   assertToBe(isMore('abb', 'abba'), false);
   // });
-  // test('первая меньше по длине и но больше по содержанию', () => {
+  // test('первая меньше по длине но больше по содержанию', () => {
   //   assertToBe(isMore('abc', 'abba'), true);
   // });
   // test('первая меньше по длине и по содержанию', () => {
@@ -148,7 +148,7 @@ describe('isMoreTests', () => {
   //   assertThrow(() => isMore('2', true), 'argument must be type of string');
   //   assertThrow(() => isMore('2', []), 'argument must be type of string');
   //   assertThrow(() => isMore('2', null), 'argument must be type of string');
-  //   assertThrow(() => isMore('2'), 'argument must be type of string');
+  //   assertThrow(() => isMore('2', undefined), 'argument must be type of string');
   // });
   // test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
   //   assertThrow(() => isMore(2, '2'), 'argument must be type of string');
@@ -197,7 +197,7 @@ describe('isLessTests', () => {
   //   assertThrow(() => isLess('2', true), 'argument must be type of string');
   //   assertThrow(() => isLess('2', []), 'argument must be type of string');
   //   assertThrow(() => isLess('2', null), 'argument must be type of string');
-  //   assertThrow(() => isLess('2'), 'argument must be type of string');
+  //   assertThrow(() => isLess('2', undefined), 'argument must be type of string');
   // });
   // test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
   //   assertThrow(() => isLess(2, '2'), 'argument must be type of string');
@@ -246,7 +246,7 @@ describe('isMoreOrEqualTests', () => {
   //   assertThrow(() => isMoreOrEqual('2', true), 'argument must be type of string');
   //   assertThrow(() => isMoreOrEqual('2', []), 'argument must be type of string');
   //   assertThrow(() => isMoreOrEqual('2', null), 'argument must be type of string');
-  //   assertThrow(() => isMoreOrEqual('2'), 'argument must be type of string');
+  //   assertThrow(() => isMoreOrEqual('2', undefined), 'argument must be type of string');
   // });
   // test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
   //   assertThrow(() => isMoreOrEqual(2, '2'), 'argument must be type of string');
@@ -272,7 +272,7 @@ describe('isLessOrEqualTests', () => {
   // test('первая и вторая равны', () => {
   //   assertToBe(isLessOrEqual('abb', 'abb'), true);
   // });
-  // test('вторая строка больше первой по последнему символу', () => {
+  // test('первая строка больше второй по последнему символу', () => {
   //   assertToBe(isLessOrEqual('abc', 'abb'), false);
   // });
   // test('первая и вторая равны по содержанию, но первая меньше по длине', () => {
@@ -295,7 +295,7 @@ describe('isLessOrEqualTests', () => {
   //   assertThrow(() => isLessOrEqual('2', true), 'argument must be type of string');
   //   assertThrow(() => isLessOrEqual('2', []), 'argument must be type of string');
   //   assertThrow(() => isLessOrEqual('2', null), 'argument must be type of string');
-  //   assertThrow(() => isLessOrEqual('2'), 'argument must be type of string');
+  //   assertThrow(() => isLessOrEqual('2', undefined), 'argument must be type of string');
   // });
   // test('несоответствие типа первого аргумента приводит к ЛОЖЬ', () => {
   //   assertThrow(() => isLessOrEqual(2, '2'), 'argument must be type of string');

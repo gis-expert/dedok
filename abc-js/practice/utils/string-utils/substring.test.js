@@ -34,20 +34,19 @@ describe('substringTests', () => {
   //   assertThrow(() => substring(complexText, 0, true), 'invalid end index');
   //   assertThrow(() => substring(complexText, 5, '11'), 'invalid end index');
   // });
-  // test('если второй индекс больше первого, то выкидывается исключение', () => {
+  // test('если первый индекс больше второго, то выкидывается исключение', () => {
   //   assertThrow(() => substring(complexText, 5, 2), 'invalid start and end index');
   // });
   // test('если первый индекс отрицательный, то он равен 0', () => {
-  //   assertThrow(() => substring(complexText, -5, 2), 'invalid start index');
-  //   assertThrow(() => substring(complexText, 2, -7), 'invalid end index');
-  //   assertThrow(() => substring(complexText, -5, -2), 'invalid start index');
+    // assertThrow(() => substring(complexText, -5, 2), 'He');
+    // assertThrow(() => substring(complexText, -2, 7), 'Hello w');
   // });
   // test('вызов с дробным индексом приводит к исключению', () => {
   //   assertThrow(() => substring(complexText, 1.7, 3), 'invalid start index');
   //   assertThrow(() => substring(complexText, 1, 3.1415), 'invalid end index');
   // });
   // test('если тип первого аргумента нe строка, то будет исключение', () => {
-  //   assertThrow(() => substring(), 'argument must be type of string');
+  //   assertThrow(() => substring(undefined, 0), 'argument must be type of string');
   //   assertThrow(() => substring(true, 2), 'argument must be type of string');
   // });
 });

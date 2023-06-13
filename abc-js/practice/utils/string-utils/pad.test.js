@@ -22,8 +22,8 @@ describe('pad Tests', () => {
     //   assertToBe(padStart('hehe', null), 'hehe');
     // });
     // test('несоответствие типа второго параметра (строка), то вернется то же значение', () => {
-    //   assertThrow(() => padStart('hehe', 's'), 'invalid type of maxLength');
-    //   assertThrow(() => padStart('hehe', true), 'invalid type of maxLength');
+      // asserToBe(padStart('hehe', 's'), 'hehe');
+      // assertToBe(padStart('hehe', '6'), 'hehe');
     // });
     // test('другая строка заполнения', () => {
     //   assertToBe(padStart('he', 4, '*'), '**he');
@@ -38,7 +38,7 @@ describe('pad Tests', () => {
     //   assertToBe(padStart('he', 8, 'Abcd'), 'AbcdAbhe');
     // });
     // test('строка заполнения не строковая, пирводит к приведению типа', () => {
-    //   assertThrow(() => padStart('he', 8, true), 'argument fillString must be type of string');
+      // assertToBe(padStart('he', 8, true), 'truetrhe');
     // });
     // test('проверка типов первого аргумента', () => {
     //   assertThrow(() => padStart(), 'argument text must be type of string');
@@ -65,8 +65,8 @@ describe('pad Tests', () => {
     //   assertToBe(padEnd('hehe', null), 'hehe');
     // });
     // test('несоответствие типа второго параметра (строка), то вернется то же значение', () => {
-    //   assertThrow(() => padEnd('hehe', 's'), 'invalid type of maxLength');
-    //   assertThrow(() => padEnd('hehe', true), 'invalid type of maxLength');
+    //   assertToBe(padEnd('hehe', 's'), 'hehe');
+    //   assertToBe(padEnd('hehe', '6'), 'hehe');
     // });
     // test('другая строка заполнения', () => {
     //   assertToBe(padEnd('he', 4, '*'), 'he**');
@@ -81,7 +81,7 @@ describe('pad Tests', () => {
     //   assertToBe(padEnd('he', 8, 'Abcd'), 'heAbcdAb');
     // });
     // test('строка заполнения не строковая, пирводит к приведению типа', () => {
-    //   assertThrow(() => padEnd('he', 8, true), 'argument fillString must be type of string');
+    //   assertToBe(padEnd('he', 8, true), 'hetruetr');
     // });
     // test('проверка типов первого аргумента', () => {
     //   assertThrow(() => padEnd(), 'argument text must be type of string');
