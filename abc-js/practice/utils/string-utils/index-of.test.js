@@ -69,7 +69,7 @@ describe('indexOfTests', () => {
   //   assertThrow(() => indexOf('only 33', 3), 'invalid searchString string');
   // });
   // test('если тип первого аргумента не строка, то будет исключение', () => {
-  //   assertThrow(() => indexOf(undefined), 'argument must be type of string');
+  //   assertThrow(() => indexOf(), 'argument must be type of string');
   //   assertThrow(() => indexOf(true), 'argument must be type of string');
   // });
 });

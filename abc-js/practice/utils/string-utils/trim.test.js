@@ -46,7 +46,7 @@ describe('trimLeftTests', () => {
   //   assertThrow(() => trimStart('hello', true), 'argument trimSymbols must be type of string');
   // });
   // test('первый параметр должен быть только строковым', () => {
-  //   assertThrow(() => trimStart(undefined), 'argument text must be type of string');
+  //   assertThrow(() => trimStart(), 'argument text must be type of string');
   //   assertThrow(() => trimStart(true), 'argument text must be type of string');
   // });
 });
@@ -95,7 +95,7 @@ describe('trimRightTests', () => {
   //   assertThrow(() => trimEnd('hello', true), 'argument trimSymbols must be type of string');
   // });
   // test('первый параметр должен быть только строковым', () => {
-  //   assertThrow(() => trimEnd(undefined), 'argument text must be type of string');
+  //   assertThrow(() => trimEnd(), 'argument text must be type of string');
   //   assertThrow(() => trimEnd(true), 'argument text must be type of string');
   // });
 });
@@ -138,7 +138,7 @@ describe('trimTests', () => {
   //   assertThrow(() => trim('hello', true), 'argument trimSymbols must be type of string');
   // });
   // test('первый параметр должен быть только строковым', () => {
-  //   assertThrow(() => trim(undefined), 'argument text must be type of string');
+  //   assertThrow(() => trim(), 'argument text must be type of string');
   //   assertThrow(() => trim(true), 'argument text must be type of string');
   // });
 });
