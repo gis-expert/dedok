@@ -21,7 +21,7 @@ describe('pad Tests', () => {
     //   assertToBe(padStart('hehe'), 'hehe');
     //   assertToBe(padStart('hehe', null), 'hehe');
     // });
-    // test('несоответствие типа второго параметра (строка), то вернется то же значение', () => {
+    // test('несоответствие типа второго параметра (не число), то вызовется исключение', () => {
     //   assertThrow(() => padStart('hehe', 's'), 'invalid type of maxLength');
     //   assertThrow(() => padStart('hehe', true), 'invalid type of maxLength');
     // });
@@ -37,7 +37,7 @@ describe('pad Tests', () => {
     // test('строка заполнения не кратен вставке (полная + неполная)', () => {
     //   assertToBe(padStart('he', 8, 'Abcd'), 'AbcdAbhe');
     // });
-    // test('строка заполнения не строковая, пирводит к приведению типа', () => {
+    // test('не строковая строка заполнения приводит к исключению', () => {
     //   assertThrow(() => padStart('he', 8, true), 'argument fillString must be type of string');
     // });
     // test('проверка типов первого аргумента', () => {
@@ -64,7 +64,7 @@ describe('pad Tests', () => {
     //   assertToBe(padEnd('hehe'), 'hehe');
     //   assertToBe(padEnd('hehe', null), 'hehe');
     // });
-    // test('несоответствие типа второго параметра (строка), то вернется то же значение', () => {
+    // test('несоответствие типа второго параметра (не число), то вызовется исключение', () => {
     //   assertThrow(() => padEnd('hehe', 's'), 'invalid type of maxLength');
     //   assertThrow(() => padEnd('hehe', true), 'invalid type of maxLength');
     // });
@@ -80,7 +80,7 @@ describe('pad Tests', () => {
     // test('строка заполнения не кратен вставке (полная + неполная)', () => {
     //   assertToBe(padEnd('he', 8, 'Abcd'), 'heAbcdAb');
     // });
-    // test('строка заполнения не строковая, пирводит к приведению типа', () => {
+    // test('не строковая строка заполнения приводит к исключению', () => {
     //   assertThrow(() => padEnd('he', 8, true), 'argument fillString must be type of string');
     // });
     // test('проверка типов первого аргумента', () => {

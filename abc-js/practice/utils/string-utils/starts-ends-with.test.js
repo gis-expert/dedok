@@ -6,12 +6,12 @@ describe('startsEndsWithTests', () => {
   describe('startsWithTests', () => {
     const text = 'hello my friend';
 
-    test('строка заканчивается на искомый текст', () => {
+    test('строка начинается на искомый текст', () => {
       assertToBe(startsWith(text, 'hello'), true);
       assertToBe(startsWith(text, 'he'), true);
       assertToBe(startsWith(text, 'h'), true);
     });
-    // test('строка не заканчивается на искомый текст', () => {
+    // test('строка не начинается на искомый текст', () => {
     //   assertToBe(startsWith(text, 'tello'), false);
     //   assertToBe(startsWith(text, 'te'), false);
     //   assertToBe(startsWith(text, 't'), false);
@@ -24,7 +24,7 @@ describe('startsEndsWithTests', () => {
     // test('переданная позиция равна нулю', () => {
     //   assertToBe(startsWith(text, 'h', 0), true);
     // });
-    // test('начальная позиция и длина поисковой строки выводит конечный индекс за длину текста', () => {
+    // test('если начальная позиция и длина поисковой строки выводит конечный индекс за длину текста, вызывает исключение', () => {
     //   assertThrow(() => startsWith(text, 'd', text.length), 'invalid start position or search length');
     //   assertThrow(() => startsWith('hello', 'hel', 4), 'invalid start position or search length');
     // })
@@ -52,7 +52,7 @@ describe('startsEndsWithTests', () => {
     //   assertThrow(() => startsWith(text, true), 'argument search must be type of string');
     //   assertThrow(() => startsWith(text, 5), 'argument search must be type of string');
     // });
-    // test('третий параметр с текстом должен быть только строковым типом', () => {
+    // test('первый параметр с текстом должен быть только строковым типом', () => {
     //   assertThrow(() => startsWith(true, 'f'), 'argument text must be type of string');
     //   assertThrow(() => startsWith(5, '5'), 'argument text must be type of string');
     // });
@@ -88,7 +88,7 @@ describe('startsEndsWithTests', () => {
     //   assertToBe(endsWith(text, 'frien', text.length - 1), true);
     //   assertToBe(endsWith(text, ' f', 10), true);
     // });
-    // test('конечная позиция и длина поисковой строки выводит стартовый индекс в минус', () => {
+    // test('если конечная позиция и длина поисковой строки выводит стартовый индекс в минус то вызывает исключение', () => {
     //   assertThrow(() => endsWith(text, 'h', 0),  'invalid end position or search length');
     //   assertThrow(() => endsWith('hello', 'hel', 2), 'invalid end position or search length');
     // })
@@ -105,7 +105,7 @@ describe('startsEndsWithTests', () => {
     //   assertThrow(() => endsWith(text, true), 'argument search must be type of string');
     //   assertThrow(() => endsWith(text, 5), 'argument search must be type of string');
     // });
-    // test('третий параметр с текстом должен быть только строковым типом', () => {
+    // test('первый параметр с текстом должен быть только строковым типом', () => {
     //   assertThrow(() => endsWith(true, 'f'), 'argument text must be type of string');
     //   assertThrow(() => endsWith(5, '5'), 'argument text must be type of string');
     // });

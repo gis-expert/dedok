@@ -11,7 +11,7 @@ describe('isEqualTests', () => {
     assertToBe(isEqual('a', 'b'), false);
   });
   // test('количество символов одинаково, но не равны', () => {
-  //   assertToBe(isEqual('abc', 'abc'), true);
+  //   assertToBe(isEqual('abb', 'abc'), false);
   //   assertToBe(isEqual('abc', 'abb'), false);
   // });
   // test('символы совпадают, но у первого больше символов', () => {
@@ -55,7 +55,7 @@ describe('isEqualTests', () => {
 describe('isNotEqualTests', () => {
   test('одиночные одинаковые символы', () => {
     assertToBe(isNotEqual('a', 'a'), false);
-    assertToBe(isNotEqual('a', 'b'), true);
+    assertToBe(isNotEqual('b', 'b'), false);
   });
   // test('количество символов одинаково, но не равны', () => {
   //   assertToBe(isNotEqual('abc', 'abb'), true);
@@ -128,7 +128,7 @@ describe('isMoreTests', () => {
   // test('первая и вторая равны по содержанию, но вторая больше по длине', () => {
   //   assertToBe(isMore('abb', 'abba'), false);
   // });
-  // test('первая меньше по длине и но больше по содержанию', () => {
+  // test('первая меньше по длине но больше по содержанию', () => {
   //   assertToBe(isMore('abc', 'abba'), true);
   // });
   // test('первая меньше по длине и по содержанию', () => {
@@ -272,7 +272,7 @@ describe('isLessOrEqualTests', () => {
   // test('первая и вторая равны', () => {
   //   assertToBe(isLessOrEqual('abb', 'abb'), true);
   // });
-  // test('вторая строка больше первой по последнему символу', () => {
+  // test('первая строка больше второй по последнему символу', () => {
   //   assertToBe(isLessOrEqual('abc', 'abb'), false);
   // });
   // test('первая и вторая равны по содержанию, но первая меньше по длине', () => {

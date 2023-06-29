@@ -2,6 +2,6 @@
 export function upperCase(text) {
 }
 
-/** возвращает копию строки text в верхнем регистре */
+/** возвращает копию строки text в нижнем регистре */
 export function lowerCase(text) {
 }

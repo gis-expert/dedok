@@ -35,7 +35,7 @@ describe('indexOfTests', () => {
   // test('поиск третьего совпадения', () => {
   //   assertToBe(indexOf(complexText, 't', 21), 27);
   // });
-  // test('после 27 символе нет символа t', () => {
+  // test('после 27 символа нет символа t', () => {
   //   assertToBe(indexOf(complexText, 't', 28), -1);
   // });
   // test('искомый текст встречается после начального индекса и находится нормально', () => {
@@ -45,7 +45,7 @@ describe('indexOfTests', () => {
   //   assertToBe(indexOf(complexText, ''), -1);
   //   assertToBe(indexOf(complexText, '', 5), -1);
   // });
-  // test('пустой первый параметр дает возвращает -1', () => {
+  // test('пустой первый параметр возвращает -1', () => {
   //   assertToBe(indexOf('', 'q'), -1);
   // });
   // test('отрицательный начальный индекс приводит к исключению', () => {
@@ -54,10 +54,10 @@ describe('indexOfTests', () => {
   // test('начальный индекс больше длины приводит к исключениею', () => {
   //   assertThrow(() => indexOf(complexText, 't', len(complexText) + 1), 'invalid index');
   // });
-  // test('дробные числа округляются в индексе приводит к исключению', () => {
+  // test('дробные числа в индексе приводит к исключению', () => {
   //   assertThrow(() => indexOf(complexText, 't', 2.2), 'invalid index');
   // });
-  // test('индекс должен быть только с числовым типом', () => {
+  // test('индекс должен быть только числовым типом', () => {
   //   assertThrow(() => indexOf(complexText, 't', true), 'invalid index');
   //   assertThrow(() => indexOf(complexText, 't', '2'), 'invalid index');
   // });

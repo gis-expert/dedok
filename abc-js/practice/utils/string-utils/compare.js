@@ -3,7 +3,7 @@
 export function isEqual(firstText, secondText) {
 }
 
-/** возвращает true если аргументы не равны, и true в иных случаях. */
+/** возвращает true если аргументы не равны, и false в иных случаях. */
 export function isNotEqual(firstText, secondText) {
 }
 

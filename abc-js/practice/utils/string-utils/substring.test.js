@@ -34,10 +34,10 @@ describe('substringTests', () => {
   //   assertThrow(() => substring(complexText, 0, true), 'invalid end index');
   //   assertThrow(() => substring(complexText, 5, '11'), 'invalid end index');
   // });
-  // test('если второй индекс больше первого, то выкидывается исключение', () => {
+  // test('если первый индекс больше второго, то выкидывается исключение', () => {
   //   assertThrow(() => substring(complexText, 5, 2), 'invalid start and end index');
   // });
-  // test('если первый индекс отрицательный, то он равен 0', () => {
+  // test('если первый или второй индекс отрицательный, то вызовется исключение', () => {
   //   assertThrow(() => substring(complexText, -5, 2), 'invalid start index');
   //   assertThrow(() => substring(complexText, 2, -7), 'invalid end index');
   //   assertThrow(() => substring(complexText, -5, -2), 'invalid start index');
