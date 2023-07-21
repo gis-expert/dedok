@@ -37,11 +37,6 @@ export function isMore(firstText, secondText) {
         return false;
     }
 }
-////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 /** возвращает булевый ответ меньше ли параметр firstText чем secondText. */
 export function isLess(firstText, secondText) {
